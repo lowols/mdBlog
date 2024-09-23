@@ -64,7 +64,7 @@ docker run -d \
 
 运行效果如图：
 
-![](Docker教程/UxK2beI0ros8O1xf2IJcWMvQnVb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_3d529b583eb70f648a279e723d26eb57.png)
 
 MySQL 安装完毕！通过任意客户端工具即可连接到 MySQL.
 
@@ -433,19 +433,19 @@ ls -l /var/lib/docker/volumes/29524ff09715d3688eae3f99803a2796558dbd00ca584a25a4
 
 在课前资料中已经准备好了 mysql 的 `init` 目录和 `conf` 目录：
 
-![](Docker教程/KPD5btJQ1oYNJ0x4Dqnc7AjCn7g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_1a1100c42db957af1e729d3dccaea0f6.png)
 
 以及对应的初始化 SQL 脚本和配置文件：
 
-![](Docker教程/MC3Xb7gcYo3IAix5wHMcfdImnKd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_d0828379ea08928045afafc34eb9dbc1.png)
 
-![](Docker教程/TWpQbXl6wod9pVxc0iRctpCinUh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_434ad07895654932b0427713dc42798f.png)
 
 其中，hm.cnf 主要是配置了 MySQL 的默认编码，改为 utf8mb4；而 hmall.sql 则是后面我们要用到的黑马商城项目的初始化 SQL 脚本。
 
 我们直接将整个 mysql 目录上传至虚拟机的 `/root` 目录下：
 
-![](Docker教程/PZNBbbpDEoK1fCxI0ygcXbUfnGb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_276f974db944ad78be284eeb351f28e9.png)
 
 接下来，我们演示本地目录挂载：
 
@@ -572,7 +572,7 @@ _4 rows in set (0.00 sec)_
 
 例如，第一步中需要的 Linux 运行环境，通用性就很强，所以 Docker 官方就制作了这样的只包含 Linux 运行环境的镜像。我们在制作 java 镜像时，就无需重复制作，直接使用 Docker 官方提供的 CentOS 或 Ubuntu 镜像作为基础镜像。然后再搭建其它层即可，这样逐层搭建，最终整个 Java 项目的镜像结构如图所示：
 
-![](Docker教程/HMEkbXMRyoVCY9xk7Kec3QqunOd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_3cb86814c35e884ed5a252500c356847.png)
 
 #### 2.3.2.Dockerfile
 
@@ -643,11 +643,11 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 
 在课前资料中，我们准备好了一个 demo 项目及对应的 Dockerfile：
 
-![](Docker教程/IaXXbRyruofsyqxkXy3cuJBinuf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_56994ba8dc0fba2225d1b28c805b04b6.png)
 
 首先，我们将课前资料提供的 `docker-demo.jar` 包以及 `Dockerfile` 拷贝到虚拟机的 `/root/demo` 目录：
 
-![](Docker教程/DaNxbwN84o7mElx7p48cQSSSnre.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_c898013c29373962390f65a3e5479cfc.png)
 
 然后，执行命令，构建镜像：
 
@@ -835,35 +835,35 @@ mysql 容器中已经准备好了商城的数据，所以就不再删除了。
 
 `hmall` 项目是一个 maven 聚合项目，使用 IDEA 打开 `hmall` 项目，查看项目结构如图：
 
-![](Docker教程/V7MybuaHiojLOWxslgHcoKLUn5g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_fc942bb2ded177c91c5b236db2c81ae4.png)
 
 我们要部署的就是其中的 `hm-service`，其中的配置文件采用了多环境的方式：
 
-![](Docker教程/VNT8b35FPoLTRDxUVCCcnajInqg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_b4c1f2486921f040ca6cf91e9f8756ab.png)
 
 其中的 `application-dev.yaml` 是部署到开发环境的配置，`application-local.yaml` 是本地运行时的配置。
 
 查看 application.yaml，你会发现其中的 JDBC 地址并未写死，而是读取变量：
 
-![](Docker教程/IyBgbEaacoUfNixEyF1c5jrFnvb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_fe4f4249f0e52f96556fa0d5adf5af0a.png)
 
 这两个变量在 `application-dev.yaml` 和 `application-local.yaml` 中并不相同：
 
-![](Docker教程/OtehbBAzWoqbmLxa1G3cHR0ZnZe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_059f0577456492d0b027811d6aaaca4c.png)
 
 在 dev 开发环境（也就是 Docker 部署时）采用了 mysql 作为地址，刚好是我们的 mysql 容器名，只要两者在一个网络，就一定能互相访问。
 
 我们将项目打包：
 
-![](Docker教程/LxmKbKFQSoa2LPxlzspcBVylned.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_fadcee2f5548a91effe08bcd35f55af3.png)
 
 结果：
 
-![](Docker教程/AXBFbYXBBoAUqsxp0QEcTrHynYg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_6a49d8f23eca3c156412f951151b98eb.png)
 
 将 `hm-service` 目录下的 `Dockerfile` 和 `hm-service/target` 目录下的 `hm-service.jar` 一起上传到虚拟机的 `root` 目录：
 
-![](Docker教程/PcgLb31fAo4qonxi2wJcIi6pnEc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_5fcffad651bbcaf3d38e517d99557c1e.png)
 
 部署项目：
 
@@ -890,7 +890,7 @@ docker run -d --name hmall --network hmall -p 8080:8080 hmall
 
 `hmall-portal` 和 `hmall-admin` 是前端代码，需要基于 nginx 部署。在课前资料中已经给大家提供了 nginx 的部署目录：
 
-![](Docker教程/XTnPbyODZo7C8DxMr9ccwBGgnOh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_8ff3663cdcc3f628339cd6f3de57ec57.png)
 
 其中：
 
@@ -899,7 +899,7 @@ docker run -d --name hmall --network hmall -p 8080:8080 hmall
 
 我们现在要做的就是把整个 nginx 目录上传到虚拟机的 `/root` 目录下：
 
-![](Docker教程/WGLnbPIkJoHNslx6tnDctAvKnpf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_70e6d0cb49f63bf281c5ddf61423f357.png)
 
 然后创建 nginx 容器并完成两个挂载：
 
@@ -926,7 +926,7 @@ docker run -d \
 
 测试，通过浏览器访问：http://你的虚拟机 ip:18080
 
-![](Docker教程/TnmSbedFgoj4K2xUR4RcfkIbnof.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Docker%E6%95%99%E7%A8%8B_Img/img_3bd6d97156af5f914ffc887093fd0ac1.png)
 
 ### 3.3.DockerCompose
 
