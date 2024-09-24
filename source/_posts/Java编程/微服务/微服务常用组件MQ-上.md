@@ -15,7 +15,7 @@ categories: 后端
 
 我们先来看看什么是同步通讯和异步通讯。如图：
 
-![](微服务常用组件MQ-上/B82Sbxk3DoAsVTx7KV1cXjz3nsg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/B82Sbxk3DoAsVTx7KV1cXjz3nsg.png)
 
 解读：
 
@@ -79,7 +79,7 @@ categories: 后端
 
 但是大家思考一下，我们假设用户余额充足，扣款已经成功，此时我们应该确保支付流水单更新为已支付，确保交易成功。毕竟收到手里的钱没道理再退回去吧。
 
-![](微服务常用组件MQ-上/CSCWbPDPvo6OVux4ZKecjLVFnsd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/CSCWbPDPvo6OVux4ZKecjLVFnsd.png)
 
 因此，这里不能因为短信通知、更新订单状态失败而回滚整个事务。
 
@@ -176,7 +176,7 @@ docker run \
 
 如果拉取镜像困难的话，可以使用课前资料给大家准备的镜像，利用 docker load 命令加载：
 
-![](微服务常用组件MQ-上/KWDWbLtlfodeGBxOs94c3JFdn9g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/KWDWbLtlfodeGBxOs94c3JFdn9g.png)
 
 可以看到在安装命令中有两个映射的端口：
 
@@ -187,11 +187,11 @@ docker run \
 
 登录后即可看到管理控制台总览页面：
 
-![](微服务常用组件MQ-上/YNs9bu47Vo3o1gxnEw1cI9MxnUM.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/YNs9bu47Vo3o1gxnEw1cI9MxnUM.png)
 
 RabbitMQ 对应的架构如图：
 
-![](微服务常用组件MQ-上/HH6fbYlGsoySg1x34UBczqjZnSb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/HH6fbYlGsoySg1x34UBczqjZnSb.png)
 
 其中包含几个概念：
 
@@ -209,13 +209,13 @@ RabbitMQ 对应的架构如图：
 
 我们打开 Exchanges 选项卡，可以看到已经存在很多交换机：
 
-![](微服务常用组件MQ-上/Dc0VbMHYwoBM1ZxLdRtcAJTZnGc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Dc0VbMHYwoBM1ZxLdRtcAJTZnGc.png)
 
 我们点击任意交换机，即可进入交换机详情页面。仍然会利用控制台中的 publish message 发送一条消息：
 
-![](微服务常用组件MQ-上/TMlKboOgZom7Y7xfJ9CccgPdnNh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/TMlKboOgZom7Y7xfJ9CccgPdnNh.png)
 
-![](微服务常用组件MQ-上/BTUkbvuDVo29JDx9YURcYjhFnPc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/BTUkbvuDVo29JDx9YURcYjhFnPc.png)
 
 这里是由控制台模拟了生产者发送的消息。由于没有消费者存在，最终消息丢失了，这样说明交换机没有存储消息的能力。
 
@@ -223,15 +223,15 @@ RabbitMQ 对应的架构如图：
 
 我们打开 `Queues` 选项卡，新建一个队列：
 
-![](微服务常用组件MQ-上/GvVobsp7uoSxfox0c0gcU14dnSc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/GvVobsp7uoSxfox0c0gcU14dnSc.png)
 
 命名为 `hello.queue1`：
 
-![](微服务常用组件MQ-上/Ew31bOIBoo18dRxIFubcJva0nXf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Ew31bOIBoo18dRxIFubcJva0nXf.png)
 
 再以相同的方式，创建一个队列，密码为 `hello.queue2`，最终队列列表如下：
 
-![](微服务常用组件MQ-上/SmOobtVzSou586xV1a9cF11tn5d.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/SmOobtVzSou586xV1a9cF11tn5d.png)
 
 此时，我们再次向 `amq.fanout` 交换机发送一条消息。会发现消息依然没有到达队列！！
 
@@ -243,31 +243,31 @@ RabbitMQ 对应的架构如图：
 
 点击 `Exchanges` 选项卡，点击 `amq.fanout` 交换机，进入交换机详情页，然后点击 `Bindings` 菜单，在表单中填写要绑定的队列名称：
 
-![](微服务常用组件MQ-上/HZ2fbpinhoLs4AxqzudcTrSdnWD.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/HZ2fbpinhoLs4AxqzudcTrSdnWD.png)
 
 相同的方式，将 hello.queue2 也绑定到改交换机。
 
 最终，绑定结果如下：
 
-![](微服务常用组件MQ-上/WFcXbuLVzoa4NxxmZrycHEs8nwh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/WFcXbuLVzoa4NxxmZrycHEs8nwh.png)
 
 #### 2.2.4.发送消息
 
 再次回到 exchange 页面，找到刚刚绑定的 `amq.fanout`，点击进入详情页，再次发送一条消息：
 
-![](微服务常用组件MQ-上/HzIWbJaR2oGiqwxypvocuQfYn0e.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/HzIWbJaR2oGiqwxypvocuQfYn0e.png)
 
 回到 `Queues` 页面，可以发现 `hello.queue` 中已经有一条消息了：
 
-![](微服务常用组件MQ-上/ZROjbesEYoIkqcxLYM2cl3lcnZf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/ZROjbesEYoIkqcxLYM2cl3lcnZf.png)
 
 点击队列名称，进入详情页，查看队列详情，这次我们点击 get message：
 
-![](微服务常用组件MQ-上/XaPeboPQVovkH6xM453cTvqmnDe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/XaPeboPQVovkH6xM453cTvqmnDe.png)
 
 可以看到消息到达队列了：
 
-![](微服务常用组件MQ-上/BR8mbRZOkohqUAxbOUncGdZ1nde.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/BR8mbRZOkohqUAxbOUncGdZ1nde.png)
 
 这个时候如果有消费者监听了 MQ 的 `hello.queue1` 或 `hello.queue2` 队列，自然就能接收到消息了。
 
@@ -277,7 +277,7 @@ RabbitMQ 对应的架构如图：
 
 点击 `Admin` 选项卡，首先会看到 RabbitMQ 控制台的用户管理界面：
 
-![](微服务常用组件MQ-上/P27GbS0zAoWnPgx7LCQcFMlonBf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/P27GbS0zAoWnPgx7LCQcFMlonBf.png)
 
 这里的用户都是 RabbitMQ 的管理或运维人员。目前只有安装 RabbitMQ 时添加的 `itheima` 这个用户。仔细观察用户表格中的字段，如下：
 
@@ -292,11 +292,11 @@ RabbitMQ 对应的架构如图：
 
 比如，我们给黑马商城创建一个新的用户，命名为 `hmall`：
 
-![](微服务常用组件MQ-上/TbVRbsJaKoL3VSxFGVWcbfV0nbd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/TbVRbsJaKoL3VSxFGVWcbfV0nbd.png)
 
 你会发现此时 hmall 用户没有任何 `virtual host` 的访问权限：
 
-![](微服务常用组件MQ-上/YCq6beky1oiD5yxR3klctQh3nCf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/YCq6beky1oiD5yxR3klctQh3nCf.png)
 
 别急，接下来我们就来授权。
 
@@ -304,33 +304,33 @@ RabbitMQ 对应的架构如图：
 
 我们先退出登录：
 
-![](微服务常用组件MQ-上/Nf5AbO0mKo7RTixOUrUcdfWRn9e.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Nf5AbO0mKo7RTixOUrUcdfWRn9e.png)
 
 切换到刚刚创建的 hmall 用户登录，然后点击 `Virtual Hosts` 菜单，进入 `virtual host` 管理页：
 
-![](微服务常用组件MQ-上/NWSObodw1oiLcHxYW1TcD4rBn4b.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/NWSObodw1oiLcHxYW1TcD4rBn4b.png)
 
 可以看到目前只有一个默认的 `virtual host`，名字为 `/`。
 
 我们可以给黑马商城项目创建一个单独的 `virtual host`，而不是使用默认的 `/`。
 
-![](微服务常用组件MQ-上/GJwSbnpcEolw3cxtLU1cNzTcncc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/GJwSbnpcEolw3cxtLU1cNzTcncc.png)
 
 创建完成后如图：
 
-![](微服务常用组件MQ-上/BC6EbcBTKoaE3cxoJDWc9sTmnkc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/BC6EbcBTKoaE3cxoJDWc9sTmnkc.png)
 
 由于我们是登录 `hmall` 账户后创建的 `virtual host`，因此回到 `users` 菜单，你会发现当前用户已经具备了对 `/hmall` 这个 `virtual host` 的访问权限了：
 
-![](微服务常用组件MQ-上/Gl4QbT3buoVEo9xTnK3cXkqAnbG.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Gl4QbT3buoVEo9xTnK3cXkqAnbG.png)
 
 此时，点击页面右上角的 `virtual host` 下拉菜单，切换 `virtual host` 为 `/hmall`：
 
-![](微服务常用组件MQ-上/EOg4br4TooRmRpxCF9fcfhtkn6g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/EOg4br4TooRmRpxCF9fcfhtkn6g.png)
 
 然后再次查看 queues 选项卡，会发现之前的队列已经看不到了：
 
-![](微服务常用组件MQ-上/Xs2hbPZzTojKP0xNWpkcBZuin0g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Xs2hbPZzTojKP0xNWpkcBZuin0g.png)
 
 这就是基于 `virtual host ` 的隔离效果。
 
@@ -354,11 +354,11 @@ SpringAMQP 提供了三个功能：
 
 在课前资料给大家提供了一个 Demo 工程，方便我们学习 SpringAMQP 的使用：
 
-![](微服务常用组件MQ-上/NTJubEDiVovAn5xS4SScLUUjn4u.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/NTJubEDiVovAn5xS4SScLUUjn4u.png)
 
 将其复制到你的工作空间，然后用 Idea 打开，项目结构如图：
 
-![](微服务常用组件MQ-上/TWK8bTyJmoRYi2xTzy1cBTGgnyh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/TWK8bTyJmoRYi2xTzy1cBTGgnyh.png)
 
 包括三部分：
 
@@ -430,11 +430,11 @@ SpringAMQP 提供了三个功能：
 
 为了方便测试，我们现在控制台新建一个队列：simple.queue
 
-![](微服务常用组件MQ-上/Pcxnbpl73o8QGwxN30ickh1Gn8f.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Pcxnbpl73o8QGwxN30ickh1Gn8f.png)
 
 添加成功：
 
-![](微服务常用组件MQ-上/IUojbN003ocDoyxs4EUc9sopnFP.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/IUojbN003ocDoyxs4EUc9sopnFP.png)
 
 接下来，我们就可以利用 Java 代码收发消息了。
 
@@ -482,7 +482,7 @@ public class SpringAmqpTest {
 
 打开控制台，可以看到消息已经发送到队列中：
 
-![](微服务常用组件MQ-上/N8Nsbeatqo5bGUx7OWJc4M1Anke.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/N8Nsbeatqo5bGUx7OWJc4M1Anke.png)
 
 接下来，我们再来实现消息接收。
 
@@ -524,7 +524,7 @@ public class SpringRabbitListener {
 
 启动 consumer 服务，然后在 publisher 服务中运行测试代码，发送 MQ 消息。最终 consumer 收到消息：
 
-![](微服务常用组件MQ-上/Vbf6b35dyoJb2HxdS8Nc7GI1nOf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Vbf6b35dyoJb2HxdS8Nc7GI1nOf.png)
 
 ### 3.3.WorkQueues 模型
 
@@ -538,7 +538,7 @@ Work queues，任务模型。简单来说就是**让多个消费者绑定到一�
 
 首先，我们在控制台创建一个新的队列，命名为 `work.queue`：
 
-![](微服务常用组件MQ-上/HzN7btEXko5VcSxTLx7ca8egnhu.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/HzN7btEXko5VcSxTLx7ca8egnhu.png)
 
 #### 3.3.1.消息发送
 
@@ -760,7 +760,7 @@ Fanout，英文翻译是扇出，我觉得在 MQ 中叫广播更合适。
 
 在广播模式下，消息发送流程是这样的：
 
-![](微服务常用组件MQ-上/Z0PrbLnmnocBcyx8Xn0cyIShnjb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Z0PrbLnmnocBcyx8Xn0cyIShnjb.png)
 
 - 1）  可以有多个队列
 - 2）  每个队列都要绑定到 Exchange（交换机）
@@ -770,7 +770,7 @@ Fanout，英文翻译是扇出，我觉得在 MQ 中叫广播更合适。
 
 我们的计划是这样的：
 
-![](微服务常用组件MQ-上/Reynb5FGbosgNVxHA1HclKlAnfg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Reynb5FGbosgNVxHA1HclKlAnfg.png)
 
 - 创建一个名为 ` hmall.fanout` 的交换机，类型是 `Fanout`
 - 创建两个队列 `fanout.queue1` 和 `fanout.queue2`，绑定到交换机 `hmall.fanout`
@@ -779,21 +779,21 @@ Fanout，英文翻译是扇出，我觉得在 MQ 中叫广播更合适。
 
 在控制台创建队列 `fanout.queue1`:
 
-![](微服务常用组件MQ-上/TvF5bHPaWowb7exZc6LcFhsPnSr.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/TvF5bHPaWowb7exZc6LcFhsPnSr.png)
 
 在创建一个队列 `fanout.queue2`：
 
-![](微服务常用组件MQ-上/U4PnbzhFtogqyIxrvOycO9xLnOe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/U4PnbzhFtogqyIxrvOycO9xLnOe.png)
 
 然后再创建一个交换机：
 
-![](微服务常用组件MQ-上/Jpc3b21AmodhVdx1pdIceYV7nHg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Jpc3b21AmodhVdx1pdIceYV7nHg.png)
 
 然后绑定两个队列到交换机：
 
-![](微服务常用组件MQ-上/MlREb8DvBoFHmJxFiEJciMLVn8b.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/MlREb8DvBoFHmJxFiEJciMLVn8b.png)
 
-![](微服务常用组件MQ-上/ReCibIyUDoZbmXx4rJecltt7n6f.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/ReCibIyUDoZbmXx4rJecltt7n6f.png)
 
 #### 3.5.2.消息发送
 
@@ -839,7 +839,7 @@ public void listenFanoutQueue2(String msg) {
 
 在 Fanout 模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到 Direct 类型的 Exchange。
 
-![](微服务常用组件MQ-上/El3hbCOh3ohMT2xatZJcpcqwnDc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/El3hbCOh3ohMT2xatZJcpcqwnDc.png)
 
 在 Direct 模型下：
 
@@ -849,7 +849,7 @@ public void listenFanoutQueue2(String msg) {
 
 **案例需求如图**：
 
-![](微服务常用组件MQ-上/SschbFsTao91PvxfZWKc6L54nkd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/SschbFsTao91PvxfZWKc6L54nkd.png)
 
 1. 声明一个名为 `hmall.direct` 的交换机
 2. 声明队列 `direct.queue1`，绑定 `hmall.direct`，`bindingKey` 为 `blud` 和 `red`
@@ -861,21 +861,21 @@ public void listenFanoutQueue2(String msg) {
 
 首先在控制台声明两个队列 `direct.queue1` 和 `direct.queue2`，这里不再展示过程：
 
-![](微服务常用组件MQ-上/XeRPbclP1odEO1xa22Hc50Non6p.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/XeRPbclP1odEO1xa22Hc50Non6p.png)
 
 然后声明一个 direct 类型的交换机，命名为 `hmall.direct`:
 
-![](微服务常用组件MQ-上/SvpDbCaV8oXzzpx4oUScSftLnzf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/SvpDbCaV8oXzzpx4oUScSftLnzf.png)
 
 然后使用 `red` 和 `blue` 作为 key，绑定 `direct.queue1` 到 `hmall.direct`：
 
-![](微服务常用组件MQ-上/UIjhbp9j8op6Uux1MaqcxAF7nEg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/UIjhbp9j8op6Uux1MaqcxAF7nEg.png)
 
-![](微服务常用组件MQ-上/Ua6Nb5S5yoV2dGxOm5gcGFNonBb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/Ua6Nb5S5yoV2dGxOm5gcGFNonBb.png)
 
 同理，使用 `red` 和 `yellow` 作为 key，绑定 `direct.queue2` 到 `hmall.direct`，步骤略，最终结果：
 
-![](微服务常用组件MQ-上/ChembAGFOoGUquxlMvhcJcn7nCg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/ChembAGFOoGUquxlMvhcJcn7nCg.png)
 
 #### 3.6.2.消息接收
 
@@ -911,7 +911,7 @@ public void testSendDirectExchange() {
 
 由于使用的 red 这个 key，所以两个消费者都收到了消息：
 
-![](微服务常用组件MQ-上/QrjCbcq13oBpB3x9uoxcvK0mngh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/QrjCbcq13oBpB3x9uoxcvK0mngh.png)
 
 我们再切换为 blue 这个 key：
 
@@ -929,7 +929,7 @@ public void testSendDirectExchange() {
 
 你会发现，只有消费者 1 收到了消息：
 
-![](微服务常用组件MQ-上/YyVGb2Z7BoWu2exjQGMc15BRnwf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/YyVGb2Z7BoWu2exjQGMc15BRnwf.png)
 
 #### 3.6.4.总结
 
@@ -961,7 +961,7 @@ public void testSendDirectExchange() {
 
 图示：
 
-![](微服务常用组件MQ-上/QFzzbeUUjoVf0RxfS1AcgT7LnUe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/QFzzbeUUjoVf0RxfS1AcgT7LnUe.png)
 
 假如此时 publisher 发送的消息使用的 `RoutingKey` 共有四种：
 
@@ -985,7 +985,7 @@ public void testSendDirectExchange() {
 
 首先，在控制台按照图示例子创建队列、交换机，并利用通配符绑定队列和交换机。此处步骤略。最终结果如下：
 
-![](微服务常用组件MQ-上/H2ZubsD1woeetoxIHMjcuFRanJd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/H2ZubsD1woeetoxIHMjcuFRanJd.png)
 
 #### 3.7.2.消息发送
 
@@ -1041,19 +1041,19 @@ public void listenTopicQueue2(String msg){
 
 SpringAMQP 提供了一个 Queue 类，用来创建队列：
 
-![](微服务常用组件MQ-上/LMnRbQuaIoHHrkxByzLcsSPFnjh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/LMnRbQuaIoHHrkxByzLcsSPFnjh.png)
 
 SpringAMQP 还提供了一个 Exchange 接口，来表示所有不同类型的交换机：
 
-![](微服务常用组件MQ-上/RwxPbRd0boAOLhxx6qzcXQPqnKd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/RwxPbRd0boAOLhxx6qzcXQPqnKd.png)
 
 我们可以自己创建队列和交换机，不过 SpringAMQP 还提供了 ExchangeBuilder 来简化这个过程：
 
-![](微服务常用组件MQ-上/JDYsbeQn2o2P81xGpvOc5znfn7b.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/JDYsbeQn2o2P81xGpvOc5znfn7b.png)
 
 而在绑定队列和交换机时，则需要使用 BindingBuilder 来创建 Binding 对象：
 
-![](微服务常用组件MQ-上/XV57bsutQovJ1kxafTUcqsFWnkh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/XV57bsutQovJ1kxafTUcqsFWnkh.png)
 
 #### 3.8.2.fanout 示例
 
@@ -1239,7 +1239,7 @@ public void listenTopicQueue2(String msg){
 
 Spring 的消息发送代码接收的消息体是一个 Object：
 
-![](微服务常用组件MQ-上/AEDob0gXNozbGTxWbXGceQV3nAf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/AEDob0gXNozbGTxWbXGceQV3nAf.png)
 
 而在数据传输时，它会把你发送的消息序列化为字节发送给 MQ，接收消息的时候，还会把字节反序列化为 Java 对象。
 
@@ -1257,7 +1257,7 @@ Spring 的消息发送代码接收的消息体是一个 Object：
 
 首先，我们在 consumer 服务中声明一个新的配置类：
 
-![](微服务常用组件MQ-上/UZB0bgLppoZosXxtKvkc1ts6nMh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/UZB0bgLppoZosXxtKvkc1ts6nMh.png)
 
 利用 @Bean 的方式创建一个队列，
 
@@ -1284,7 +1284,7 @@ public class MessageConfig {
 
 重启 consumer 服务以后，该队列就会被自动创建出来了：
 
-![](微服务常用组件MQ-上/ROnHbyCujojbQ1xYIVlchnNznsh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/ROnHbyCujojbQ1xYIVlchnNznsh.png)
 
 2）发送消息
 
@@ -1304,7 +1304,7 @@ public void testSendMap() throws InterruptedException {
 
 发送消息后查看控制台：
 
-![](微服务常用组件MQ-上/QPu1bYlfHot8wmxXxp8cB9Qzn9d.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/QPu1bYlfHot8wmxXxp8cB9Qzn9d.png)
 
 可以看到消息格式非常不友好。
 
@@ -1341,7 +1341,7 @@ public MessageConverter messageConverter(){
 
 此时，我们到 MQ 控制台**删除** `object.queue` 中的旧的消息。然后再次执行刚才的消息发送的代码，到 MQ 的控制台查看消息结构：
 
-![](微服务常用组件MQ-上/AEhhb30KoosYHRxuAQIcHXUSnLh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/AEhhb30KoosYHRxuAQIcHXUSnLh.png)
 
 #### 3.9.3.消费者接收 Object
 
@@ -1360,7 +1360,7 @@ public void listenSimpleQueueMessage(Map<String, Object> msg) throws Interrupted
 
 如图：
 
-![](微服务常用组件MQ-上/FfUNbdCcjopXmcx0P3ycPV91nRd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/FfUNbdCcjopXmcx0P3ycPV91nRd.png)
 
 说明：目前没有通知服务和积分服务，因此我们只关注交易服务，步骤如下：
 
@@ -1400,7 +1400,7 @@ spring:
 
 在 trade-service 服务中定义一个消息监听类：
 
-![](微服务常用组件MQ-上/S7RZbgUBMoqrTZxUXMicKsf3n9j.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-上_Img/S7RZbgUBMoqrTZxUXMicKsf3n9j.png)
 
 其代码如下：
 

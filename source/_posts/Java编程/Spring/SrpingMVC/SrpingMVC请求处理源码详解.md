@@ -1,5 +1,5 @@
 ---
-title: SrpingMVC学习-上-入门与RESTful
+title: SrpingMVC请求处理源码详解
 tags:
   - SpringMVC
 categories:
@@ -26,7 +26,7 @@ Spring MVC相对于前面的章节是比较简单的，我们首先引用《Spri
 
 
 
-![page18image39566784.jpg](SrpingMVC原理/page18image39566784-1723013900694-6.jpg)
+![page18image39566784.jpg](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/page18image39566784-1723013900694-6.jpg)
 
 
 
@@ -53,13 +53,13 @@ Spring MVC相对于前面的章节是比较简单的，我们首先引用《Spri
 
 在SpringMVC的开发中，我们需要配一个特殊的Servlet叫`DispatcherServlet`（这个东西是Spring帮我们写好的），然后我们再为`DispatcherServlet`配置映射的URL路径为`/`。其中`/`是个通配符，代表它能处理所有URL的请求。这代表所有的HTTP请求都会打到了`DispatcherServlet`上，那么此时我们的开发就由：
 
-[![image-20220807214026624](SrpingMVC原理/1722865555-350faf9f4eda90a688365621a753f721.png "image-20220807214026624")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072140762.png)
+[![image-20220807214026624](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-350faf9f4eda90a688365621a753f721.png "image-20220807214026624")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072140762.png)
 
 [image-20220807214026624](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072140762.png)
 
 转为了：
 
-[![image-20220807214258080](SrpingMVC原理/1722865555-038f04a3cc671e0bd1c151a5e765adea.png "image-20220807214258080")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072142142.png)
+[![image-20220807214258080](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-038f04a3cc671e0bd1c151a5e765adea.png "image-20220807214258080")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072142142.png)
 
 [image-20220807214258080](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072142142.png)
 
@@ -87,7 +87,7 @@ public class UserController{
 
 有了上面这些思想后，我们来看下`DispatcherServlet`类的继承结构：
 
-[![image-20220807215941684](SrpingMVC原理/1722865555-e1e83e075de38ebbd0e7b651168bf9fe.png "image-20220807215941684")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072159757.png)
+[![image-20220807215941684](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-e1e83e075de38ebbd0e7b651168bf9fe.png "image-20220807215941684")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072159757.png)
 
 [image-20220807215941684](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072159757.png)
 
@@ -122,7 +122,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 都是调用`processRequest()`方法，而`processRequest()`方法又会调用`doService()`方法。`doService()`是`FrameworkServlet`的抽象方法，这个方法由`DispatcherServlet`实现，`DispatcherServlet#doService()`又调用了`DispatcherServlet#doDispatch()`方法。其时序图如下：
 
-[![image-20220807223638836](SrpingMVC原理/1722865555-f25a6c7f1f999a31c8a14d64cfa51434.png "image-20220807223638836")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072236911.png)
+[![image-20220807223638836](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-f25a6c7f1f999a31c8a14d64cfa51434.png "image-20220807223638836")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072236911.png)
 
 [image-20220807223638836](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208072236911.png)
 
@@ -198,7 +198,7 @@ _复制_
 
 默认情况下`handlerMappings`里有5个实现类，分别是`RequestMappingHandlerMapping`、`BeanNameUrlHandlerMapping`、`RouterFunctionMapping`、`SimpleUrlHandlerMapping`和`WelcomePageHandlerMapping`。
 
-[![image-20220808000313545](SrpingMVC原理/1722865555-dd6f7ddccfbbd25ecc46c6ac9758bab3.png "image-20220808000313545")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208080003607.png)
+[![image-20220808000313545](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-dd6f7ddccfbbd25ecc46c6ac9758bab3.png "image-20220808000313545")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208080003607.png)
 
 [image-20220808000313545](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208080003607.png)
 
@@ -401,7 +401,7 @@ _复制_
 
 流程大致如下图：
 
-[![image-20220808171735041](SrpingMVC原理/1722865555-8feb2b909e2ee07304d72070c9317dbf.png "image-20220808171735041")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081717090.png)
+[![image-20220808171735041](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-8feb2b909e2ee07304d72070c9317dbf.png "image-20220808171735041")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081717090.png)
 
 [image-20220808171735041](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081717090.png)
 
@@ -413,7 +413,7 @@ _复制_
 
    假设我的SpringBoot项目现在有一个静态文件叫hello.html
 
-   [![image-20220808163009080](SrpingMVC原理/1722865555-388467f1a3ba0abac55dc5f344d6bdb8.png "image-20220808163009080")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081630132.png)
+   [![image-20220808163009080](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-388467f1a3ba0abac55dc5f344d6bdb8.png "image-20220808163009080")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081630132.png)
 
    [image-20220808163009080](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208081630132.png)
 
@@ -489,7 +489,7 @@ _复制_
 
 默认情况下，这个List集合里有4个实现类，分别是`RequestMappingHandlerAdapter`、`HandlerFunctionAdapter`、`HttpRequestHandlerAdapter`和`SimpleControllerHandlerAdapter`。
 
-[![image-20220804185151491](SrpingMVC原理/1722865555-436aebd5e4f85f83d97d7ba3ec305e2f.png "image-20220804185151491")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208041851651.png)
+[![image-20220804185151491](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-436aebd5e4f85f83d97d7ba3ec305e2f.png "image-20220804185151491")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208041851651.png)
 
 [image-20220804185151491](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208041851651.png)
 
@@ -819,7 +819,7 @@ _复制_
 
    默认情况下`argumentResolvers`内包含27个实现类，内容如下：
 
-   [![image-20220819160536958](SrpingMVC原理/1722865555-9e218de3fffa7e0fe78833fac91d6468.png "image-20220819160536958")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
+   [![image-20220819160536958](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-9e218de3fffa7e0fe78833fac91d6468.png "image-20220819160536958")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
 
    [image-20220819160536958](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
 
@@ -1152,7 +1152,7 @@ _复制_
 
 可以看到，要解析一个`HandlerMethod`上的参数，就需要一个特定的参数解析器，而参数解析器在进行解析的时候需要parameter，mavContainer，webRequest，binderFactory的帮助才能解析出来参数。我们上面也看到Spring为我们提供了27种参数解析器（SpringBoot 2.7.2版本下是27个），这27种参数解析器就是为了应付各种场景下的HTTP请求和参数处理：
 
-[![image-20220819160536958](SrpingMVC原理/1722865555-9e218de3fffa7e0fe78833fac91d6468.png "image-20220819160536958")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
+[![image-20220819160536958](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-9e218de3fffa7e0fe78833fac91d6468.png "image-20220819160536958")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
 
 [image-20220819160536958](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208191605089.png)
 
@@ -1364,7 +1364,7 @@ _复制_
 
 因此`RequestMappingHandlerAdapter`对象中持有多个`HandlerMethodReturnValueHandler`实现类，默认情况下`RequestMappingHandlerAdapter`持有15个返回值处理器（SpringBoot2.7.2版本）
 
-[![image-20220822184726495](SrpingMVC原理/1722865555-b36016447dd85ae2537252fedc659fb3.png "image-20220822184726495")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
+[![image-20220822184726495](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-b36016447dd85ae2537252fedc659fb3.png "image-20220822184726495")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
 
 [image-20220822184726495](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
 
@@ -1470,7 +1470,7 @@ _复制_
 
 我们刚才已经看到在SpringBoot2.7.2版本中已经默认带了15个返回值处理器
 
-[![image-20220822184726495](SrpingMVC原理/1722865555-b36016447dd85ae2537252fedc659fb3.png "image-20220822184726495")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
+[![image-20220822184726495](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-b36016447dd85ae2537252fedc659fb3.png "image-20220822184726495")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
 
 [image-20220822184726495](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208221847838.png)
 
@@ -1661,7 +1661,7 @@ _复制_
 
 这里需要讲的一点是`View`对象，对于视图这一信息，SpringMVC抽象出了一个接口叫`View`。`View`接口下的实现类非常多，每个不同的实现类都是一种视图场景。
 
-[![image-20220823223018574](SrpingMVC原理/1722865555-8f27e8f1ae25a510187bc8f72b6f07a7.png "image-20220823223018574")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232230708.png)
+[![image-20220823223018574](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-8f27e8f1ae25a510187bc8f72b6f07a7.png "image-20220823223018574")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232230708.png)
 
 [image-20220823223018574](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232230708.png)
 
@@ -1733,7 +1733,7 @@ _复制_
 
 默认情况下`DispatcherServlet`内部持有4个视图解析器实现类：
 
-[![image-20220823224512517](SrpingMVC原理/1722865555-a2547dc78ce548db9dae2e9e1e7e8087.png "image-20220823224512517")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232245726.png)
+[![image-20220823224512517](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC请求处理源码详解_Img/1722865555-a2547dc78ce548db9dae2e9e1e7e8087.png "image-20220823224512517")](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232245726.png)
 
 [image-20220823224512517](https://coderzoe.oss-cn-beijing.aliyuncs.com/202208232245726.png)
 

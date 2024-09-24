@@ -1,4 +1,11 @@
-
+---
+title: 微头条项目开发
+tags:
+  - JavaWeb
+categories:
+  - Java
+date: 2024-05-15 17:50:00
+---
 
 # 第八章 微头条项目开发
 
@@ -54,31 +61,31 @@
 
 > 头条首页信息搜索
 
-![1687657562841](JavaWeb_08_第八章 微头条项目开发/1687657562841.png)
+![1687657562841](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_1e1fea85c455f478c435d7a48f629f94.png)
 
 > 登录功能
 
-![1683883374643](JavaWeb_08_第八章 微头条项目开发/1683883374643.png)
+![1683883374643](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_e03459e59e4b4e069b7b7b822005cce9.png)
 
 > 注册功能
 
-![1683883394612](JavaWeb_08_第八章 微头条项目开发/1683883394612.png)
+![1683883394612](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_aa335fd926926ab1a2c6447d24110a42.png)
 
 > 权限控制功能
 
-![1687657603246](JavaWeb_08_第八章 微头条项目开发/1687657603246.png)
+![1687657603246](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_2338fa64cff6227ade165605d3bec68e.png)
 
 > 发布头条功能
 
-![1683883660552](JavaWeb_08_第八章 微头条项目开发/1683883660552.png)
+![1683883660552](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_d2cac357ea5a307f17e236cdf76126ce.png)
 
 > 修改头条功能
 
-![1683883695289](JavaWeb_08_第八章 微头条项目开发/1683883695289.png)
+![1683883695289](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_28f561c78f50343b17a2eb2126d4e9eb.png)
 
 > 删除头条功能
 
-![1683883724768](JavaWeb_08_第八章 微头条项目开发/1683883724768.png)
+![1683883724768](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_793e19b470a123da29853594bcb5f071.png)
 
 # 二 前端项目环境搭建
 
@@ -86,23 +93,23 @@
 
 
 
-![1683882754527](JavaWeb_08_第八章 微头条项目开发/1683882754527.png)
+![1683882754527](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_0ce6926e1bedc54e6b9ae8a7aeaf2812.png)
 
 + 使用vscode打开工程
 
-![1683882823511](JavaWeb_08_第八章 微头条项目开发/1683882823511.png)
+![1683882823511](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_ed06de205ab886ae4a88a771c37a2fe4.png)
 
 
 
 + 进入项目后打开集成终端或者在src上右击选择在集成终端中打开
 
-![1683882921502](JavaWeb_08_第八章 微头条项目开发/1683882921502.png)
+![1683882921502](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_dae7807a81f0ed44bb42754cc24f99ab.png)
 
 + 通过 npm run dev启动前端项目
 
-![1683883090728](JavaWeb_08_第八章 微头条项目开发/1683883090728.png)
+![1683883090728](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_b2e0ccf400b80b75a585b80fba589509.png)
 
-![1683883112782](JavaWeb_08_第八章 微头条项目开发/1683883112782.png)
+![1683883112782](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_8b02b5cedd70993ea8b548ddede0fb7b.png)
 
 # 三 后端项目环境搭建
 
@@ -110,15 +117,15 @@
 
 > `news_users` 用户表
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683188408798.png" alt="1683188408798"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_c57fcf1bafb66395ee9caa58f657d8eb.png" alt="1683188408798"  />
 
 > `news_type` 新闻类型表
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683188444555.png" alt="1683188444555"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_0bb28a1f452e29aa09fad18ff0d3e163.png" alt="1683188444555"  />
 
 > `news_headline` 新闻信息表
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683188471933.png" alt="1683188471933"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_0db521841c10dfb5a0fd2bb4c61773fa.png" alt="1683188471933"  />
 
 > 数据库创建SQL
 
@@ -154,21 +161,21 @@
     1. web目录下的视图资源 html css js img 等
     2. 前端工程化后,在后端项目中已经不存在了
 
-![1683363039636](JavaWeb_08_第八章 微头条项目开发/1683363039636.png)
+![1683363039636](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_66e5c2bbcc677e7e784a1641c19b3797.png)
 
 ## 3.3 搭建项目
 
 ### 3.3.1 创建WEB项目
 
-![1683350231551](JavaWeb_08_第八章 微头条项目开发/1683350231551.png)
+![1683350231551](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_c785665bcd21f3c06dddcc7fab981172.png)
 
 ### 3.3.2 导入依赖
 
-![1683351095131](JavaWeb_08_第八章 微头条项目开发/1683351095131.png)
+![1683351095131](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_d4ec4fc55f44bfcce6a2aee4eaf4a4f3.png)
 
 ### 3.3.3 准备包结构
 
-![1683350275719](JavaWeb_08_第八章 微头条项目开发/1683350275719.png)
+![1683350275719](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_6903f2d3764b13511878bc9acebfdadb.png)
 
 + controller 控制层代码,主要由Servlet组成
 + service     服务层代码,主要用于处理业务逻辑
@@ -678,7 +685,7 @@ public class HeadlineDetailVo implements Serializable {
 
 ### 3.6.2 DAO层接口和实现类
 
-![1683354561889](JavaWeb_08_第八章 微头条项目开发/1683354561889.png)
+![1683354561889](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_899a04303e14c58ea80ab48a58c5e454.png)
 
 > BaseDao基础类,封装了公共的查询方法和公共的增删改方法
 
@@ -889,7 +896,7 @@ public class NewsUserDaoImpl extends BaseDao implements NewsUserDao{
 
 ### 3.6.3 Service层接口和实现类
 
-![1683354989263](JavaWeb_08_第八章 微头条项目开发/1683354989263.png)
+![1683354989263](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_32d82191efa5605b37ca685a412d6c3a.png)
 
 > service层所有接口
 
@@ -1019,19 +1026,19 @@ public class PortalController extends BaseController{
 
 > 前后端分离模式下,客户端请求前端服务器获取视图资源,然后客户端自行向后端服务器获取数据资源,前端服务器的 协议,IP和端口和后端服务器很可能是不一样的,这样就产生了跨域
 
-![1683364198087](JavaWeb_08_第八章 微头条项目开发/1683364198087.png)
+![1683364198087](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_f810b13c16cb987d8dce9b6d4920c006.png)
 
 ### 3.7.3 如何解决跨域
 
 > 前端项目代理模式处理
 
-![1683365066926](JavaWeb_08_第八章 微头条项目开发/1683365066926.png)
+![1683365066926](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_55c085920677e346fcdbaa254e994e00.png)
 
 
 
 > 后端跨域过滤器方式处理
 
-![1683364436315](JavaWeb_08_第八章 微头条项目开发/1683364436315.png)
+![1683364436315](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_12ba8095ddfcea1af7f8a03f5001966e.png)
 
 + CrosFilter过滤器
 
@@ -1083,19 +1090,19 @@ public class CrosFilter implements Filter {
 
 > 启动PostMan后,创建一个collection,在该collection下专门存放和微头条项目相关的测试
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683385255826.png" alt="1683385255826" style="zoom: 65%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_214ca13791ba8deb9b727ffbef73e0d7.png" alt="1683385255826" style="zoom: 65%;" />
 
 > 创建完毕后,增加新的接口测试
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683385333460.png" alt="1683385333460" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_e45bfd713656298f82daed66a66da621.png" alt="1683385333460" style="zoom:50%;" />
 
 > 填写要测试的接口相关的路径,参数,请求体内容等信息
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683385500897.png" alt="1683385500897" style="zoom:55%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_c76d102668446b56233885733e5bf4d4.png" alt="1683385500897" style="zoom:55%;" />
 
 > 测试完毕后,可以选择将该接口的测试进行保存,方便后续随时再次测试
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1683385608824.png" alt="1683385608824" style="zoom:55%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_e461966c5e43f18d303243c96c19e990.png" alt="1683385608824" style="zoom:55%;" />
 
 
 
@@ -1105,7 +1112,7 @@ public class CrosFilter implements Filter {
 
 ## 5.1 登录表单提交
 
-![1687657661761](JavaWeb_08_第八章 微头条项目开发/1687657661761.png)
+![1687657661761](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_46e40f0b068e1ee2d38ba073cf985ace.png)
 
 > 需求描述
 
@@ -1507,7 +1514,7 @@ public class NewsUserDaoImpl extends BaseDao implements NewsUserDao {
 
 ## 5.3 注册时用户名占用校验
 
-<img src="JavaWeb_08_第八章 微头条项目开发/checkuserName.gif" alt="checkuserName" style="zoom:60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_f0088c305505f0e9f4e12ce16c794df3.gif" alt="checkuserName" style="zoom:60%;" />
 
 > 需求说明
 
@@ -1606,7 +1613,7 @@ public class NewsUserController extends BaseController{
 
 ## 5.4 注册表单提交
 
-<img src="JavaWeb_08_第八章 微头条项目开发/regist.gif" alt="regist" style="zoom:60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_10e727e5fbcb274068d224a0918de4cf.gif" alt="regist" style="zoom:60%;" />
 
 > 需求说明
 
@@ -1791,7 +1798,7 @@ public class NewsUserDaoImpl extends BaseDao implements NewsUserDao {
 
 ## 6.1 查询所有头条分类
 
-![1684890693363](JavaWeb_08_第八章 微头条项目开发/1684890693363.png)
+![1684890693363](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_e38cd22b040509f4f165d3e58d95616d.png)
 
 > 需求说明
 
@@ -1975,7 +1982,7 @@ public class NewsTypeDaoImpl extends BaseDao implements NewsTypeDao {
 
 ## 6.2 分页带条件查询所有头条
 
-![1684890943094](JavaWeb_08_第八章 微头条项目开发/1684890943094.png)
+![1684890943094](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_dcb55755c910bce970386e83a2617029.png)
 
 > 需求说明
 
@@ -2274,9 +2281,9 @@ public class NewsHeadlineDaoImpl extends BaseDao implements NewsHeadLineDao{
 
 ##  6.3 查看头条详情
 
-<img src="JavaWeb_08_第八章 微头条项目开发/1684891013180.png" alt="1684891013180" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_ba1448d6a4ea0a695bd3b88f843ebfca.png" alt="1684891013180" style="zoom:80%;" />
 
-![1684891029981](JavaWeb_08_第八章 微头条项目开发/1684891029981.png)
+![1684891029981](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_8b7b2536c7b4c6b059f87b2738321983.png)
 
 > 需求说明
 
@@ -2646,7 +2653,7 @@ public class LoginFilter implements Filter {
 
 ## 7.2 提交发布头条
 
-![1683883660552](JavaWeb_08_第八章 微头条项目开发/1683883660552.png)
+![1683883660552](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_d2cac357ea5a307f17e236cdf76126ce.png)
 
 > 需求说明
 
@@ -2856,7 +2863,7 @@ public class NewsHeadlineDaoImpl extends BaseDao implements NewsHeadLineDao{
 
 ## 7.3 修改头条回显
 
-![1683883695289](JavaWeb_08_第八章 微头条项目开发/1683883695289.png)
+![1683883695289](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_28f561c78f50343b17a2eb2126d4e9eb.png)
 
 > 需求说明
 
@@ -3222,7 +3229,7 @@ public class NewsHeadlineDaoImpl extends BaseDao implements NewsHeadLineDao{
 
 ## 7.5 删除头条
 
-![1683883724768](JavaWeb_08_第八章 微头条项目开发/1683883724768.png)
+![1683883724768](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_08_%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91_Img/img_793e19b470a123da29853594bcb5f071.png)
 
 > 需求说明
 

@@ -83,7 +83,7 @@ public void init(ServletConfig config) throws ServletException {
 
 之前的代码中，直接在Controller里写dao代码，简单项目没有关系。但是如果业务复杂，Controller类里出现大量的业务代码，职责负担就过重了。
 
-![01.MVC04](JavaWeb_servlet使用与手撕MVC框架_03_MVC与IOC/01.MVC04.png)
+![01.MVC04](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_03_MVC与IOC_Img/01.MVC04.png)
 
 #### 2.1.2 Model1和Model2
 

@@ -18,7 +18,7 @@ date: 2024-05-30 14:19:00
 
 索引是存储引擎用于快速找到数据记录的一种数据结构，就好比一本教科书的目录部分，通过目录中找到对应文章的页码，便可快速定位到需要的文章。MySQL中也是一样的道理，进行数据查找时，首先查看查询条件是否命中某条索引，符合则`通过索引查找`相关数据，如果不符合则需要`全表扫描`，即需要一条一条地查找记录，直到找到与条件符合的记录。
 
-![image-20220616141351236](MySQL高级篇_02_索引及调优篇/image-20220616141351236.png)
+![image-20220616141351236](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616141351236.png)
 
 Col 2 没有索引，我们查找 Col 2 = 89 这条记录，就要逐行去查找、去比较。如果表很大的话，有`上千万条数据`，数据`分布在硬盘不同的位置上面`，摆臂需要前后摆动查询数据，读就意味着要做`很多很多次硬盘I/0`才能找到。最耗时间就是磁盘I/O（涉及到磁盘的旋转时间（速度较快），磁头的寻道时间(速度慢、费时)）
 
@@ -26,7 +26,7 @@ Col 2 没有索引，我们查找 Col 2 = 89 这条记录，就要逐行去查�
 
 假如给数据使用 `二叉树` 这样的数据结构进行存储，如下图所示
 
-![image-20220616142723266](MySQL高级篇_02_索引及调优篇/image-20220616142723266.png)
+![image-20220616142723266](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616142723266.png)
 
 对字段 Col 2 添加了索引，就相当于在硬盘上为 Col 2 维护了一个索引的数据结构，即这个 `二叉搜索树`。二叉搜索树的每个结点存储的是 `(K, V) 结构`，key 是 Col 2，value 是该 key 所在行的文件指针（地址）。比如：该二叉搜索树的根节点就是：`(34, 0x07)`。现在对 Col 2 添加了索引，这时再去查找 Col 2 = 89 这条记录的时候会先去查找该二叉搜索树（二叉树的遍历查找）。读 34 到内存，89 > 34; 继续右侧数据，读 89 到内存，89==89；找到数据返回。找到之后就根据当前结点的 value 快速定位到要查找的记录对应的地址。我们可以发现，只需要 `查找两次` 就可以定位到记录的地址，查询速度就提高了。
 
@@ -147,7 +147,7 @@ mysql> CREATE TABLE index_demo(c1 INT, c2 INT, c3 CHAR(1), PRIMARY KEY(c1) ) ROW
 
 这个新建的 **index_demo** 表中有2个INT类型的列，1个CHAR(1)类型的列，而且我们规定了c1列为主键， 这个表使用 **Compact** 行格式来实际存储记录的。这里我们简化了index_demo表的行格式示意图：
 
-![image-20220616152453203](MySQL高级篇_02_索引及调优篇/image-20220616152453203.png)
+![image-20220616152453203](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616152453203.png)
 
 我们只在示意图里展示记录的这几个部分：
 
@@ -162,7 +162,7 @@ mysql> CREATE TABLE index_demo(c1 INT, c2 INT, c3 CHAR(1), PRIMARY KEY(c1) ) ROW
 
 把一些记录放到页里的示意图就是：
 
-![image-20220616152651878](MySQL高级篇_02_索引及调优篇/image-20220616152651878.png)
+![image-20220616152651878](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616152651878.png)
 
 #### 1. 一个简单的索引设计方案
 
@@ -178,7 +178,7 @@ mysql> CREATE TABLE index_demo(c1 INT, c2 INT, c3 CHAR(1), PRIMARY KEY(c1) ) ROW
 
 ​       那么这些记录以及按照主键值的大小串联成一个单向链表了，如图所示：
 
-![image-20220616153518456](MySQL高级篇_02_索引及调优篇/image-20220616153518456.png)
+![image-20220616153518456](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616153518456.png)
 
 ​      从图中可以看出来， index_demo 表中的3条记录都被插入到了编号为10的数据页中了。此时我们再来插入一条记录
 
@@ -188,13 +188,13 @@ INSERT INTO index_demo VALUES(4, 4, 'a');
 
 因为 **页10** 最多只能放3条记录，所以我们不得不再分配一个新页：
 
-![image-20220616155306705](MySQL高级篇_02_索引及调优篇/image-20220616155306705.png)
+![image-20220616155306705](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616155306705.png)
 
 > 一个数据页里的记录之间是单向链表，页与页之间是双向链表
 
 注意：新分配的 **数据页编号可能并不是连续的**。它们只是通过维护者上一个页和下一个页的编号而建立了 **链表** 关系。另外，**页10**中用户记录最大的主键值是5，而**页28**中有一条记录的主键值是4，因为5>4，所以这就不符合下一个数据页中用户记录的主键值必须大于上一个页中用户记录的主键值的要求，所以在插入主键值为4的记录的时候需要伴随着一次 **记录移动**，也就是把主键值为5的记录移动到页28中，然后再把主键值为4的记录插入到页10中，这个过程的示意图如下：
 
-![image-20220616160216525](MySQL高级篇_02_索引及调优篇/image-20220616160216525.png)
+![image-20220616160216525](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616160216525.png)
 
 这个过程表明了在对页中的记录进行增删改查操作的过程中，我们必须通过一些诸如 **记录移动** 的操作来始终保证这个状态一直成立：下一个数据页中用户记录的主键值必须大于上一个页中用户记录的主键值。
 
@@ -202,7 +202,7 @@ INSERT INTO index_demo VALUES(4, 4, 'a');
 
 由于数据页的 **编号可能是不连续** 的，所以在向 index_demo 表中插入许多条记录后，可能是这样的效果：
 
-![image-20220616160619525](MySQL高级篇_02_索引及调优篇/image-20220616160619525.png)
+![image-20220616160619525](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616160619525.png)
 
 我们需要给它们做个 **目录**，每个页对应一个目录项，每个目录项包括下边两个部分：
 
@@ -210,7 +210,7 @@ INSERT INTO index_demo VALUES(4, 4, 'a');
 
 2）页号，我们用 **page_on** 表示。
 
-![image-20220616160857381](MySQL高级篇_02_索引及调优篇/image-20220616160857381.png)
+![image-20220616160857381](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616160857381.png)
 
 以 页28 为例，它对应 目录项2 ，这个目录项中包含着该页的页号 28 以及该页中用户记录的最小主键值 5 。我们只需要把几个目录项在物理存储器上连续存储（比如：数组），就可以实现根据主键 值快速查找某条记录的功能了。比如：查找主键值为 20 的记录，具体查找过程分两步：
 
@@ -240,7 +240,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 我们把前边使用到的目录项放到数据页中的样子就是这样：
 
-![image-20220616162944404](MySQL高级篇_02_索引及调优篇/image-20220616162944404.png)
+![image-20220616162944404](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616162944404.png)
 
 从图中可以看出来，我们新分配了一个编号为30的页来专门存储目录项记录。这里再次强调 **目录项记录** 和普通的 **用户记录** 的不同点：
 
@@ -257,7 +257,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 ##### ② 迭代2次：多个目录项纪录的页
 
-![image-20220616171135082](MySQL高级篇_02_索引及调优篇/image-20220616171135082.png)
+![image-20220616171135082](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616171135082.png)
 
 从图中可以看出，我们插入了一条主键值为320的用户记录之后需要两个新的数据页：
 
@@ -274,13 +274,13 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 如果我们表中的数据非常多则会`产生很多存储目录项记录的页`，那我们怎么根据主键值快速定位一个存储目录项记录的页呢？那就为这些存储目录项记录的页再生成一个`更高级的目录`，就像是一个多级目录一样，`大目录里嵌套小目录`，小目录里才是实际的数据，所以现在各个页的示意图就是这样子：
 
-![image-20220616173512780](MySQL高级篇_02_索引及调优篇/image-20220616173512780.png)
+![image-20220616173512780](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616173512780.png)
 
 如图，我们生成了一个存储更高级目录项的 页33 ，这个页中的两条记录分别代表页30和页32，如果用 户记录的主键值在 [1, 320) 之间，则到页30中查找更详细的目录项记录，如果主键值 不小于320 的 话，就到页32中查找更详细的目录项记录。
 
 我们可以用下边这个图来描述它：
 
-![image-20220616173717538](MySQL高级篇_02_索引及调优篇/image-20220616173717538.png)
+![image-20220616173717538](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616173717538.png)
 
 这个数据结构，它的名称是 B+树 。
 
@@ -343,7 +343,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 答案：我们可以`多建几颗B+树`，不同的B+树中的数据采用不同的排列规则。比方说我们用`c2`列的大小作为数据页、页中记录的排序规则，再建一课B+树，效果如下图所示：
 
-![image-20220616203852043](MySQL高级篇_02_索引及调优篇/image-20220616203852043.png)
+![image-20220616203852043](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616203852043.png)
 
 这个B+树与上边介绍的聚簇索引有几处不同：
 
@@ -383,7 +383,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 非聚簇索引的存在不影响数据在聚簇索引中的组织，所以一张表可以有多个非聚簇索引。
 
-![image-20220616213109383](MySQL高级篇_02_索引及调优篇/image-20220616213109383.png)
+![image-20220616213109383](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616213109383.png)
 
 小结：聚簇索引与非聚簇索引的原理不同，在使用上也有一些区别：
 
@@ -400,7 +400,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 为c2和c3建立的索引的示意图如下：
 
-![image-20220616215251172](MySQL高级篇_02_索引及调优篇/image-20220616215251172.png)
+![image-20220616215251172](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220616215251172.png)
 
 如图所示，我们需要注意以下几点：
 
@@ -434,11 +434,11 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 我们知道B+树索引的内节点中目录项记录的内容是 `索引列 + 页号` 的搭配，但是这个搭配对于二级索引来说有点不严谨。还拿 index_demo 表为例，假设这个表中的数据是这样的：
 
-![image-20220617151918786](MySQL高级篇_02_索引及调优篇/image-20220617151918786.png)
+![image-20220617151918786](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617151918786.png)
 
 如果二级索引中目录项记录的内容只是 `索引列 + 页号` 的搭配的话，那么为 `c2` 列建立索引后的B+树应该长这样：
 
-![image-20220617152906690](MySQL高级篇_02_索引及调优篇/image-20220617152906690.png)
+![image-20220617152906690](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617152906690.png)
 
 如果我们想新插入一行记录，其中 `c1` 、`c2` 、`c3` 的值分别是: `9`、`1`、`c`, 那么在修改这个为 c2 列建立的二级索引对应的 B+ 树时便碰到了个大问题：由于 `页3` 中存储的目录项记录是由 `c2列 + 页号` 的值构成的，`页3` 中的两条目录项记录对应的 c2 列的值都是1，而我们 `新插入的这条记录` 的 c2 列的值也是 `1`，那我们这条新插入的记录到底应该放在 `页4` 中，还是应该放在 `页5` 中？答案：对不起，懵了
 
@@ -450,7 +450,7 @@ InnoDB怎么区分一条记录是普通的 **用户记录** 还是 **目录项�
 
 也就是我们把`主键值`也添加到二级索引内节点中的目录项记录，这样就能保住 B+ 树每一层节点中各条目录项记录除页号这个字段外是唯一的，所以我们为c2建立二级索引后的示意图实际上应该是这样子的：
 
-![image-20220617154135258](MySQL高级篇_02_索引及调优篇/image-20220617154135258.png)
+![image-20220617154135258](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617154135258.png)
 
 这样我们再插入记录`(9, 1, 'c')` 时，由于 `页3` 中存储的目录项记录是由 `c2列 + 主键 + 页号` 的值构成的，可以先把新记录的 `c2` 列的值和 `页3` 中各目录项记录的 `c2` 列的值作比较，如果 `c2` 列的值相同的话，可以接着比较主键值，因为B+树同一层中不同目录项记录的 `c2列 + 主键`的值肯定是不一样的，所以最后肯定能定位唯一的一条目录项记录，在本例中最后确定新纪录应该被插入到 `页5` 中。
 
@@ -477,13 +477,13 @@ MyISAM引擎使用 B+Tree 作为索引结构，叶子节点的data域存放的�
 - 将表中的记录 **按照记录的插入顺序** 单独存储在一个文件中，称之为 **数据文件**。这个文件并不划分为若干个数据页，有多少记录就往这个文件中塞多少记录就成了。由于在插入数据的时候并 **没有刻意按照主键大小排序**，所以我们并不能在这些数据上使用二分法进行查找。
 - 使用 **MyISAM** 存储引擎的表会把索引信息另外存储到一个称为 **索引文件** 的另一个文件中。 **MyISAM** 会单独为表的主键创建一个索引，只不过在索引的叶子节点中存储的不是完整的用户记录，而是 **主键值 +数据记录地址**的组合。
 
-![image-20220617160413479](MySQL高级篇_02_索引及调优篇/image-20220617160413479.png)
+![image-20220617160413479](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617160413479.png)
 
 
 
 这里设表一共有三列，假设我们以Col1为主键，上图是一个MyISAM表的主索引(Primary key)示意。可以看出**MyISAM的索引文件仅仅保存数据记录的地址**。在MyISAM中，主键索引和二级索引(Secondary key)在结构上没有任何区别，只是主键索引要求key是唯一的，而二级索引的key可以重复。如果我们在Col2上建立一个二级索则此索引的结构如下图所示:
 
-![image-20220617160625006](MySQL高级篇_02_索引及调优篇/image-20220617160625006.png)
+![image-20220617160625006](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617160625006.png)
 
 同样也是一棵B+Tree，data域保存数据记录的地址。因此，MISAM中索引检索的算法为:首先按照B+Tree搜索算法搜索索引，如果指定的Key存在，则取出其data域的值，然后以data域的值为地址，读取相应数据记录。
 
@@ -505,7 +505,7 @@ MyISAM引擎使用 B+Tree 作为索引结构，叶子节点的data域存放的�
 
 <img src="MySQL高级篇_02_索引及调优篇/image-20220617161126022.png" alt="image-20220617161126022" style="float:left;" />
 
-![image-20220617161151125](MySQL高级篇_02_索引及调优篇/image-20220617161151125.png)
+![image-20220617161151125](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617161151125.png)
 
 ## 5. 索引的代价
 
@@ -543,18 +543,18 @@ Hash 算法是通过某种确定性的算法(比如 MD5、SHA1、SHA2、SHA3)将
 
 (2)哈希，例如HashMap，查询/插入/修改/删除的平均时间复杂度都是 `O(1)`; (key, value)
 
-![image-20220617162153587](MySQL高级篇_02_索引及调优篇/image-20220617162153587.png)
+![image-20220617162153587](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617162153587.png)
 
 采用 Hash 进行检索效率非常高，基本上一次检索就可以找到数据，而 B+ 树需要自顶向下依次查找，多次访问节点才能找到数据，中间需要多次 I/0 操作，从效率来说 Hash 比 B+ 树更快。
 在哈希的方式下，一个元素k处于h(k)中，即利用哈希函数h，根据关键字k计算出槽的位置。函数h将关键字域映射到哈希表T[0..m-1]的槽位上。
 
 
 
-![image-20220617162604272](MySQL高级篇_02_索引及调优篇/image-20220617162604272.png)
+![image-20220617162604272](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617162604272.png)
 
 上图中哈希函数h有可能将两个不同的关键字映射到相同的位置，这叫做 碰撞 ，在数据库中一般采用 链 接法 来解决。在链接法中，将散列到同一槽位的元素放在一个链表中，如下图所示：
 
-![image-20220617162703006](MySQL高级篇_02_索引及调优篇/image-20220617162703006.png)
+![image-20220617162703006](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617162703006.png)
 
 实验：体会数组和hash表的查找方面的效率区别
 
@@ -620,7 +620,7 @@ Hash 索引存在着很多限制，相比之下在数据库中 B+ 树索引的�
 MySQL 中的 Memory 存储引擎支持 Hash 存储，如果我们需要用到査询的临时表时，就可以选择 Memory存储引擎，把某个字段设置为 Hash 索引，比如字符串类型的字段，进行 Hash 计算之后长度可以缩短到几个字节。当字段的重复度低，而且经常需要进行 等值查询的时候，采用 Hash 索引是个不错的选择。
 另外，InnoDB本身不支持 Hash索引，但是提供自适应 Hash 索引(Adaptive Hash Index)。什么情况下才会使用自适应 Hash 索引呢?如果某个数据经常被访问，当满足一定条件的时候，就会将这个数据页的地址存放到Hash 表中。这样下次查询的时候，就可以直接找到这个页面的所在位置。这样让 B+ 树也具备了 Hash 索引的优点。
 
-![image-20220617163657697](MySQL高级篇_02_索引及调优篇/image-20220617163657697.png)
+![image-20220617163657697](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617163657697.png)
 
 采用自适应 Hash 索引目的是方便根据 SQL 的查询条件加速定位到叶子节点，特别是当 B+ 树比较深的时 候，通过自适应 Hash 索引可以明显提高数据的检索效率。
 
@@ -651,11 +651,11 @@ mysql> show variables like '%adaptive_hash_index';
 
 举个例子，我们对数列(34，22，89，5，23，77，91)创造出来的二分查找树如下图所示
 
-![image-20220617164022728](MySQL高级篇_02_索引及调优篇/image-20220617164022728.png)
+![image-20220617164022728](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617164022728.png)
 
 但是特殊情况，就是有时候二叉树的深度非常大，比如：
 
-![image-20220617164053134](MySQL高级篇_02_索引及调优篇/image-20220617164053134.png)
+![image-20220617164053134](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617164053134.png)
 
 为了提高查询效率，就需要 减少磁盘IO数 。为了减少磁盘IO的次数，就需要尽量 降低树的高度 ，需要把 原来“瘦高”的树结构变的“矮胖”，树的每层的分叉越多越好。
 
@@ -666,13 +666,13 @@ mysql> show variables like '%adaptive_hash_index';
 这里说一下，常见的平衡二叉树有很多种，包括了 **平衡二叉捜索树、 红黑树、数堆、伸展树**。平衡二叉搜索树是最早提出来的自平衡二叉搜索树，当我们提到平衡二叉树时一般指的就是平衡二叉搜索树。事实上，第一棵树就属于平衡二叉搜索树，搜索时间复杂度就是 **O(log2n)**。
 数据查询的时间主要依赖于磁盘 I/O 的次数，如果我们采用二叉树的形式，即使通过平衡二叉搜索树进行了改进，树的深度也是 O(log2n)，当n比较大时，深度也是比较高的，比如下图的情况:
 
-![image-20220617165105005](MySQL高级篇_02_索引及调优篇/image-20220617165105005.png)
+![image-20220617165105005](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617165105005.png)
 
 `每访问一次节点就需要进行一次磁盘 I/O 操作，对于上面的树来说，我们需要进行 5次 I/O 操作。虽然平衡二叉树的效率高，但是树的深度也同样高，这就意味着磁盘 I/O 操作次数多，会影响整体数据查询的效率。
 
 针对同样的数据，如果我们把二叉树改成 M 叉树 （M>2）呢？当 M=3 时，同样的 31 个节点可以由下面 的三叉树来进行存储：
 
-![image-20220617165124685](MySQL高级篇_02_索引及调优篇/image-20220617165124685.png)
+![image-20220617165124685](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617165124685.png)
 
 你能看到此时树的高度降低了，当数据量 N 大的时候，以及树的分叉树 M 大的时候，M叉树的高度会远小于二叉树的高度 (M > 2)。所以，我们需要把 `树从“瘦高” 变 “矮胖”。
 
@@ -682,7 +682,7 @@ B 树的英文是 Balance Tree，也就是 `多路平衡查找树`。简写为 B
 
 B 树的结构如下图所示：
 
-![image-20220617165937875](MySQL高级篇_02_索引及调优篇/image-20220617165937875.png)
+![image-20220617165937875](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617165937875.png)
 
 B 树作为多路平衡査找树，它的每一个节点最多可以包括 M 个子节点，`M 称为 B 树的阶`。每个磁盘块中包括了**关键字**和 **子节点的指针**。如果一个磁盘块中包括了x个关键字，那么指针数就是 x+1。对于一个 100 阶的B树来说，如果有3层的话最多可以存储约 100万的索引数据。对于大量的索引数据来说，采用 B树的结构是非常适合的，因为树的高度要远小于二叉树的高度。
 
@@ -712,13 +712,13 @@ B 树作为多路平衡査找树，它的每一个节点最多可以包括 M 个
 
 **再举例1：**
 
-![image-20220617170526488](MySQL高级篇_02_索引及调优篇/image-20220617170526488.png)
+![image-20220617170526488](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617170526488.png)
 
 ### 6.6 B+Tree
 
 MySQL官网说明：
 
-![image-20220617170710329](MySQL高级篇_02_索引及调优篇/image-20220617170710329.png)
+![image-20220617170710329](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617170710329.png)
 
 **B+ 树和 B 树的差异在于以下几点：**
 
@@ -729,7 +729,7 @@ MySQL官网说明：
 
 下图就是一棵 B+ 树，阶数为 3，根节点中的关键字 1、18、35分别是子节点(1，8，14)，(18，24，31)和(35，41，53)中的最小值。每一层父节点的关键字都会出现在下一层的子节点的关键字中，因此在叶子节点中包括了所有的关键字信息，并且每一个叶子节点都有一个指向下一个节点的指针，这样就形成了一个链表。
 
-![image-20240601211116026](MySQL高级篇_02_索引及调优篇/image-20240601211116026.png)
+![image-20240601211116026](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20240601211116026.png)
 
 比如，我们想要查找关键字 16，B+树会自顶向下逐层进行查找:
 
@@ -791,7 +791,7 @@ R-Tree在MySQL很少使用，仅支持 geometry数据类型 ，支持该类型�
 
 同一问题可用不同算法解决，而一个算法的质量优劣将影响到算法乃至程序的效率。算法分析的目的在 于选择合适算法和改进算法。
 
-![image-20220617175516191](MySQL高级篇_02_索引及调优篇/image-20220617175516191.png)
+![image-20220617175516191](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220617175516191.png)
 
 # 第07章_InnoDB数据存储结构
 1.数据库的存储结构:页
@@ -825,7 +825,7 @@ InnoDB将数据划分为若干个页，InnoDB中页的大小默认为 **16KB**
 
 
 
-![image-20220324200116204](MySQL高级篇_02_索引及调优篇/image-20220324200116204.png)
+![image-20220324200116204](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220324200116204.png)
 
 ### 1.2页结构概述
 
@@ -854,7 +854,7 @@ SQL Server中页的大小为 `8KB`，而在oracle中用术语''`块`’’(Block
 
 另外在数据库中，还存在区（Extent)、段(Segment)和表空间（Tablespace)的概念。行、页、区、段、表空间的关系如下图所示:
 
-![image-20220324200502569](MySQL高级篇_02_索引及调优篇/image-20220324200502569.png)
+![image-20220324200502569](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220324200502569.png)
 
 区(Extent)是比页大一级的存储结构，在InnoDB存储引擎中，一个区会分配`64个连续的页`。因为InnoDB中的页大小默认是16KB，所以一个区的大小是64*16KB= 1MB。
 
@@ -869,7 +869,7 @@ SQL Server中页的大小为 `8KB`，而在oracle中用术语''`块`’’(Block
 
 页结构的示意图如下所示:
 
-![image-20220324200934245](MySQL高级篇_02_索引及调优篇/image-20220324200934245.png)
+![image-20220324200934245](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220324200934245.png)
 
 
 
@@ -894,7 +894,7 @@ SQL Server中页的大小为 `8KB`，而在oracle中用术语''`块`’’(Block
 
 **① 文件头部信息**
 
-![image-20220324201808920](MySQL高级篇_02_索引及调优篇/image-20220324201808920.png)
+![image-20220324201808920](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220324201808920.png)
 
 
 
@@ -904,7 +904,7 @@ SQL Server中页的大小为 `8KB`，而在oracle中用术语''`块`’’(Block
 1．叶子节点，B+树最底层的节点，节点的高度为o，存储行记录。
 2．非叶子节点，节点的高度大于0，存储索引键和页面指针，并不存储行记录本身。
 
-![image-20220324224809508](MySQL高级篇_02_索引及调优篇/image-20220324224809508.png)
+![image-20220324224809508](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220324224809508.png)
 
 当我们从页结构来理解B+树的结构的时候，可以帮我们理解一些通过索引进行检索的原理:
 
@@ -1070,7 +1070,7 @@ Max_data_length: 0
 
 分析B-Tree/B+Tree检索一次最多需要访问节点：
 
-h=![img](MySQL高级篇_02_索引及调优篇/format,png.png)
+h=![img](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/format,png.png)
 
 数据库系统巧妙利用了磁盘预读原理，将`一个节点的大小设为等于一个页`，这样每个节点只需要一次I/O就可以完全载入。为了达到这个目的，在实际实现B-Tree还需要使用如下技巧：
 
@@ -1210,13 +1210,13 @@ InnoDB从磁盘中读取数据的`最小单位`是数据页。而你想得到的
 
 如果该数据存在于内存中，基本上执行时间在1ms左右，效率还是很高的。
 
-![image-20220325104247259](MySQL高级篇_02_索引及调优篇/image-20220325104247259.png)
+![image-20220325104247259](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325104247259.png)
 
 ### 2.随机读取
 
 如果数据没有在内存中，就需要在磁盘上对该页进行查找，整体时间预估在`10ms`左右，这10ms 中有6ms是磁盘的实际繁忙时间(包括了`寻道和半圈旋转时间`），有3ms是对可能发生的排队时间的估计值，另外还有1ms的传输时间，将页从磁盘服务器缓冲区传输到数据库缓冲区中。这10ms 看起来很快，但实际上对于数据库来说消耗的时间已经非常长了，因为这还只是一个页的读取时间。
 
-![image-20220325104508228](MySQL高级篇_02_索引及调优篇/image-20220325104508228.png)
+![image-20220325104508228](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325104508228.png)
 
 ### 3.顺序读取
 
@@ -2188,7 +2188,7 @@ SELECT * FROM student_gender WHERE student_gender = 1
 
 运行结果（ 10 条数据，运行时间 0.696s）：
 
-![image-20220325170858020](MySQL高级篇_02_索引及调优篇/image-20220325170858020.png)
+![image-20220325170858020](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325170858020.png)
 
 你能看到在未创建索引的情况下，运行的效率并不高。如果针对 student_gender字段创建索引呢?
 
@@ -2274,7 +2274,7 @@ INDEX idx_c1 (col1)
 
 整个流程划分成了`观察（Show status）`和`行动（Action）`两个部分。字母 S 的部分代表观察（会使用相应的分析工具），字母 A 代表的部分是行动（对应分析可以采取的行动）。
 
-![image-20220325175937136](MySQL高级篇_02_索引及调优篇/image-20220325175937136.png)
+![image-20220325175937136](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325175937136.png)
 
 
 
@@ -2297,7 +2297,7 @@ S2这一-步，我们需要`开启慢查询`。慢查询可以帮我们定位执
 
 **小结：**
 
-![image-20220325180029352](MySQL高级篇_02_索引及调优篇/image-20220325180029352.png)
+![image-20220325180029352](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325180029352.png)
 
 ## 2. 查看系统性能参数 
 
@@ -2443,7 +2443,7 @@ mysql > set global slow_query_log='ON';
 
 然后我们再来查看下慢查询日志是否开启，以及慢查询日志文件的位置：
 
-![image-20220325181405473](MySQL高级篇_02_索引及调优篇/image-20220325181405473.png)
+![image-20220325181405473](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325181405473.png)
 
 你能看到这时慢查询分析已经开启，同时文件保存在 `/var/lib/mysql/atguigu02-slow.log` 文件
 中。
@@ -2458,7 +2458,7 @@ mysql > set global slow_query_log='ON';
 mysql > show variables like '%long_query_time%';
 ```
 
-![image-20220325181420603](MySQL高级篇_02_索引及调优篇/image-20220325181420603.png)
+![image-20220325181420603](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325181420603.png)
 
 ```mysql
 # 测试发现：设置global的方式对当前session的long_query_time失效。对新连接的客户端有效。所以可以一并执行下述语句
@@ -2473,7 +2473,7 @@ mysql> show variables like '%long_query_time%';
 
 
 
-![image-20220325181712981](MySQL高级篇_02_索引及调优篇/image-20220325181712981.png)
+![image-20220325181712981](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325181712981.png)
 
 
 
@@ -2974,7 +2974,7 @@ MySQL中有专门负责优化SELECT语句的优化器模块，主要功能: 通�
 https://dev.mysql.com/doc/refman/5.7/en/explain-output.html
 https://dev.mysql.com/doc/refman/8.0/en/explain-output.html  
 
-![image-20220325194823764](MySQL高级篇_02_索引及调优篇/image-20220325194823764.png)
+![image-20220325194823764](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325194823764.png)
 
 
 
@@ -2983,7 +2983,7 @@ https://dev.mysql.com/doc/refman/8.0/en/explain-output.html
 - MySQL 5.6.3以前只能 EXPLAIN SELECT ；MYSQL 5.6.3以后就可以 `EXPLAIN` `SELECT`，`UPDATE`，`DELETE`
 - 在5.7以前的版本中，想要显示 `partitions` 需要使用 `explain partitions` 命令；想要显示`filtered` 需要使用 `explain extended` 命令。在5.7版本后，默认explain直接显示partitions和filtered中的信息。  
 
-![image-20220325195048342](MySQL高级篇_02_索引及调优篇/image-20220325195048342.png)
+![image-20220325195048342](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325195048342.png)
 
 
 
@@ -3005,7 +3005,7 @@ DESCRIBE SELECT select_options
 mysql> EXPLAIN SELECT 1;
 ```
 
-![image-20220326113218648](MySQL高级篇_02_索引及调优篇/image-20220326113218648.png)
+![image-20220326113218648](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326113218648.png)
 
 `EXPLAIN` 语句输出的各个列的作用如下  
 
@@ -3198,7 +3198,7 @@ CALL insert_s2(10001,10000);# id 10002~20001
 explain select count(*) from s1;
 ```
 
-![image-20220326120805996](MySQL高级篇_02_索引及调优篇/image-20220326120805996.png)
+![image-20220326120805996](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326120805996.png)
 
 ```mysql
 #s1:驱动表  s2:被驱动表
@@ -3206,7 +3206,7 @@ EXPLAIN SELECT * FROM s1 INNER JOIN s2;
 # 驱动表和被驱动表是 优化器决定的，他认为哪个比较好久用哪个
 ```
 
-![image-20220326121611806](MySQL高级篇_02_索引及调优篇/image-20220326121611806.png)
+![image-20220326121611806](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326121611806.png)
 
 > 用到多少个表，就会有多少条记录
 
@@ -3220,7 +3220,7 @@ EXPLAIN SELECT * FROM s1 INNER JOIN s2;
 mysql> EXPLAIN SELECT * FROM s1 WHERE key1 = 'a';
 ```
 
-![image-20220326122616487](MySQL高级篇_02_索引及调优篇/image-20220326122616487.png)
+![image-20220326122616487](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326122616487.png)
 
 
 
@@ -3228,7 +3228,7 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE key1 = 'a';
 mysql> EXPLAIN SELECT * FROM s1 INNER JOIN s2;
 ```
 
-![image-20220326122717663](MySQL高级篇_02_索引及调优篇/image-20220326122717663.png)
+![image-20220326122717663](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326122717663.png)
 
 
 
@@ -3236,7 +3236,7 @@ mysql> EXPLAIN SELECT * FROM s1 INNER JOIN s2;
 mysql> EXPLAIN SELECT * FROM s1 WHERE key1 IN (SELECT key1 FROM s2) OR key3 = 'a';
 ```
 
-![image-20220326122751920](MySQL高级篇_02_索引及调优篇/image-20220326122751920.png)
+![image-20220326122751920](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326122751920.png)
 
 
 
@@ -3249,7 +3249,7 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE key1 IN (SELECT key1 FROM s2) OR key3 = 'a
 
 运行结果： id 只有一个，原因是查询优化器做了优化
 
-![image-20220326122857145](MySQL高级篇_02_索引及调优篇/image-20220326122857145.png)
+![image-20220326122857145](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326122857145.png)
 
 
 
@@ -3267,14 +3267,14 @@ EXPLAIN SELECT * FROM s1 UNION SELECT * FROM s2;
 
 
 
-![image-20220326123056983](MySQL高级篇_02_索引及调优篇/image-20220326123056983.png)
+![image-20220326123056983](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326123056983.png)
 
 ```mysql
 # union all 不去重  所以不需要放在临时表里面
 mysql> EXPLAIN SELECT * FROM s1 UNION ALL SELECT * FROM s2;
 ```
 
-![image-20220326123147690](MySQL高级篇_02_索引及调优篇/image-20220326123147690.png)
+![image-20220326123147690](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326123147690.png)
 
 **小结:**  
 
@@ -3339,7 +3339,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
    EXPLAIN SELECT * FROM s1 UNION SELECT * FROM s2;	
   ```
   
-  ![image-20220326125611904](MySQL高级篇_02_索引及调优篇/image-20220326125611904.png)
+  ![image-20220326125611904](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326125611904.png)
   
   
   
@@ -3347,7 +3347,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
   EXPLAIN SELECT * FROM s1 UNION ALL SELECT * FROM s2;
   ```
   
-  ![image-20220326125627303](MySQL高级篇_02_索引及调优篇/image-20220326125627303.png)
+  ![image-20220326125627303](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326125627303.png)
   
   
 
@@ -3363,7 +3363,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
    EXPLAIN SELECT * FROM s1 WHERE key1 IN (SELECT key1 FROM s2) OR key3 = 'a';
   ```
 
-  ![image-20220326122751920](MySQL高级篇_02_索引及调优篇/image-20220326122751920.png)
+  ![image-20220326122751920](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326122751920.png)
 
   
 
@@ -3379,7 +3379,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
    #注意的是，select_type为`DEPENDENT SUBQUERY`的查询可能会被执行多次。
   ```
 
-  ![image-20220326130111650](MySQL高级篇_02_索引及调优篇/image-20220326130111650.png)
+  ![image-20220326130111650](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326130111650.png)
 
 
 
@@ -3394,7 +3394,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
    # 这里优化器会重构成exist
   ```
 
-  ![image-20220326130433291](MySQL高级篇_02_索引及调优篇/image-20220326130433291.png)
+  ![image-20220326130433291](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326130433291.png)
 
 - `DERIVED`
 
@@ -3406,7 +3406,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
    FROM (SELECT key1, COUNT(*) AS c FROM s1 GROUP BY key1) AS derived_s1 WHERE c > 1;
   ```
 
-  ![image-20220326141653065](MySQL高级篇_02_索引及调优篇/image-20220326141653065.png)
+  ![image-20220326141653065](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326141653065.png)
 
 - `MATERIALIZED`
 
@@ -3419,7 +3419,7 @@ MySQL为每一个SELECT关键字代表的小查询都定义了一个称之为`se
   
   ```
 
-  ![image-20220326142034981](MySQL高级篇_02_索引及调优篇/image-20220326142034981.png)
+  ![image-20220326142034981](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326142034981.png)
 
   > 不理解： 为啥上面的子查询，没有雾化
   >
@@ -3468,7 +3468,7 @@ DESC SELECT * FROM user_partitions WHERE id>200;
 
 查询id大于200（200>100，p1分区）的记录，查看执行计划，partitions是p1，符合我们的分区规则
 
-![image-20220325201510359](MySQL高级篇_02_索引及调优篇/image-20220325201510359.png)
+![image-20220325201510359](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220325201510359.png)
 
 #### 5. type ☆
 
@@ -3906,7 +3906,7 @@ filtered 的值指返回结果的行占需要读到的行(rows 列的值)的百�
  EXPLAIN SELECT * FROM s1 WHERE key1 > 'z' AND common_field = 'a';
 ```
 
-![image-20220326170537304](MySQL高级篇_02_索引及调优篇/image-20220326170537304.png)
+![image-20220326170537304](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326170537304.png)
 
 
 
@@ -3919,7 +3919,7 @@ filtered 的值指返回结果的行占需要读到的行(rows 列的值)的百�
 EXPLAIN SELECT * FROM s1 INNER JOIN s2 ON s1.key1 = s2.key1 WHERE s1.common_field = 'a';
 ```
 
-![image-20220326171219278](MySQL高级篇_02_索引及调优篇/image-20220326171219278.png)
+![image-20220326171219278](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326171219278.png)
 
 
 
@@ -3938,7 +3938,7 @@ EXPLAIN SELECT * FROM s1 INNER JOIN s2 ON s1.key1 = s2.key1 WHERE s1.common_fiel
 mysql> EXPLAIN SELECT 1;				
 ```
 
-![image-20220326172022150](MySQL高级篇_02_索引及调优篇/image-20220326172022150.png)
+![image-20220326172022150](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326172022150.png)
 
 - `Impossible WHERE`
 
@@ -3949,7 +3949,7 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE 1 != 1;
 
 ```
 
-![image-20220326172126970](MySQL高级篇_02_索引及调优篇/image-20220326172126970.png)
+![image-20220326172126970](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326172126970.png)
 
 - Using where
 
@@ -3960,7 +3960,7 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE 1 != 1;
 EXPLAIN SELECT * FROM s1 WHERE common_field = 'a';
 ```
 
-![image-20220326172256011](MySQL高级篇_02_索引及调优篇/image-20220326172256011.png)
+![image-20220326172256011](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326172256011.png)
 
 
 
@@ -3974,7 +3974,7 @@ EXPLAIN SELECT * FROM s1 WHERE common_field = 'a';
 
 
 
-![image-20220326172802426](MySQL高级篇_02_索引及调优篇/image-20220326172802426.png)
+![image-20220326172802426](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326172802426.png)
 
 
 
@@ -3987,7 +3987,7 @@ EXPLAIN SELECT * FROM s1 WHERE common_field = 'a';
  EXPLAIN SELECT MIN(key1) FROM s1 WHERE key1 = 'QLjKYOx';
 ```
 
-![image-20220326173156258](MySQL高级篇_02_索引及调优篇/image-20220326173156258.png)
+![image-20220326173156258](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326173156258.png)
 
 
 
@@ -3996,7 +3996,7 @@ EXPLAIN SELECT * FROM s1 WHERE common_field = 'a';
  EXPLAIN SELECT MIN(key1) FROM s1 WHERE key1 = 'QLjKYO';
 ```
 
-![image-20220326173338273](MySQL高级篇_02_索引及调优篇/image-20220326173338273.png)
+![image-20220326173338273](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326173338273.png)
 
 
 
@@ -4014,7 +4014,7 @@ EXPLAIN SELECT * FROM s1 WHERE common_field = 'a';
 EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
 ```
 
-![image-20220326173520015](MySQL高级篇_02_索引及调优篇/image-20220326173520015.png)
+![image-20220326173520015](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326173520015.png)
 
 - `Using index condition`
 
@@ -4025,7 +4025,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
   mysql> EXPLAIN SELECT * FROM s1 WHERE key1 > 'z' AND key1 LIKE '%a';
   ```
 
-  ![image-20220326173622086](MySQL高级篇_02_索引及调优篇/image-20220326173622086.png)
+  ![image-20220326173622086](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326173622086.png)
 
   > 步骤1. 这里key1 > 'z' 走了索引，查出了378条数据。。。
   >
@@ -4064,7 +4064,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
   mysql> EXPLAIN SELECT * FROM s1 INNER JOIN s2 ON s1.common_field = s2.common_field;
   ```
 
-  ![image-20220326173721122](MySQL高级篇_02_索引及调优篇/image-20220326173721122.png)
+  ![image-20220326173721122](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326173721122.png)
 
 
 
@@ -4079,7 +4079,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
 
   
 
-  ![image-20220326182016458](MySQL高级篇_02_索引及调优篇/image-20220326182016458.png)
+  ![image-20220326182016458](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326182016458.png)
 
 - `Using intersect(...) 、 Using union(...) 和 Using sort_union(...)`  
 
@@ -4095,7 +4095,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
      EXPLAIN SELECT * FROM s1 WHERE key1 = 'a' OR key3 = 'a';
     ```
 
-  ![image-20220326182155207](MySQL高级篇_02_索引及调优篇/image-20220326182155207.png)
+  ![image-20220326182155207](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326182155207.png)
 
 - `Zero limit`
 
@@ -4126,7 +4126,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
    
   ```
 
-  ![image-20220326183048710](MySQL高级篇_02_索引及调优篇/image-20220326183048710.png)
+  ![image-20220326183048710](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326183048710.png)
 
   ```mysql
    #执行计划中出现`Using temporary`并不是一个好的征兆，因为建立与维护临时表要付出很大成本的，所以
@@ -4134,7 +4134,7 @@ EXPLAIN SELECT key1 FROM s1 WHERE key1 = 'a';
    EXPLAIN SELECT key1, COUNT(*) AS amount FROM s1 GROUP BY key1;
   ```
 
-  ![image-20220326183135116](MySQL高级篇_02_索引及调优篇/image-20220326183135116.png)
+  ![image-20220326183135116](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326183135116.png)
 
 
 
@@ -4185,7 +4185,7 @@ s2.common_field IS NOT NULL;
 
 - EXPLAIN的Column与JSON的对应关系:(来源于MySQL 5.7文档)
 
-  ![image-20220326184629857](MySQL高级篇_02_索引及调优篇/image-20220326184629857.png)
+  ![image-20220326184629857](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326184629857.png)
 
 这样我们就可以得到一个json格式的执行计划，里面包含该计划花费的成本，比如这样:
 
@@ -4273,7 +4273,7 @@ EXPLAIN: {
 
 
 
-![image-20220326185603021](MySQL高级篇_02_索引及调优篇/image-20220326185603021.png)
+![image-20220326185603021](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326185603021.png)
 
 我们使用 `#` 后边跟随注释的形式为大家解释了 `EXPLAIN FORMAT=JSON` 语句的输出内容，但是大家可能
 有疑问 "`cost_info`" 里边的成本看着怪怪的，它们是怎么计算出来的？先看 `s1` 表的 "`cost_info`" 部
@@ -4345,9 +4345,9 @@ EXPLAIN: -> Nested loop inner join  (cost=1360.08 rows=990)
 可视化输出，可以通过MySQL Workbench可视化查看MySQL的执行计划。通过点击Workbench的放大镜图
 标，即可生成可视化的查询计划。
 
-![image-20220326190931718](MySQL高级篇_02_索引及调优篇/image-20220326190931718.png)
+![image-20220326190931718](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326190931718.png)
 
-![image-20220326191114795](MySQL高级篇_02_索引及调优篇/image-20220326191114795.png)
+![image-20220326191114795](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326191114795.png)
 
 上图按从左到右的连接顺序显示表。红色框表示 `全表扫描` ，而绿色框表示使用 `索引查找` 。对于每个表，
 显示使用的索引。还要注意的是，每个表格的框上方是每个表访问所发现的行数的估计值以及访问该表
@@ -5006,7 +5006,7 @@ mysq1> EXPLAIN SELECT SQL_NO_CACHE* FROM student WHERE student.age=30 AND studen
 
 
 
-![image-20220326224834648](MySQL高级篇_02_索引及调优篇/image-20220326224834648.png)
+![image-20220326224834648](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326224834648.png)
 
 **结论:**MySQL可以为多个字段创建索引，一个索引可以包括16个字段。对于多列索引，**过滤条件要使用索引必须按照索引建立时的顺序，依次满足，一旦跳过某个字段，索引后面的字段都无法被使用。**如果查询条件中没有使用这些字段中第1个字段时，多列(或联合）索引不会被使用。
 
@@ -5018,11 +5018,11 @@ mysq1> EXPLAIN SELECT SQL_NO_CACHE* FROM student WHERE student.age=30 AND studen
 
 对于一个使用`InnoDB`存储引擎的表来说，表中的数据实际上都是存储在`聚簇索引`的叶子节点的。而记录又是存储在数据页中的，数据页和记录又是按照记录`主键值从小到大`的顺序进行排序，所以如果我们`插入`的记录的`主键值是依次增大`的话，那我们每插满一个数据页就换到下一个数据页继续插，而如果我们插入的主键值忽大忽小的话，就比较麻烦了，假设某个数据页存储的记录已经满了，它存储的主键值在`1~100`之间:
 
-![image-20220326225238412](MySQL高级篇_02_索引及调优篇/image-20220326225238412.png)
+![image-20220326225238412](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326225238412.png)
 
 如果此时再插入一条主键值为 `9` 的记录，那它插入的位置就如下图：
 
-![image-20220326225248650](MySQL高级篇_02_索引及调优篇/image-20220326225248650.png)
+![image-20220326225248650](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326225248650.png)
 
 可这个数据页已经满了，再插进来咋办呢？我们需要把当前 `页面分裂` 成两个页面，把本页中的一些记录
 移动到新创建的这个页中。页面分裂和记录移位意味着什么？意味着： `性能损耗 ！`所以如果我们想尽量
@@ -5159,7 +5159,7 @@ type为“ALL”，表示没有使用到索引，查询时间为 3.62 秒，查�
 
   运行结果：  
 
-  ![image-20220326225939241](MySQL高级篇_02_索引及调优篇/image-20220326225939241.png)
+  ![image-20220326225939241](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326225939241.png)
 
   类型是ALL原因是计算导致了索引失效。
 
@@ -5171,7 +5171,7 @@ type为“ALL”，表示没有使用到索引，查询时间为 3.62 秒，查�
   EXPLAIN SELECT SQL_NO_CACHE id, stuno, NAME FROM student WHERE stuno = 900000;
   ```
 
-  ![image-20220326230203661](MySQL高级篇_02_索引及调优篇/image-20220326230203661.png)
+  ![image-20220326230203661](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326230203661.png)
 
 **再举例：**
 
@@ -5223,7 +5223,7 @@ show index from student;
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE student.age=30 AND student.classId>20 AND student.name = 'abc' ;
 ```
 
-![image-20220326234953835](MySQL高级篇_02_索引及调优篇/image-20220326234953835.png)
+![image-20220326234953835](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220326234953835.png)
 
 因为用上了范围查找，，在范围查找的索引后面的索引就失效了。
 
@@ -5262,7 +5262,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE student.age=30 AND student.clas
   EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE student.name ='abc';
   ```
 
-  ![image-20220327000012828](MySQL高级篇_02_索引及调优篇/image-20220327000012828.png)
+  ![image-20220327000012828](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327000012828.png)
 
 
 
@@ -5274,7 +5274,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE student.age=30 AND student.clas
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age IS NULL;
 ```
 
-![image-20220327000138701](MySQL高级篇_02_索引及调优篇/image-20220327000138701.png)
+![image-20220327000138701](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327000138701.png)
 
 
 
@@ -5283,7 +5283,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age IS NULL;
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age IS NOT NULL;
 ```
 
-![image-20220327000222914](MySQL高级篇_02_索引及调优篇/image-20220327000222914.png)
+![image-20220327000222914](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327000222914.png)
 
 > 结论:最好在设计数据表的时候就将`字段设置为 NOT NULL 约束`，比如你可以将INT类型的字段，默认值设置为0。将字符类型的默认值设置为空字符串。
 >
@@ -5316,7 +5316,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age IS NOT NULL;
 ### 2.12练习及一般性建议
 
 **练习**:假设:index(a,b,c)
-![image-20220327001211718](MySQL高级篇_02_索引及调优篇/image-20220327001211718.png)
+![image-20220327001211718](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327001211718.png)
 
 **一般性建议:**
 
@@ -5374,7 +5374,7 @@ INSERT INTO book(card) VALUES (FLOOR(1 +(RAND() * 20)) );
 EXPLAIN SELECT SQL_NO_CACHE * FROM `type` LEFT JOIN book ON type.card = book.card;
 ```
 
-![image-20220327105415185](MySQL高级篇_02_索引及调优篇/image-20220327105415185.png)
+![image-20220327105415185](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327105415185.png)
 
 结论：type 有All
 添加索引优化  
@@ -5386,7 +5386,7 @@ ALTER TABLE book ADD INDEX Y(card); #【被驱动表】，可以避免全表扫�
 EXPLAIN SELECT SQL_NO_CACHE * FROM `type` LEFT JOIN book ON type.card = book.card;
 ```
 
-![image-20220327105619638](MySQL高级篇_02_索引及调优篇/image-20220327105619638.png)
+![image-20220327105619638](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327105619638.png)
 
 可以看到第二行的 type 变为了 ref，rows 也变成了优化比较明显。这是由左连接特性决定的。LEFT JOIN条件用于确定如何从右表搜索行，左边一定都有，所以 右边是我们的关键点,一定需要建立索引 。  
 
@@ -5400,7 +5400,7 @@ ALTER TABLE `type` ADD INDEX X (card); #【驱动表】，无法避免全表扫�
 EXPLAIN SELECT SQL_NO_CACHE * FROM `type` LEFT JOIN book ON type.card = book.card;
 ```
 
-![image-20220327110003998](MySQL高级篇_02_索引及调优篇/image-20220327110003998.png)
+![image-20220327110003998](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327110003998.png)
 
 接着：  
 
@@ -5409,7 +5409,7 @@ DROP INDEX Y ON book;
 EXPLAIN SELECT SQL_NO_CACHE * FROM `type` LEFT JOIN book ON type.card = book.card;
 ```
 
-![image-20220327110048502](MySQL高级篇_02_索引及调优篇/image-20220327110048502.png)
+![image-20220327110048502](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327110048502.png)
 
 
 
@@ -5423,7 +5423,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM `type` LEFT JOIN book ON type.card = book.car
 
 **前置知识**
 
-![image-20220327112700993](MySQL高级篇_02_索引及调优篇/image-20220327112700993.png)
+![image-20220327112700993](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327112700993.png)
 
 
 
@@ -5442,7 +5442,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM type INNER JOIN book ON type.card=book.card;
 
 
 
-![image-20220327110542488](MySQL高级篇_02_索引及调优篇/image-20220327110542488.png)
+![image-20220327110542488](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327110542488.png)
 
 
 
@@ -5454,7 +5454,7 @@ ALTER TABLE book ADD INDEX Y (card);
 EXPLAIN SELECT SQL_NO_CACHE * FROM type INNER JOIN book ON type.card=book.card;
 ```
 
-![image-20220327110718552](MySQL高级篇_02_索引及调优篇/image-20220327110718552.png)
+![image-20220327110718552](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327110718552.png)
 
 
 
@@ -5465,7 +5465,7 @@ ALTER TABLE type ADD INDEX X (card);
 EXPLAIN SELECT SQL_NO_CACHE * FROM type INNER JOIN book ON type.card=book.card;
 ```
 
-![image-20220327111114145](MySQL高级篇_02_索引及调优篇/image-20220327111114145.png)
+![image-20220327111114145](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327111114145.png)
 
 > 这里刚给type加了索引后，驱动表和被驱动表还是原来的样子。
 >
@@ -5529,21 +5529,21 @@ join方式连接多个表，本质就是各个表之间数据的循环匹配。M
 
     **测试1结果：**
 
-    ![image-20220327113715776](MySQL高级篇_02_索引及调优篇/image-20220327113715776.png)
+    ![image-20220327113715776](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327113715776.png)
 
     得出这种结论太不可思议了，跟上一个show warnings 看看：
 
-    ![image-20220327114615193](MySQL高级篇_02_索引及调优篇/image-20220327114615193.png)
+    ![image-20220327114615193](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327114615193.png)
 
     
 
     **测试2结果：**
 
-    ![image-20220327113840201](MySQL高级篇_02_索引及调优篇/image-20220327113840201.png)
+    ![image-20220327113840201](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327113840201.png)
 
     继续show warnings \G
 
-    ![image-20220327114721018](MySQL高级篇_02_索引及调优篇/image-20220327114721018.png)
+    ![image-20220327114721018](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327114721018.png)
 
 
 
@@ -5553,7 +5553,7 @@ join方式连接多个表，本质就是各个表之间数据的循环匹配。M
 
 
 
-![image-20220327115112379](MySQL高级篇_02_索引及调优篇/image-20220327115112379.png)
+![image-20220327115112379](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327115112379.png)
 
 这个例子是在没有索引的情况，做了全表扫描
 
@@ -5561,7 +5561,7 @@ join方式连接多个表，本质就是各个表之间数据的循环匹配。M
 
 
 
-![image-20220327115215270](MySQL高级篇_02_索引及调优篇/image-20220327115215270.png)
+![image-20220327115215270](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327115215270.png)
 
 
 
@@ -5573,13 +5573,13 @@ Index Nested-Loop Join其优化的思路主要是为了`减少内层表数据的
 
 
 
-![image-20220327115921235](MySQL高级篇_02_索引及调优篇/image-20220327115921235.png)
+![image-20220327115921235](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327115921235.png)
 
 
 
 驱动表中的每条记录通过被驱动表的索引进行访问，因为索引查询的成本是比较固定的，故mysql优化器都倾向于使用记录数少的表作为驱动表(外表)。
 
-![image-20220327120030338](MySQL高级篇_02_索引及调优篇/image-20220327120030338.png)
+![image-20220327120030338](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327120030338.png)
 
 
 
@@ -5602,11 +5602,11 @@ Index Nested-Loop Join其优化的思路主要是为了`减少内层表数据的
 
 
 
-![image-20220327143958188](MySQL高级篇_02_索引及调优篇/image-20220327143958188.png)
+![image-20220327143958188](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327143958188.png)
 
 
 
-![image-20220327144009591](MySQL高级篇_02_索引及调优篇/image-20220327144009591.png)
+![image-20220327144009591](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327144009591.png)
 
 参数设置：
 
@@ -5670,7 +5670,7 @@ select t1.b,t2.* from t2 straight_join t1 on (t1.b=t2.b) where t2.id<=100;#不�
 
 **从MySQL的8.0.20版本开始将废弃BNLJ，因为从MySQL8.0.18版本开始就加入了hash join默认都会使用hash join**
 
-![image-20220327151158056](MySQL高级篇_02_索引及调优篇/image-20220327151158056.png)
+![image-20220327151158056](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327151158056.png)
 
 - Nested Loop:
   对于被连接的数据子集较小的情况，Nested Loop是个较好的选择。
@@ -5682,7 +5682,7 @@ select t1.b,t2.* from t2 straight_join t1 on (t1.b=t2.b) where t2.id<=100;#不�
 
   - 它能够很好的工作于没有索引的大表和并行查询的环境中，并提供最好的性能。大多数人都说它是Join的重型升降机。Hash Join只能应用于等值连接(如WHERE A.COL1=B.COL2)，这是由Hash的特点决定的。
 
-  ![image-20220327151646951](MySQL高级篇_02_索引及调优篇/image-20220327151646951.png)
+  ![image-20220327151646951](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327151646951.png)
 
 
 
@@ -5793,7 +5793,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student ORDER BY age,classid;
 EXPLAIN SELECT SQL_NO_CACHE * FROM student ORDER BY age,classid limit 10;
 ```
 
-![image-20220327154029455](MySQL高级篇_02_索引及调优篇/image-20220327154029455.png)
+![image-20220327154029455](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327154029455.png)
 
 
 
@@ -5808,7 +5808,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student ORDER BY age ,classid ;
 
 
 
-![image-20220327154234022](MySQL高级篇_02_索引及调优篇/image-20220327154234022.png)
+![image-20220327154234022](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327154234022.png)
 
 > 这里优化器觉得，，还需要回表。会费时间更大，不走索引。
 
@@ -5816,7 +5816,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student ORDER BY age ,classid ;
 
 使用覆盖索引试试看
 
-![image-20220327154426669](MySQL高级篇_02_索引及调优篇/image-20220327154426669.png)
+![image-20220327154426669](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327154426669.png)
 
 > 不用回表，优化器觉得走索引快。就使用了索引。
 
@@ -5826,7 +5826,7 @@ EXPLAIN SELECT SQL_NO_CACHE * FROM student ORDER BY age ,classid ;
 
 增加limit 条件
 
-![image-20220327154631330](MySQL高级篇_02_索引及调优篇/image-20220327154631330.png)
+![image-20220327154631330](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327154631330.png)
 
 > 增加limit 减少回表的数量，优化器觉得走索引快，会使用索引
 
@@ -5883,7 +5883,7 @@ EXPLAIN SELECT * FROM student WHERE age=45 ORDER BY classid , name;
 
 ```
 
-![image-20220327163331675](MySQL高级篇_02_索引及调优篇/image-20220327163331675.png)
+![image-20220327163331675](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327163331675.png)
 
 
 
@@ -5896,7 +5896,7 @@ EXPLAIN SELECT * FROM student WHERE classid=45 order by age limit 10;
 
 
 
-![image-20220327163436260](MySQL高级篇_02_索引及调优篇/image-20220327163436260.png)
+![image-20220327163436260](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327163436260.png)
 
 这里第一条排序走Using filesort 很好理解
 
@@ -5971,7 +5971,7 @@ show index from student;
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age = 30 AND stuno <101000 ORDER BY NAME;
 ```
 
-![image-20220327170746020](MySQL高级篇_02_索引及调优篇/image-20220327170746020.png)
+![image-20220327170746020](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327170746020.png)
 
 
 
@@ -6004,7 +6004,7 @@ CREATE INDEX idx_age_name ON student(age , NAME);
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age = 30 AND stuno <101000 ORDER BY NAME;
 ```
 
-![image-20220327171114961](MySQL高级篇_02_索引及调优篇/image-20220327171114961.png)
+![image-20220327171114961](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327171114961.png)
 
 
 
@@ -6019,7 +6019,7 @@ create index idx_age_stuno_name on student(age,stuno,name);
 EXPLAIN SELECT SQL_NO_CACHE * FROM student WHERE age = 30 AND stuno <101000 ORDER BY NAME;
 ```
 
-![image-20220327171516492](MySQL高级篇_02_索引及调优篇/image-20220327171516492.png)
+![image-20220327171516492](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327171516492.png)
 
 
 
@@ -6137,7 +6137,7 @@ EXPLAIN SELECT * FROM student LIMIT 2088800,10;
 EXPLAIN SELECT * FROM student t, ( SELECT id FROM student ORDER BY id LIMIT 2000000,10) a WHERE t.id = a.id;
 ```
 
-![image-20220327181204713](MySQL高级篇_02_索引及调优篇/image-20220327181204713.png)
+![image-20220327181204713](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181204713.png)
 **优化思路二**(几乎没法用)
 
 该方案适用于主键自增的表，可以把Limit查询转换成某个位置的查询。
@@ -6146,7 +6146,7 @@ EXPLAIN SELECT * FROM student t, ( SELECT id FROM student ORDER BY id LIMIT 2000
 EXPLAIN SELECT * FROM student WHERE id > 2080880 LIMIT 10;
 ```
 
-![image-20220327181228362](MySQL高级篇_02_索引及调优篇/image-20220327181228362.png)
+![image-20220327181228362](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181228362.png)
 
 > 不靠谱，生产中id可能会删除，查询的条件也不可能这么简单。
 
@@ -6175,7 +6175,7 @@ CREATE INDEX idx_age_name ON student (age , NAME);
 EXPLAIN SELECT * FROM student WHERE age <>20;
 ```
 
-![image-20220327194911745](MySQL高级篇_02_索引及调优篇/image-20220327194911745.png)
+![image-20220327194911745](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194911745.png)
 
 
 
@@ -6183,7 +6183,7 @@ EXPLAIN SELECT * FROM student WHERE age <>20;
 EXPLAIN SELECT id, age , NAME FROM student WHERE age <> 28;
 ```
 
-![image-20220327195102695](MySQL高级篇_02_索引及调优篇/image-20220327195102695.png)
+![image-20220327195102695](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327195102695.png)
 
 上述都使用到了声明的索引，下面的情况则不然，在查询列中多了一列classid，显示未使用到索引:
 
@@ -6191,7 +6191,7 @@ EXPLAIN SELECT id, age , NAME FROM student WHERE age <> 28;
 EXPLAIN SELECT id, age , NAME,classid FROM student WHERE age <> 28;
 ```
 
-![image-20220327195221475](MySQL高级篇_02_索引及调优篇/image-20220327195221475.png)
+![image-20220327195221475](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327195221475.png)
 
 
 
@@ -6201,7 +6201,7 @@ EXPLAIN SELECT id, age , NAME,classid FROM student WHERE age <> 28;
 EXPLAIN SELECT *FROM student WHERE NAME LIKE '%abc';
 ```
 
-![image-20220327195413811](MySQL高级篇_02_索引及调优篇/image-20220327195413811.png)
+![image-20220327195413811](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327195413811.png)
 
 
 
@@ -6210,7 +6210,7 @@ CREATE INDEX idx_age_name ON student (age , NAME);
 EXPLAIN SELECT id, age ,NAME FROM student WHERE NAME LIKE '%abc ';
 ```
 
-![image-20220327195610323](MySQL高级篇_02_索引及调优篇/image-20220327195610323.png)
+![image-20220327195610323](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327195610323.png)
 
 
 
@@ -6221,7 +6221,7 @@ EXPLAIN SELECT id, age ,NAME,classid FROM student WHERE NAME LIKE '%abc ';
 
 查询多了classid，结果是未使用到索引
 
-![image-20220327195812263](MySQL高级篇_02_索引及调优篇/image-20220327195812263.png)
+![image-20220327195812263](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327195812263.png)
 
 > 之前有说过，不等于与左模糊会导致索引失效。但是这里为什么又用上了呢？原因是优化器发现，数据已经都在索引了。直接遍历索引就可以返回数据。。而遍历索引，肯定是比遍历全表数据量少的。这样IO就可以更少。
 >
@@ -6292,11 +6292,11 @@ mysql> alter table teacher add index index2(email(6))
 
 这两种不同的定义在数据结构和存储上有什么区别呢？下图就是这两个索引的示意图  
 
-![image-20220327181808091](MySQL高级篇_02_索引及调优篇/image-20220327181808091.png)
+![image-20220327181808091](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181808091.png)
 
 以及  
 
-![image-20220327181820437](MySQL高级篇_02_索引及调优篇/image-20220327181820437.png)
+![image-20220327181820437](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181820437.png)
 
 **如果使用的是index1**（即email整个字符串的索引结构），执行顺序是这样的：
 
@@ -6341,7 +6341,7 @@ Index Condition Pushdown(ICP)是MySQL 5.6中新特性，是一种在存储引擎
 
 key1 有索引
 
-![image-20220327201222126](MySQL高级篇_02_索引及调优篇/image-20220327201222126.png)
+![image-20220327201222126](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327201222126.png)
 
 > 这里条件like '%a' 其实可以在索引里面，算出来哪些符合条件。。。。过滤出符合条件的，再回表。这样回表的数据可以减少很多。还有一个好处，没有索引下推，就需要把数据都回表查出来，，这些数据可能在不同的页当中，又会产生IO
 >
@@ -6409,7 +6409,7 @@ AND lastname LIKE '%张%'
 AND address LIKE '%北京市%';
 ```
 
-![image-20220327212419933](MySQL高级篇_02_索引及调优篇/image-20220327212419933.png)
+![image-20220327212419933](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327212419933.png)
 
 执行查看SQL的查询计划，Extra中显示了`Using index condition`，这表示使用了索引下推。另外，`Usingwhere`表示条件中包含需要过滤的非索引列的数据，即address LIKE '%北京市%'这个条件并不是索引列，需要在服务端过滤掉。
 
@@ -6483,13 +6483,13 @@ show profiles\G ;
 
 结果如下。
 
-![image-20220327214304560](MySQL高级篇_02_索引及调优篇/image-20220327214304560.png)
+![image-20220327214304560](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327214304560.png)
 
 
 
 
 
-![image-20220327214423178](MySQL高级篇_02_索引及调优篇/image-20220327214423178.png)
+![image-20220327214423178](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327214423178.png)
 
 多次测试效率对比来看，使用ICP优化的查询效率会好一些。这里建议多存储一些数据效果更明显。
 
@@ -6501,9 +6501,9 @@ storage层：只将满足index key条件的索引记录对应的整行记录取�
 
 server 层：对返回的数据，使用后面的where条件过滤，直至返回最后一行。  
 
-![image-20220327181853000](MySQL高级篇_02_索引及调优篇/image-20220327181853000.png)
+![image-20220327181853000](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181853000.png)
 
-![image-20220327181901279](MySQL高级篇_02_索引及调优篇/image-20220327181901279.png)
+![image-20220327181901279](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181901279.png)
 
 使用ICP扫描的过程：
 storage层：
@@ -6513,9 +6513,9 @@ filter条件的索引记录才去回表取出整行记录返回server层。不�
 server 层：
 对返回的数据，使用table filter条件做最后的过滤。  
 
-![image-20220327181910781](MySQL高级篇_02_索引及调优篇/image-20220327181910781.png)
+![image-20220327181910781](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181910781.png)
 
-![image-20220327181918603](MySQL高级篇_02_索引及调优篇/image-20220327181918603.png)
+![image-20220327181918603](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327181918603.png)
 
 使用前后的成本差别
 使用前，存储层多返回了需要被index filter过滤掉的整行记录
@@ -6738,7 +6738,7 @@ COMMIT 所释放的资源：
 
 表数据如下：  
 
-![image-20220327194004090](MySQL高级篇_02_索引及调优篇/image-20220327194004090.png)
+![image-20220327194004090](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194004090.png)
 
 
 
@@ -6776,7 +6776,7 @@ Query OK, 0 rows affected (0.06 sec)
 
 比如，我们有一个销售流水表（trans），记录了所有的销售流水明细。2020 年 12 月 01 日，张三在门店购买了一本书，消费了 89 元。那么，系统中就有了张三买书的流水记录，如下所示：  
 
-![image-20220327194010973](MySQL高级篇_02_索引及调优篇/image-20220327194010973.png)
+![image-20220327194010973](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194010973.png)
 
 
 
@@ -6833,7 +6833,7 @@ mysql> SELECT b.membername,c.goodsname,a.quantity,a.salesvalue,a.transdate
 
 打开淘宝，看一下订单信息：  
 
-![image-20220327194022473](MySQL高级篇_02_索引及调优篇/image-20220327194022473.png)
+![image-20220327194022473](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194022473.png)
 
 
 
@@ -6888,7 +6888,7 @@ UUID = 时间+UUID版本（16字节）- 时钟序列（4字节） - MAC地址（
 
 
 
-![image-20220327194036197](MySQL高级篇_02_索引及调优篇/image-20220327194036197.png)
+![image-20220327194036197](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194036197.png)
 
 为什么UUID是全局唯一的？
 
@@ -6919,7 +6919,7 @@ SELECT @uuid,uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 # uuid_to_bin(@uuid,TRUE); 修改成先高位 中位 地位，就可以保证uuid地政了
 ```
 
-![image-20220327194047194](MySQL高级篇_02_索引及调优篇/image-20220327194047194.png)
+![image-20220327194047194](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194047194.png)
 
 
 
@@ -6931,7 +6931,7 @@ SELECT @uuid,uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 
 我们来做一个测试，插入1亿条数据，每条数据占用500字节，含有3个二级索引，最终的结果如下所示：  
 
-![image-20220327194059890](MySQL高级篇_02_索引及调优篇/image-20220327194059890.png)
+![image-20220327194059890](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327194059890.png)
 
 从上图可以看到插入1亿条数据有序UUID是最快的，而且在实际业务使用中有序UUID在 业务端就可以生
 成 。还可以进一步减少SQL的交互次数。
@@ -6983,11 +6983,11 @@ SELECT @uuid,uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 
 假设一家公司要存储员工的姓名和联系方式。它创建一个如下表:
 
-![image-20220328095515382](MySQL高级篇_02_索引及调优篇/image-20220328095515382.png)
+![image-20220328095515382](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328095515382.png)
 
 该表不符合1NF，因为规则说“表的每个属性必须具有原子(单个）值”lisi和zhaoliu员工的emp_mobile值违反了该规则(有两个电话)。为了使表符合1NF，我们应该有如下表数据:
 
-![image-20220328095522609](MySQL高级篇_02_索引及调优篇/image-20220328095522609.png)
+![image-20220328095522609](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328095522609.png)
 
 **举例2：**
 
@@ -7098,7 +7098,7 @@ user_info拆分后如下:
 
 定义了一个名为 Orders 的关系，表示订单和订单行的信息：
 
-![image-20220328101954268](MySQL高级篇_02_索引及调优篇/image-20220328101954268.png)
+![image-20220328101954268](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328101954268.png)
 
 违反了第二范式，因为有非主键属性仅依赖于候选键（或主键）的一部分。例如，可以仅通过orderid找到订单的 orderdate，以及 customerid 和 companyname，而没有必要再去使用productid。
 
@@ -7106,7 +7106,7 @@ user_info拆分后如下:
 
 Orders表和OrderDetails表如下，此时符合第二范式  
 
-![image-20220328102007725](MySQL高级篇_02_索引及调优篇/image-20220328102007725.png)
+![image-20220328102007725](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102007725.png)
 
 > 小结: 第二范式(2NF）要求实体的属性完全依赖主关键字。如果存在不完全依赖，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与元实体之间是一对多的关系。
 
@@ -7163,7 +7163,7 @@ Orders表和OrderDetails表如下，此时符合第二范式
 `球员player表` ：球员编号、姓名、球队名称和球队主教练。现在，我们把属性之间的依赖关系画出
 来，如下图所示：  
 
-![image-20220328102411308](MySQL高级篇_02_索引及调优篇/image-20220328102411308.png)
+![image-20220328102411308](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102411308.png)
 
 
 
@@ -7183,7 +7183,7 @@ Orders表和OrderDetails表如下，此时符合第二范式
 
 此时的Orders关系包含 orderid、orderdate、customerid 和 companyname 属性，主键定义为 orderid。customerid 和companyname均依赖于主键——orderid。例如，你需要通过orderid主键来查找代表订单中客户的customerid，同样，你需要通过 orderid 主键查找订单中客户的公司名称（companyname）。然而， customerid和companyname也是互相依靠的。为满足第三范式，可以改写如下：  
 
-![image-20220328102401313](MySQL高级篇_02_索引及调优篇/image-20220328102401313.png)
+![image-20220328102401313](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102401313.png)
 
 > 符合3NF后的数据模型通俗地讲，2NF和3NF通常以这句话概括：“每个非键属性依赖于键，依赖于整个键，并且除了键别无他物”。  
 
@@ -7245,26 +7245,26 @@ department_name，这样就不用每次都进行连接操作了。
 （atguigu.goodsinfo） 。商品流水表里有 400 万条流水记录，商品信息表里有 2000 条商品记录。
 商品流水表：  
 
-![image-20220328102856949](MySQL高级篇_02_索引及调优篇/image-20220328102856949.png)
+![image-20220328102856949](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102856949.png)
 
 
 
 商品信息表：  
 
-![image-20220328102906913](MySQL高级篇_02_索引及调优篇/image-20220328102906913.png)
+![image-20220328102906913](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102906913.png)
 
 新的商品流水表如下所示：
 
-![image-20220328102921528](MySQL高级篇_02_索引及调优篇/image-20220328102921528.png)
+![image-20220328102921528](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102921528.png)
 
 举例4：
 课程评论表 class_comment ，对应的字段名称及含义如下：
 
-![image-20220328102934457](MySQL高级篇_02_索引及调优篇/image-20220328102934457.png)
+![image-20220328102934457](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102934457.png)
 
 学生表 student ，对应的字段名称及含义如下：
 
-![image-20220328102948234](MySQL高级篇_02_索引及调优篇/image-20220328102948234.png)
+![image-20220328102948234](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102948234.png)
 
 在实际应用中，我们在显示课程评论的时候，通常会显示这个学生的昵称，而不是学生 ID，因此当我们想要查询某个课程的前 1000 条评论时，需要关联 class_comment 和 student这两张表来进行查询。
 
@@ -7289,7 +7289,7 @@ LIMIT 1000;
 
 运行结果（1000 条数据行）  
 
-![image-20220328102757397](MySQL高级篇_02_索引及调优篇/image-20220328102757397.png)
+![image-20220328102757397](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102757397.png)
 
 运行时长为 `0.395` 秒，对于网站的响应来说，这已经很慢了，用户体验会非常差。
 
@@ -7307,7 +7307,7 @@ ORDER BY class_id DESC LIMIT 1000;
 
 运行结果（1000 条数据）：  
 
-![image-20220328102757397](MySQL高级篇_02_索引及调优篇/image-20220328102757397.png)
+![image-20220328102757397](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220328102757397.png)
 
 
 
@@ -7470,9 +7470,9 @@ SQL查询时需要对不同的数据表进行查询，因此在物理查询优�
 
 如果读和写的业务量都很大，并且它们都在同一个数据库服务器中进行操作，那么数据库的性能就会出现瓶颈，这时为了提升系统的性能，优化用户体验，我们可以采用`读写分离`的方式降低主数据库的负载，比如用主数据库(master)完成写操作，用从数据库(slave)完成读操作。
 
-![image-20220327232334207](MySQL高级篇_02_索引及调优篇/image-20220327232334207.png)
+![image-20220327232334207](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327232334207.png)
 
-![image-20220327232344144](MySQL高级篇_02_索引及调优篇/image-20220327232344144.png)
+![image-20220327232344144](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327232344144.png)
 
 
 
@@ -7480,9 +7480,9 @@ SQL查询时需要对不同的数据表进行查询，因此在物理查询优�
 
 对数据库分库分表。当数据量级达到干万级以上时，有时候我们需要把一个数据库切成多份，放到不同的数据库服务器上，减少对单一数据库服务器的访问压力。如果你使用的是MySQL，就可以使用MySQL自带的分区表功能，当然你也可以考虑自己做`垂直拆分（分库)`、`水平拆分`（分表）、`垂直+水平拆分(分库分表`)。
 
-![image-20220327232559837](MySQL高级篇_02_索引及调优篇/image-20220327232559837.png)
+![image-20220327232559837](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327232559837.png)
 
-![image-20220327232655999](MySQL高级篇_02_索引及调优篇/image-20220327232655999.png)
+![image-20220327232655999](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/MySQL高级篇_02_索引及调优篇_Img/image-20220327232655999.png)
 
 > 但需要注意的是，分拆在提升数据库性能的同时，也会增加维护和使用成本
 

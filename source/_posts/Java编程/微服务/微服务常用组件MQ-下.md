@@ -100,7 +100,7 @@ docker stop mq
 
 具体如图所示：
 
-![](微服务常用组件MQ-下/VohQbYwSlo8R6AxfinGcLNq6nld.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/VohQbYwSlo8R6AxfinGcLNq6nld.png)
 
 总结如下：
 
@@ -138,7 +138,7 @@ spring:
 
 每个 `RabbitTemplate` 只能配置一个 `ReturnCallback`，因此我们可以在配置类中统一设置。我们在 publisher 模块定义一个配置类：
 
-![](微服务常用组件MQ-下/VtLLb0dSFo6XOdx1EEiczVvbnvc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/VtLLb0dSFo6XOdx1EEiczVvbnvc.png)
 
 内容如下：
 
@@ -180,7 +180,7 @@ public class MqConfig {
 
 由于每个消息发送时的处理逻辑不一定相同，因此 ConfirmCallback 需要在每次发消息时定义。具体来说，是在调用 RabbitTemplate 中的 convertAndSend 方法时，多传递一个参数：
 
-![](微服务常用组件MQ-下/E2IcbQ9bQoCDTVx8m8GciifXnKe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/E2IcbQ9bQoCDTVx8m8GciifXnKe.png)
 
 这里的 CorrelationData 中包含两个核心的东西：
 
@@ -189,7 +189,7 @@ public class MqConfig {
 
 将来 MQ 的回执就会通过这个 `Future` 来返回，我们可以提前给 `CorrelationData` 中的 `Future` 添加回调函数来处理消息回执：
 
-![](微服务常用组件MQ-下/TR81bF8E3ocm72xkaqHcuN9Nnph.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/TR81bF8E3ocm72xkaqHcuN9Nnph.png)
 
 我们新建一个测试，向系统自带的交换机发送消息，并且添加 `ConfirmCallback`：
 
@@ -222,7 +222,7 @@ void testPublisherConfirm() {
 
 执行结果如下：
 
-![](微服务常用组件MQ-下/YmF2bo8C8ot7CexZXopcsIyTnYc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/YmF2bo8C8ot7CexZXopcsIyTnYc.png)
 
 可以看到，由于传递的 `RoutingKey` 是错误的，路由失败后，触发了 `return callback`，同时也收到了 ack。
 
@@ -248,7 +248,7 @@ void testPublisherConfirm() {
 
 在控制台的 `Exchanges` 页面，添加交换机时可以配置交换机的 `Durability` 参数：
 
-![](微服务常用组件MQ-下/NPr8bcUqkoNVgIxP7ePct6thn4g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/NPr8bcUqkoNVgIxP7ePct6thn4g.png)
 
 设置为 `Durable` 就是持久化模式，`Transient` 就是临时模式。
 
@@ -256,7 +256,7 @@ void testPublisherConfirm() {
 
 在控制台的 Queues 页面，添加队列时，同样可以配置队列的 `Durability` 参数：
 
-![](微服务常用组件MQ-下/CxrxbP3awotxmkxSndlcE7iKnvd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/CxrxbP3awotxmkxSndlcE7iKnvd.png)
 
 除了持久化以外，你可以看到队列还有很多其它参数，有一些我们会在后期学习。
 
@@ -264,7 +264,7 @@ void testPublisherConfirm() {
 
 在控制台发送消息的时候，可以添加很多参数，而消息的持久化是要配置一个 `properties`：
 
-![](微服务常用组件MQ-下/UoozbQ7W4oabs2xlaDjcTwWZnLf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/UoozbQ7W4oabs2xlaDjcTwWZnLf.png)
 
 ### 2.2.LazyQueue
 
@@ -288,7 +288,7 @@ void testPublisherConfirm() {
 
 在添加队列的时候，添加 `x-queue-mod=lazy` 参数即可设置队列为 Lazy 模式：
 
-![](微服务常用组件MQ-下/D7mmbzVySoa0VzxTQ6Ucbpl2nKb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/D7mmbzVySoa0VzxTQ6Ucbpl2nKb.png)
 
 #### 2.2.2.代码配置 Lazy 模式
 
@@ -306,7 +306,7 @@ public Queue lazyQueue(){
 
 这里是通过 `QueueBuilder` 的 `lazy()` 函数配置 Lazy 模式，底层源码如下：
 
-![](微服务常用组件MQ-下/EBkmbWPYIo1x2KxnEXUcWHcHn0U.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/EBkmbWPYIo1x2KxnEXUcWHcHn0U.png)
 
 当然，我们也可以基于注解来声明队列并设置为 Lazy 模式：
 
@@ -342,7 +342,7 @@ rabbitmqctl set_policy Lazy "^lazy-queue$" '{"queue-mode":"lazy"}' --apply-to qu
 
 当然，也可以在控制台配置 policy，进入在控制台的 `Admin` 页面，点击 `Policies`，即可添加配置：
 
-![](微服务常用组件MQ-下/AFUlbn4sMoqeX6xbldFcQPbYnXc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/AFUlbn4sMoqeX6xbldFcQPbYnXc.png)
 
 ## 3.消费者的可靠性
 
@@ -426,11 +426,11 @@ spring:
 
 在异常位置打断点，再次发送消息，程序卡在断点时，可以发现此时消息状态为 `unacked`（未确定状态）：
 
-![](微服务常用组件MQ-下/MaLabMxNNoh4gMxwHDxc4MxTnoh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/MaLabMxNNoh4gMxwHDxc4MxTnoh.png)
 
 放行以后，由于抛出的是**消息转换异常**，因此 Spring 会自动返回 `reject`，所以消息依然会被删除：
 
-![](微服务常用组件MQ-下/OuJLbuT9eowqpaxI7TNcimyinZc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/OuJLbuT9eowqpaxI7TNcimyinZc.png)
 
 我们将异常改为 RuntimeException 类型：
 
@@ -447,11 +447,11 @@ public void listenSimpleQueueMessage(String msg) throws InterruptedException {
 
 在异常位置打断点，然后再次发送消息测试，程序卡在断点时，可以发现此时消息状态为 `unacked`（未确定状态）：
 
-![](微服务常用组件MQ-下/UkKwbmXVpoyeUyxxxxncpY5NnMg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/UkKwbmXVpoyeUyxxxxncpY5NnMg.png)
 
 放行以后，由于抛出的是业务异常，所以 Spring 返回 `ack`，最终消息恢复至 `Ready` 状态，并且没有被 RabbitMQ 删除：
 
-![](微服务常用组件MQ-下/K8qRb41Uso5Riyx95aLcGAYQnCe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/K8qRb41Uso5Riyx95aLcGAYQnCe.png)
 
 当我们把配置改为 `auto` 时，消息处理失败后，会回到 RabbitMQ，并重新投递到消费者。
 
@@ -461,7 +461,7 @@ public void listenSimpleQueueMessage(String msg) throws InterruptedException {
 
 极端情况就是消费者一直无法执行成功，那么消息 requeue 就会无限循环，导致 mq 的消息处理飙升，带来不必要的压力：
 
-![](微服务常用组件MQ-下/B2SpbJ5Rxo78AQxuyXQcauXsn4b.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/B2SpbJ5Rxo78AQxuyXQcauXsn4b.png)
 
 当然，上述极端情况发生的概率还是非常低的，不过不怕一万就怕万一。为了应对上述情况 Spring 又提供了消费者失败重试机制：在消费者出现异常时利用本地重试，而不是无限制的 requeue 到 mq 队列。
 
@@ -762,23 +762,23 @@ UPDATE `order` SET status = ? , pay_time = ? WHERE id = ? AND status = 1
 
 如图，有一组绑定的交换机（`ttl.fanout`）和队列（`ttl.queue`）。但是 `ttl.queue` 没有消费者监听，而是设定了死信交换机 `hmall.direct`，而队列 `direct.queue1` 则与死信交换机绑定，RoutingKey 是 blue：
 
-![](微服务常用组件MQ-下/DU6Bbv9ELogXMVxjEYZcS4C4nae.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/DU6Bbv9ELogXMVxjEYZcS4C4nae.png)
 
 假如我们现在发送一条消息到 `ttl.fanout`，RoutingKey 为 blue，并设置消息的**有效期**为 5000 毫秒：
 
-![](微服务常用组件MQ-下/IGCWbzpEKo3loaxCJWkcQukZnme.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/IGCWbzpEKo3loaxCJWkcQukZnme.png)
 
 消息肯定会被投递到 `ttl.queue` 之后，由于没有消费者，因此消息无人消费。5 秒之后，消息的有效期到期，成为死信：
 
-![](微服务常用组件MQ-下/JLSsbX5RyoZCKTxCxhGcksRynFb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/JLSsbX5RyoZCKTxCxhGcksRynFb.png)
 
 死信被再次投递到死信交换机 `hmall.direct`，并沿用之前的 RoutingKey，也就是 `blue`：
 
-![](微服务常用组件MQ-下/RVgSbj8otoQtKYxsd4jc2OdFnOb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/RVgSbj8otoQtKYxsd4jc2OdFnOb.png)
 
 由于 `direct.queue1` 与 `hmall.direct` 绑定的 key 是 blue，因此最终消息被成功路由到 `direct.queue1`，如果此时有消费者与 `direct.queue1` 绑定， 也就能成功消费消息了。但此时已经是 5 秒钟以后了：
 
-![](微服务常用组件MQ-下/KZx0bBSh7ofh4jxA0lTcTlL1nic.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/KZx0bBSh7ofh4jxA0lTcTlL1nic.png)
 
 也就是说，publisher 发送了一条消息，但最终 consumer 在 5 秒后才收到消息。我们成功实现了**延迟消息**。
 
@@ -796,11 +796,11 @@ UPDATE `order` SET status = ? , pay_time = ? WHERE id = ? AND status = 1
 
 由于我们安装的 MQ 是 `3.8` 版本，因此这里下载 `3.8.17` 版本：
 
-![](微服务常用组件MQ-下/KqSKbHiB5oHaCPxSVG5cBt00nac.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/KqSKbHiB5oHaCPxSVG5cBt00nac.png)
 
 当然，也可以直接使用课前资料提供好的插件：
 
-![](微服务常用组件MQ-下/U7x4bEQwcosUk2xNHdGc098znec.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/U7x4bEQwcosUk2xNHdGc098znec.png)
 
 #### 4.2.2.安装
 
@@ -836,7 +836,7 @@ docker exec -it mq rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 运行结果如下：
 
-![](微服务常用组件MQ-下/TZdFbdnG8oJ9aSxedA9cjII6n0f.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/TZdFbdnG8oJ9aSxedA9cjII6n0f.png)
 
 #### 4.2.3.声明延迟交换机
 
@@ -921,7 +921,7 @@ void testPublisherDelayMessage() {
 
 无论是消息发送还是接收都是在交易服务完成，因此我们在 `trade-service` 中定义一个常量类，用于记录交换机、队列、RoutingKey 等常量：
 
-![](微服务常用组件MQ-下/GHBGbT2WLoreOwxwyT5cPu1anOf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/GHBGbT2WLoreOwxwyT5cPu1anOf.png)
 
 内容如下：
 
@@ -965,7 +965,7 @@ void testPublisherDelayMessage() {
 
 修改 `trade-service` 模块的 `com.hmall.trade.service.impl.OrderServiceImpl` 类的 `createOrder` 方法，添加消息发送的代码：
 
-![](微服务常用组件MQ-下/W4Vgbbic5oNMEBxXa3sc3sxFnVc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/W4Vgbbic5oNMEBxXa3sc3sxFnVc.png)
 
 这里延迟消息的时间应该是 15 分钟，不过我们为了测试方便，改成 10 秒。
 
@@ -975,7 +975,7 @@ void testPublisherDelayMessage() {
 
 首先，在 `hm-api` 模块定义三个类：
 
-![](微服务常用组件MQ-下/U4aPbhArAovCXyxs3iRcH6IUnAc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/U4aPbhArAovCXyxs3iRcH6IUnAc.png)
 
 说明：
 
@@ -1099,7 +1099,7 @@ public PayOrderDTO queryPayOrderByBizOrderNo(@PathVariable("id") Long id){
 
 接下来，我们在 `trader-service` 编写一个监听器，监听延迟消息，查询订单支付状态：
 
-![](微服务常用组件MQ-下/PJhBb1EiOoIfjRxJTEQchVcinvb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件MQ-下_Img/PJhBb1EiOoIfjRxJTEQchVcinvb.png)
 
 代码如下：
 

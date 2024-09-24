@@ -54,7 +54,7 @@ date: 2024-05-15 17:48:00
 
 > 原理图
 
-![1682411089082](JavaWeb_06_第六章_会话_过滤器_监听器/1682411089082.png)
+![1682411089082](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_bad998531c323ac9cb8914209b041faa.png)
 
 > 应用场景举例
 
@@ -87,7 +87,7 @@ public class ServletA extends HttpServlet {
 }
 ```
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682411522695.png" alt="1682411522695" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_e90dbb93a648b035044e7a2f0b66e048.png" alt="1682411522695" style="zoom:80%;" />
 
 
 
@@ -114,7 +114,7 @@ public class ServletB extends HttpServlet {
 }
 ```
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682411757748.png" alt="1682411757748" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_2b56e21c509c817cb5e8326b60376b74.png" alt="1682411757748" style="zoom:67%;" />
 
 ### 1.2.2  Cookie的时效性
 
@@ -151,7 +151,7 @@ public class ServletA extends HttpServlet {
 }
 ```
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682470547651.png" alt="1682470547651" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_98a874f87b4c3950a4c4d529a95f6469.png" alt="1682470547651" style="zoom: 67%;" />
 
 + servletB接收Cookie,浏览器中间发生一次重启再请求servletB测试
 
@@ -172,7 +172,7 @@ public class ServletB extends HttpServlet {
 }
 ```
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682470652577.png" alt="1682470652577" style="zoom: 70%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_803b6f1610af741baa61f99443a944d3.png" alt="1682470652577" style="zoom: 70%;" />
 
 
 
@@ -201,15 +201,15 @@ public class ServletA extends HttpServlet {
 
 ```
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682471183183.png" alt="1682471183183" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_813ea46a3a971f891aa07652859e4890.png" alt="1682471183183" style="zoom:80%;" />
 
 + 向ServletB请求时携带携带了 c1
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682471232199.png" alt="1682471232199" style="zoom:95%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_d6132bb546c9d14355bf0c904afed04f.png" alt="1682471232199" style="zoom:95%;" />
 
 + 向其他资源请求时就不携带c1了
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682471342313.png" alt="1682471342313" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_c3016aea923afe8a5f3464c62d78d18f.png" alt="1682471342313" style="zoom:80%;" />
 
 
 
@@ -227,7 +227,7 @@ public class ServletA extends HttpServlet {
 
 > 原理图如下
 
-![1682413051408](JavaWeb_06_第六章_会话_过滤器_监听器/1682413051408.png)
+![1682413051408](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_d423a2e39be646701b590688ee9ec8d8.png)
 
 > 应用场景
 
@@ -279,7 +279,7 @@ public class ServletA extends HttpServlet {
 
 + 响应中收到了一个JSESSIONID的cookie
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682476311432.png" alt="1682476311432" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_abafea2f36ac1c2be91acf50f389c3e6.png" alt="1682476311432" style="zoom:80%;" />
 
 + 定义其他Servlet,从session中读取用户名
 
@@ -305,11 +305,11 @@ public class ServletB extends HttpServlet {
 
 + 请求中携带了一个JSESSIONID的cookie
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682476350602.png" alt="1682476350602" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_6ec9b6efb2dff5f7c3cf09b5f5af07c7.png" alt="1682476350602" style="zoom:80%;" />
 
 > getSession方法的处理逻辑
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682477914654.png" alt="1682477914654" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_30c6de365fe082bef79bfa1f47dfb061.png" alt="1682477914654" style="zoom: 80%;" />
 
 
 
@@ -322,11 +322,11 @@ public class ServletB extends HttpServlet {
 
 > 默认的session最大闲置时间(两次使用同一个session中的间隔时间) 在tomcat/conf/web.xml配置为30分钟
 
-![1682478412527](JavaWeb_06_第六章_会话_过滤器_监听器/1682478412527.png)
+![1682478412527](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_845f4bdb5365e07dd5c4b7cb135addce.png)
 
 > 我们可以自己在当前项目的web.xml对最大闲置时间进行重新设定
 
-![1682478633650](JavaWeb_06_第六章_会话_过滤器_监听器/1682478633650.png)
+![1682478633650](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_230eb974aaea397a256337c9a6acb715.png)
 
 > 也可以通过HttpSession的API 对最大闲置时间进行设定
 
@@ -363,19 +363,19 @@ session.invalidate();
 
 + 请求域
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682480592506.png" alt="1682480592506" style="zoom: 60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_a5c70457510a352cddff72161e3a070b.png" alt="1682480592506" style="zoom: 60%;" />
 
 + 会话域
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682480716152.png" alt="1682480716152" style="zoom:60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_ea4d9367571e2cd1bcacfbdb60ce3fb5.png" alt="1682480716152" style="zoom:60%;" />
 
 + 应用域
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682480913847.png" alt="1682480913847" style="zoom:60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_ebd25a9eefb2599b4bbd694a06647f59.png" alt="1682480913847" style="zoom:60%;" />
 
 + 所有域在一起
 
-<img src="JavaWeb_06_第六章_会话_过滤器_监听器/1682488186891.png" alt="1682488186891" style="zoom:60%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_0f4b57b4231e6d0c2316ff3392e785ff.png" alt="1682488186891" style="zoom:60%;" />
 
 ### 1.4.2 域对象的使用
 
@@ -473,7 +473,7 @@ public class ServletB extends HttpServlet {
 
 > 过滤器工作位置图解
 
-![1682494494396](JavaWeb_06_第六章_会话_过滤器_监听器/1682494494396.png)
+![1682494494396](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_ecf8a9bb4e2f730474f41a43d5f13f11.png)
 
 > Filter接口API
 
@@ -648,7 +648,7 @@ public class ServletB extends HttpServlet {
 
 > 过滤过程图解
 
-![1682496991032](JavaWeb_06_第六章_会话_过滤器_监听器/1682496991032.png)
+![1682496991032](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_13eca54d4528f6e2a9abce74ac317a12.png)
 
 ## 2.3 过滤器生命周期
 
@@ -710,7 +710,7 @@ public class LifeCycleFilter implements Filter {
 
 > 图解过滤器链
 
-![1682556566084](JavaWeb_06_第六章_会话_过滤器_监听器/1682556566084.png)
+![1682556566084](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_7e6e4cd7d50e5075287e74ed358279f4.png)
 
 > 过滤器链功能测试
 
@@ -829,7 +829,7 @@ public class Filter3 implements Filter {
 
 > 工作流程图解
 
-![1682497251883](JavaWeb_06_第六章_会话_过滤器_监听器/1682497251883.png)
+![1682497251883](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_fef34f1428a265115ff9072a55a8c713.png)
 
 
 
@@ -1427,7 +1427,7 @@ public class ServletA extends HttpServlet {
 
 + 在web目录下,添加 META-INF下创建Context.xml
 
-![1682565824241](JavaWeb_06_第六章_会话_过滤器_监听器/1682565824241.png)
+![1682565824241](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_1f59b52499898b3ed221838cf94dbb1e.png)
 
 + 文件中配置钝化
 
@@ -1610,7 +1610,7 @@ public class LoginFilter  implements Filter {
 
 **ajax工作原理：**
 
-![](JavaWeb_06_第六章_会话_过滤器_监听器/image_bjXPJoLb6a-1690508517199.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_fd9f82a05ea32d9c2e77634e65c507c7.png)
 
 + 简单来说,我们之前发的请求通过类似  form表单标签,a标签 这种方式,现在通过 运行js代码动态决定什么时候发送什么样的请求
 + 通过运行JS代码发送的请求浏览器可以不用跳转页面 ,我们可以在JS代码中决定是否要跳转页面
@@ -1936,7 +1936,7 @@ public class Result<T> {
 
 + 增加Jackson依赖
 
-![1690511433594](JavaWeb_06_第六章_会话_过滤器_监听器/1690511433594.png)
+![1690511433594](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_06_%E7%AC%AC%E5%85%AD%E7%AB%A0_%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8_Img/img_72321ccab128c4d18051a48f53a1dde3.png)
 
 + 添加WEBUtil工具类
 

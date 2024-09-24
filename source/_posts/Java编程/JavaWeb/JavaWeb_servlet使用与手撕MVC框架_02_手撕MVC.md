@@ -21,11 +21,11 @@ servlet规范与我们的业务无关，但现在Request、Response、视图渲�
 
 现在一个方法就定义一个servlet类，类数量过多，不好维护。
 
-![01.mvc01](JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC/01.mvc01.png)
+![01.mvc01](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC_Img/01.mvc01.png)
 
 我们把Fruit相关的方法都放到一个servlet类中，该类中根据前端传的operate参数，调用对应的方法。
 
-![02.mvc02](JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC/02.mvc02.png)
+![02.mvc02](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC_Img/02.mvc02.png)
 
 
 
@@ -69,7 +69,7 @@ servlet规范与我们的业务无关，但现在Request、Response、视图渲�
 
 ## 3 引入中央处理器-解决多个业务的servlet需要重复编写反射相关代码的问题
 
-![03.MVC03](JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC/03.MVC03.png)
+![03.MVC03](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_02_手撕MVC_Img/03.MVC03.png)
 
 
 

@@ -502,7 +502,7 @@ class Person{
 
 #### 2.6.2 分别导出
 
-![1684461046181](JavaWeb_07_第七章_前端工程化/1684461046181.png)
+![1684461046181](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_78a508801006c4fd00f394aa72fdb4e4.png)
 
 + module.js 向外分别暴露成员
 
@@ -554,7 +554,7 @@ person.sayHello()
 
 #### 2.6.3 统一导出
 
-![1684461701620](JavaWeb_07_第七章_前端工程化/1684461701620.png)
+![1684461701620](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_62c8584a0d4e693c28fed98238e0c43f.png)
 
 + module.js向外统一导出成员
 
@@ -616,7 +616,7 @@ person2.sayHello()
 
 #### 2.6.4 默认导出
 
-![1684463528680](JavaWeb_07_第七章_前端工程化/1684463528680.png)
+![1684463528680](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_82b8dd6cc3f641f4bf4eddde5d0cecd1.png)
 
 
 
@@ -691,7 +691,7 @@ console.log(PI)
 
 #### 3.1.1 什么是Nodejs
 
-<img src="JavaWeb_07_第七章_前端工程化/1684487715655.png" alt="1684487715655" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_24a9ed625f9364e846a684a4f1c7626e.png" alt="1684487715655" style="zoom: 33%;" />
 
 > Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，可以使 JavaScript 运行在服务器端。使用 Node.js，可以方便地开发服务器端应用程序，如 Web 应用、API、后端服务，还可以通过 Node.js 构建命令行工具等。相比于传统的服务器端语言（如 PHP、Java、Python 等），Node.js 具有以下特点：
 
@@ -707,7 +707,7 @@ console.log(PI)
 1.  打开官网https://nodejs.org/en下载对应操作系统的 LTS 版本。
 2.  双击安装包进行安装，安装过程中遵循默认选项即可(或者参照https://www.runoob.com/nodejs/nodejs-install-setup.html )。安装完成后，可以在命令行终端输入 `node -v` 和 `npm -v` 查看 Node.js 和 npm 的版本号。
 
-![1687765256680](JavaWeb_07_第七章_前端工程化/1687765256680.png)
+![1687765256680](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_99a68d20db54c877ed5ff89adffdebf9.png)
 
 3. 定义一个app.js文件,cmd到该文件所在目录,然后在dos上通过`node app.js`命令即可运行
 
@@ -725,7 +725,7 @@ main()
 
 #### 3.2.1 npm介绍
 
-<img src="JavaWeb_07_第七章_前端工程化/1684487779164.png" alt="1684487779164" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_b5d6603f6cdd8ce6da8982acec99deb7.png" alt="1684487779164" style="zoom:50%;" />
 
 > NPM全称Node Package Manager，是Node.js包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的；也是Node.js的包管理工具，相当于后端的Maven 。
 
@@ -851,7 +851,7 @@ npm install -g npm@9.6.6
 
 ### 4.1 Vue3介绍
 
-![1684487637025](JavaWeb_07_第七章_前端工程化/1684487637025.png)
+![1684487637025](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_2527b005a6ae70beebd11e03f7b49aa8.png)
 
 > Vue (发音为 /vjuː/，类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面。无论是简单还是复杂的界面，Vue 都可以胜任。官网为:<https://cn.vuejs.org/>
 
@@ -862,7 +862,7 @@ npm install -g npm@9.6.6
 
 > VUE作者:尤雨溪
 
-<img src="JavaWeb_07_第七章_前端工程化/1684487839928.png" alt="1684487839928" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_36f3655b152fbf9e948494a85184a4d0.png" alt="1684487839928" style="zoom:50%;" />
 
 + 尤雨溪（Evan You），毕业于科尔盖特大学，前端框架Vue.js的作者、HTML5版Clear的打造人、独立开源开发者。曾就职于Google Creative Labs和Meteor Development Group。由于工作中大量接触开源的JavaScript项目，最后自己也走上了开源之路，现全职开发和维护Vue.js
 + 尤雨溪毕业于上海复旦附中，在美国完成大学学业，本科毕业于Colgate University，后在Parsons设计学院获得Design & Technology艺术硕士学位，任职于纽约Google Creative Lab。
@@ -932,9 +932,9 @@ npm install -g npm@9.6.6
 
 ### 5.1 Vite的介绍
 
-<img src="JavaWeb_07_第七章_前端工程化/1684488376469.png" alt="1684488376469" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_06929cf25bf64c9bb3a3b36325310c3a.png" alt="1684488376469" style="zoom:50%;" />
 
-<img src="JavaWeb_07_第七章_前端工程化/1684488405011.png" alt="1684488405011" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_0d1258faf44667c69dba2a00139bd131.png" alt="1684488405011" style="zoom: 80%;" />
 
 > 在浏览器支持 ES 模块之前，JavaScript 并没有提供原生机制让开发者以模块化的方式进行开发。这也正是我们对 “打包” 这个概念熟悉的原因：使用工具抓取、处理并将我们的源码模块串联成可以在浏览器中运行的文件。时过境迁，我们见证了诸如 [webpack](https://webpack.js.org/ "webpack")、[Rollup](https://rollupjs.org/ "Rollup") 和 [Parcel](https://parceljs.org/ "Parcel") 等工具的变迁，它们极大地改善了前端开发者的开发体验
 
@@ -964,7 +964,7 @@ npm create vite@latest
 
 + 第一次使用vite时会提示下载vite,输入y回车即可,下次使用vite就不会出现了
 
-![1687769339457](JavaWeb_07_第七章_前端工程化/1687769339457.png)
+![1687769339457](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_231fec5de7b5b697af9da71850ae1baa.png)
 
 + 注意： 选择vue+JavaScript选项即可
 
@@ -1008,7 +1008,7 @@ npm install
 npm run dev
 ```
 
-<img src="JavaWeb_07_第七章_前端工程化/image_PHNwnXnsWv.png" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_66d5b0775cf29ee987bc129db5bb8fb8.png" style="zoom: 33%;" />
 
 > 5 停止项目
 
@@ -1018,7 +1018,7 @@ npm run dev
 
 > 1.下面是 Vite 项目结构和入口的详细说明：
 
-![1684489112904](JavaWeb_07_第七章_前端工程化/1684489112904.png)
+![1684489112904](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_06443c114cdfbd95be2a4e5a6dc1804e.png)
 
 -   public/ 目录：用于存放一些公共资源，如 HTML 文件、图像、字体等，这些资源会被直接复制到构建出的目标目录中。
 -   src/ 目录：存放项目的源代码，包括 JavaScript、CSS、Vue 组件、图像和字体等资源。在开发过程中，这些文件会被 Vite 实时编译和处理，并在浏览器中进行实时预览和调试。以下是src内部划分建议：
@@ -1067,7 +1067,7 @@ export default defineConfig({
 + 每个.vue文件就可以理解为一个组件,多个.vue文件可以构成一个整体页面
 + 组件化给我们带来的另一个好处就是组件的复用和维护非常的方便
 
-<img src="JavaWeb_07_第七章_前端工程化/image_uTNSasJcFd.png" style="zoom:40%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_76bcf988fc324a3b0eb02f7a0afa65bf.png" style="zoom:40%;" />
 
 > 什么是.vue文件?
 
@@ -1086,7 +1086,7 @@ export default defineConfig({
 + main.js是vue工程中非常重要的文件,他决定这项目使用哪些依赖,导入的第一个组件
 + App.vue是vue中的核心组件,所有的其他组件都要通过该组件进行导入,该组件通过路由可以控制页面的切换
 
-![1684912274904](JavaWeb_07_第七章_前端工程化/1684912274904.png)
+![1684912274904](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_fed8a0a3f43823b34e9476e941c5b8b6.png)
 
 #### 5.2.4 Vite+Vue3响应式入门和setup函数
 
@@ -1649,7 +1649,7 @@ npm run dev
 
 ```
 
-![1684565503347](JavaWeb_07_第七章_前端工程化/1684565503347.png)
+![1684565503347](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_6a90dc8f8af28581ba7b1df5ea719419.png)
 
 
 
@@ -2028,7 +2028,7 @@ npm run dev
 
 + 周期图解：
 
-<img src="JavaWeb_07_第七章_前端工程化/image_elceCM4Wbp.png" style="zoom: 50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_ec8c006aaeea4acad7fd5b809a46f4ea.png" style="zoom: 50%;" />
 
 + 常见钩子函数
     + onMounted()              注册一个回调函数，在组件挂载完成后执行。 
@@ -2086,17 +2086,17 @@ npm run dev
 
 > 组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。组件就是实现应用中局部功能代码和资源的集合！在实际应用中，组件常常被组织成层层嵌套的树状结构：
 
-<img src="JavaWeb_07_第七章_前端工程化/image_9dCv8raLh-.png" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_da854b3d2666b8328b56e18aaa80a298.png" style="zoom:50%;" />
 
 + 这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。
 
 > 传统方式编写应用：
 
-<img src="JavaWeb_07_第七章_前端工程化/image_6ZwJPs9HkC.png" style="zoom: 40%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_90f2141e5fe54b94479be424d7859618.png" style="zoom: 40%;" />
 
 > 组件方式编写应用：
 
-<img src="JavaWeb_07_第七章_前端工程化/image_uTNSasJcFd.png" style="zoom:40%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_76bcf988fc324a3b0eb02f7a0afa65bf.png" style="zoom:40%;" />
 
 + 组件化：对js/css/html统一封装,这是VUE中的概念
 
@@ -2107,7 +2107,7 @@ npm run dev
 
 > 案例需求： 创建一个页面，包含头部和菜单以及内容显示区域，每个区域使用独立组建！
 
-![1686885192862](JavaWeb_07_第七章_前端工程化/1686885192862.png)
+![1686885192862](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_a04f2af8c38f55f90951a636811603ab.png)
 
 > 1 准备vue项目
 
@@ -2365,7 +2365,7 @@ npm run dev
 
 ##### 6.8.3.3 兄弟传参
 
-![](JavaWeb_07_第七章_前端工程化/image_hZ6yocZGY3.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_0bd183467b2d79deb10bf513dfeb5298.png)
 
 + Navigator.vue: 发送数据到App.vue
 
@@ -2491,7 +2491,7 @@ npm run dev
 
 > 1 案例需求分析
 
-<img src="JavaWeb_07_第七章_前端工程化/image_j-xo-xB5c8.png" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_f88e054be25def3784efb80b937f5793.png" style="zoom: 33%;" />
 
 ​    
 
@@ -3232,15 +3232,15 @@ npm run dev
 
 + 登录页
 
-![1690533751478](JavaWeb_07_第七章_前端工程化/1690533751478.png)
+![1690533751478](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_10561d16fafbe84b2982ce7794a15a44.png)
 
 + 注册页
 
-![1690533770048](JavaWeb_07_第七章_前端工程化/1690533770048.png)
+![1690533770048](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_6606aa5693e4880e55cedb2f05bc9487.png)
 
 + 日程管理页
 
-![1690533809917](JavaWeb_07_第七章_前端工程化/1690533809917.png)
+![1690533809917](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_10169338c330e39dcc7fd483a2b30b4b.png)
 
 > 创建项目,安装依赖
 
@@ -3253,7 +3253,7 @@ npm  install vue-router
 
 + 项目结构如下
 
-![1690516506417](JavaWeb_07_第七章_前端工程化/1690516506417.png)
+![1690516506417](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_0709921dd8a67cd29123c23ce138c769.png)
 
 > 开发视图
 
@@ -3984,7 +3984,7 @@ app.mount('#app')
 
 **ajax工作原理：**
 
-![](JavaWeb_07_第七章_前端工程化/image_bjXPJoLb6a.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_fd9f82a05ea32d9c2e77634e65c507c7.png)
 
 >  原生**javascript方式进行ajax(了解):**
 
@@ -4974,19 +4974,19 @@ export default instance
 
 > 前后端分离模式下,客户端请求前端服务器获取视图资源,然后客户端自行向后端服务器获取数据资源,前端服务器的 协议,IP和端口和后端服务器很可能是不一样的,这样就产生了跨域
 
-![1683364198087](JavaWeb_07_第七章_前端工程化/1683364198087-1690533535579.png)
+![1683364198087](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_f810b13c16cb987d8dce9b6d4920c006.png)
 
 ##### 10.2.1.3 如何解决跨域
 
 > 前端项目代理模式处理
 
-![1683365066926](JavaWeb_07_第七章_前端工程化/1683365066926-1690533535580.png)
+![1683365066926](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_55c085920677e346fcdbaa254e994e00.png)
 
 
 
 > 后端跨域过滤器方式处理
 
-![1683364436315](JavaWeb_07_第七章_前端工程化/1683364436315-1690533535580.png)
+![1683364436315](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_12ba8095ddfcea1af7f8a03f5001966e.png)
 
 + CrosFilter过滤器
 
@@ -6658,7 +6658,7 @@ public class SysScheduleDaoImpl extends BaseDao implements SysScheduleDao {
 
 + 由于 Vue 3 不再支持 IE11，Element Plus 也不再支持 IE 浏览器。
 
-![](JavaWeb_07_第七章_前端工程化/image_rdwmpig76n.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_07_%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96_Img/img_25fcd3bf2117710557a9e694f406c9cd.png)
 
 
 

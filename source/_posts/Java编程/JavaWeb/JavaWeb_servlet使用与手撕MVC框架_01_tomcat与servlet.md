@@ -52,7 +52,7 @@ BS架构中的S【server】指的就是Tomcat这类Web服务器程序。
 
 比如 http://localhost:8080/baidu/demo09.html中的baidu。
 
-![02.server_Tomcat_deploy](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/02.server_Tomcat_deploy.png)
+![02.server_Tomcat_deploy](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/02.server_Tomcat_deploy.png)
 
 1. Tomcat的安装和配置
     1)解压:不要有中文不要有空格
@@ -72,25 +72,25 @@ BS架构中的S【server】指的就是Tomcat这类Web服务器程序。
   因为tomcat也是用java和C来写的，因此需要JRE，所以需要配置JAVA_HOME
 
   4)启动tomcat，双击bin目录下的starup.bat，然后访问主页，http://localhost:8080
-  ![image-20240716115840436](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716115840436.png)
+  ![image-20240716115840436](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716115840436.png)
 
 2. 新建Web项目，并在tomcat中部署最后再访问
 
    - 新建项目文件夹，在项目部署目录webapps下新建文件夹/webapps/baidu/WEB-INF，这样一个空项目就建好了
-     ![image-20240716120244039](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716120244039.png)
+     ![image-20240716120244039](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716120244039.png)
 
    - 放置静态资源文件，一个静态网站项目就部署好了
-     ![image-20240716120452882](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716120452882.png)
+     ![image-20240716120452882](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716120452882.png)
 
    - 输入url http://localhost:8080/baidu/demo09.html，访问刚刚新建的项目
 
      > baidu就是context root
 
-     ![image-20240716120656795](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716120656795.png)
+     ![image-20240716120656795](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716120656795.png)
 
 此时局域网内其他电脑也可以通过url访问新建的项目了，把localhost替换为机器的ip即可。
 
-![02.server_Tomcat_deploy](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/02.server_Tomcat_deploy.png)
+![02.server_Tomcat_deploy](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/02.server_Tomcat_deploy.png)
 
 localhost:8080定位到tomcat程序，/baidu【context root】定位到我们的具体项目
 
@@ -98,38 +98,38 @@ localhost:8080定位到tomcat程序，/baidu【context root】定位到我们的
 
 ### 3.1 IDEA中新建一个Web项目，自动生成WEB-INF
 
-![image-20240716121647207](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716121647207.png)
+![image-20240716121647207](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716121647207.png)
 可以看到自动生成的Web目录
-![image-20240716121900786](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716121900786.png)
+![image-20240716121900786](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716121900786.png)
 在web目录下新建一个Helloword.html
-![image-20240716124335494](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124335494.png)
+![image-20240716124335494](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124335494.png)
 
 ### 3.2 在IDEA中配置tomcat
 
 - 依次点击 Edit Configuration>templates>Tomcat Server/Local>configure
-  ![image-20240716122743578](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716122743578.png)
+  ![image-20240716122743578](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716122743578.png)
 - 选择tomcat所在目录
-  ![image-20240716122856056](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716122856056.png)
+  ![image-20240716122856056](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716122856056.png)
 - 点击+号，就会看到新增的模板
-  ![image-20240716123016085](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716123016085.png)
+  ![image-20240716123016085](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716123016085.png)
 - 部署项目  点击Deployment> Artifact
-  ![image-20240716123150739](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716123150739.png)
+  ![image-20240716123150739](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716123150739.png)
   设置context root ，比如pro07，url就要携带这个。【设置为/更方便，url中就不用携带项目文件夹名了】
-  ![image-20240716123500044](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716123500044.png)
+  ![image-20240716123500044](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716123500044.png)
 - 设置浏览器默认打开的url，开启热部署
-  ![image-20240716124251692](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124251692.png)
+  ![image-20240716124251692](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124251692.png)
   Idea也可以修改端口号，也是通过设置tocat的server.xml配置文件实现的。
-  ![image-20240716124137895](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124137895.png)
+  ![image-20240716124137895](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124137895.png)
 
 ### 3.3 启动tomcat，debug模式
 
-![image-20240716124507450](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124507450.png)
+![image-20240716124507450](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124507450.png)
 启动成功
-![image-20240716124601248](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124601248.png)
+![image-20240716124601248](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124601248.png)
 
 idea将绑定的tomcat的部署目录指向了当前项目的out目录，所以此时访问不到之前的baidu项目了
-![image-20240716124855704](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124855704.png)
-![image-20240716124929941](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716124929941.png)
+![image-20240716124855704](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124855704.png)
+![image-20240716124929941](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716124929941.png)
 
 ### 3.4 常见问题
 
@@ -137,25 +137,25 @@ idea将绑定的tomcat的部署目录指向了当前项目的out目录，所以�
 
 可以通过点击project structure> Facets>新增Web
 
-![image-20240716125542125](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716125542125.png)
+![image-20240716125542125](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716125542125.png)
 选择对应的模块
-![image-20240716125718559](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716125718559.png)
+![image-20240716125718559](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716125718559.png)
 确认目录没问题，点击apply
-![image-20240716125814166](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716125814166.png)
+![image-20240716125814166](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716125814166.png)
 成功
-![image-20240716125834958](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716125834958.png)
+![image-20240716125834958](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716125834958.png)
 
 #### 3.4.2 问题2 导入的项目 web文件夹上没有蓝点
 
-![image-20240716125933993](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716125933993.png)
+![image-20240716125933993](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716125933993.png)
 
 projext structure> 新增 web.xml[注意目录正确]
-![image-20240716130104479](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716130104479.png)
+![image-20240716130104479](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716130104479.png)
 
-![image-20240716130153945](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716130153945.png)
+![image-20240716130153945](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716130153945.png)
 
 蓝点出现，成功
-![image-20240716130220540](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716130220540.png)
+![image-20240716130220540](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716130220540.png)
 
 ## 4 添加动态资源
 
@@ -171,14 +171,14 @@ projext structure> 新增 web.xml[注意目录正确]
 4. 后台根据“add”找到对应的动态资源组件AddSerlet
 5. AddServelet负责接收表单数据，调用dao持久层方法，把数据保存进数据库。
 
-![03.第一次使用Servlet(1)](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/03.第一次使用Servlet(1).png)
+![03.第一次使用Servlet(1)](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/03.第一次使用Servlet(1).png)
 
 ### 4.2 开发动态资源组件AddServelet
 
 #### 4.2.1 添加依赖
 
 普通的java类无法获取前端传来的参数，需要继承一个类 HttpServelet
-![image-20240716160455502](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716160455502.png)
+![image-20240716160455502](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716160455502.png)
 
 两种方法，1，将tomcat的lib文件夹里的servelet-api.jar复制添加到项目的lib库中。
 
@@ -186,49 +186,49 @@ projext structure> 新增 web.xml[注意目录正确]
 
 Project structure> Modules>pro07-javaweb-begin>Dependencies>➕>上一节关联的tomcat
 
-![image-20240716160040779](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716160040779.png)
+![image-20240716160040779](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716160040779.png)
 
 关联成功
-![image-20240716160821961](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716160821961.png)
+![image-20240716160821961](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716160821961.png)
 
 #### 4.2.2 解析参数
 
 表单设置的method为post，servlet的doPost方法就会被执行。我们需要重写该方法接收数据参数
 
-![image-20240716161433298](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716161433298.png)
+![image-20240716161433298](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716161433298.png)
 
 #### 4.2.3 配置映射
 
 在web.xml中配置路径/add对应AddServlet
 
-![image-20240716161338745](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716161338745.png)
+![image-20240716161338745](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716161338745.png)
 
 #### 4.2.4 启动运行
 
 在页面填写、提交数据，控制台成功打印
-![image-20240716161909625](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716161909625.png)
+![image-20240716161909625](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716161909625.png)
 
 #### 4.2.5 保存到数据库
 
 添加持久层相关代码，从之前的JDBC的demo项目中复制即可
 
-![image-20240716163000351](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716163000351.png)
+![image-20240716163000351](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716163000351.png)
 
 添加持久层相关依赖jar包，在父项目的lib中。
 
-![image-20240716162406462](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716162406462.png)
+![image-20240716162406462](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716162406462.png)
 
 需要更新artifact
 
-![image-20240716162657797](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716162657797.png)
+![image-20240716162657797](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716162657797.png)
 
 或者删掉当前的artifact，重新建。
 
 重新启动，可以看到数据成功添加到了数据库
 
-![image-20240716162831634](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716162831634.png)
+![image-20240716162831634](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716162831634.png)
 
-![image-20240716162852772](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716162852772.png)
+![image-20240716162852772](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716162852772.png)
 
 ## 5 常见问题
 
@@ -253,23 +253,23 @@ Project structure> Modules>pro07-javaweb-begin>Dependencies>➕>上一节关联�
 
 一般，我们先新建一个父项目Project，在这个项目下建多个模块module。
 
-![image-20240716163406091](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716163406091.png)
+![image-20240716163406091](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716163406091.png)
 
 
 
 父项目一般就是一个空java项目，什么都不要勾选
 
-![image-20240716163531439](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716163531439.png)
+![image-20240716163531439](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716163531439.png)
 
 在根据需要建子模块
 
-![image-20240716163721202](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716163721202.png)
+![image-20240716163721202](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716163721202.png)
 
 web模块添加artifact
 
 第一个是未压缩的部署包，第二个是压缩的war包，tomcat可以自动解压webapps里的war包
 
-![image-20240716164229522](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716164229522.png)
+![image-20240716164229522](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716164229522.png)
 
 ## 6 中文乱码问题
 
@@ -336,19 +336,19 @@ web模块添加artifact
  3. 切换项目验证
 
  调用父类的方法，默认会报不支持的错误信息
- ![image-20240716185329283](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716185329283.png)
+ ![image-20240716185329283](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716185329283.png)
 
- ![image-20240716185224026](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716185224026.png)
+ ![image-20240716185224026](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716185224026.png)
 
  删掉tomcat原来
 
  的artifact，添加pro08模块的artifact
 
- ![image-20240716184652259](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716184652259.png)
+ ![image-20240716184652259](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716184652259.png)
 
- ![image-20240716184810948](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716184810948.png)
+ ![image-20240716184810948](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716184810948.png)
 
-![image-20240716185018486](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716185018486.png)
+![image-20240716185018486](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716185018486.png)
 
 3.小结：
 
@@ -383,7 +383,7 @@ web模块添加artifact
 - 线程不安全：一个线程需要根据这个实例中的某个成员变量值去做逻辑判断。但是在中间某个时机，另一个线程改变了这个成员变量的值，从而导致第一个线程的执行路径发生了变化
 - 我们已经知道了servlet是线程不安全的，给我们的启发是： 尽量的不要在servlet中定义成员变量。如果不得不定义成员变量，那么不要去：①不要去修改成员变量的值 ②不要去根据成员变量的值做一些逻辑判断
 
-![01.Servlet是线程不安全的](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/01.Servlet是线程不安全的.png)
+![01.Servlet是线程不安全的](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/01.Servlet是线程不安全的.png)
 
 ## 8 Http协议
 
@@ -432,11 +432,11 @@ web模块添加artifact
   ....
 ```
 
-![02.会话跟踪技术](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/02.会话跟踪技术.png)
+![02.会话跟踪技术](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/02.会话跟踪技术.png)
 
 3） session保存作用域
 
-![03.session保存作用域](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/03.session保存作用域.png)
+![03.session保存作用域](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/03.session保存作用域.png)
 
   - session保存作用域是和具体的某一个session对应的
   - 常用的API：
@@ -450,7 +450,7 @@ web模块添加artifact
 
   - 一次请求响应的过程，对于客户端而言，内部经过了多少次转发，客户端是不知道的，地址栏没有变化
 
-![04.服务器内部转发](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/04.服务器内部转发.png)
+![04.服务器内部转发](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/04.服务器内部转发.png)
 
 
 
@@ -461,16 +461,16 @@ web模块添加artifact
   - 两次请求响应的过程。客户端肯定知道请求URL有变化
   - 地址栏有变化
 
-![05.客户端重定向](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/05.客户端重定向.png)
+![05.客户端重定向](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/05.客户端重定向.png)
 
-![](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716222622290.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716222622290.png)
 
 ## 11 Thymeleaf - 视图模板技术
 
-![06.水果库存系统首页实现思路](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/06.水果库存系统首页实现思路.png)
+![06.水果库存系统首页实现思路](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/06.水果库存系统首页实现思路.png)
 
 1） 添加thymeleaf的jar包
-![image-20240716223419610](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716223419610.png)
+![image-20240716223419610](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716223419610.png)
 
 2） 新建一个Servlet类ViewBaseServlet
 3） 在web.xml文件中添加配置
@@ -492,7 +492,7 @@ super.processTemplate("index",request,response);
 
 启动成功
 
-![image-20240716224213299](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716224213299.png)
+![image-20240716224213299](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716224213299.png)
 
 // 200 : 正常响应
 // 404 : 找不到资源
@@ -501,4 +501,4 @@ super.processTemplate("index",request,response);
 
 用注解，可以省略在web.xml配置
 
-![image-20240716223135318](JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet/image-20240716223135318.png)
+![image-20240716223135318](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_servlet使用与手撕MVC框架_01_tomcat与servlet_Img/image-20240716223135318.png)

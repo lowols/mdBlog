@@ -34,13 +34,13 @@ date: 2024-05-15 17:48:00
 
 + 用来接收、处理客户端请求、响应给浏览器的动态资源。在整个Web应用中，Servlet主要负责接收处理请求、协同调度功能以及响应数据。我们可以把Servlet称为Web应用中的**控制器**
 
-<img src="JavaWeb_05_第五章_Servlet/1681544428055.png" alt="1681544428055" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_6998e3a95f1c3a3563f0427891babc6f.png" alt="1681544428055" style="zoom:50%;" />
 
 + 不是所有的JAVA类都能用于处理客户端请求,能处理客户端请求并做出响应的一套技术标准就是Servlet
 + Servlet是运行在服务端的,所以 Servlet必须在WEB项目中开发且在Tomcat这样的服务容器中运行
 > 请求响应与HttpServletRequest和HttpServletResponse之间的对应关系
 
-![1681699577344](JavaWeb_05_第五章_Servlet/1681699577344.png)
+![1681699577344](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_6d1355eb8ad02b286f113b07253db58e.png)
 
 # 二 Servlet开发流程
 
@@ -148,11 +148,11 @@ public class UserServlet  extends HttpServlet {
 
 + 使用debug模式运行测试
 
-<img src="JavaWeb_05_第五章_Servlet/1681547333799.png" alt="1681547333799"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_34377676766e83ea09870717ab50f7df.png" alt="1681547333799"  />
 
 > 映射关系图
 
-![1681550398774](JavaWeb_05_第五章_Servlet/1681550398774.png)
+![1681550398774](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_24ff5ef23c222c0f77bc13e37f3db83e.png)
 
 
 
@@ -488,7 +488,7 @@ public class ServletLifeCycle  extends HttpServlet {
 
 > 继承关系图解
 
-![1682299663047](JavaWeb_05_第五章_Servlet/1682299663047.png)
+![1682299663047](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_8a4a1f61e06ca2d3e790e85c4cafe052.png)
 
 + 自定义Servlet中,必须要对处理请求的方法进行重写
     + 要么重写service方法
@@ -505,7 +505,7 @@ public class ServletLifeCycle  extends HttpServlet {
 + 为Servlet提供初始配置参数的一种对象,每个Servlet都有自己独立唯一的ServletConfig对象
 + 容器会为每个Servlet实例化一个ServletConfig对象,并通过Servlet生命周期的init方法传入给Servlet作为属性
 
-<img src="JavaWeb_05_第五章_Servlet/1682302307081.png" alt="1682302307081"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_d2aa3f09138a4a239253c94c2e7df3aa.png" alt="1682302307081"  />
 
 > ServletConfig是一个接口,定义了如下API
 
@@ -624,7 +624,7 @@ public class ServletB extends HttpServlet {
 + ServletContext对象为所有的Servlet所共享
 + ServletContext可以为所有的Servlet提供初始配置参数
 
-![1682303205351](JavaWeb_05_第五章_Servlet/1682303205351.png)
+![1682303205351](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_26e9ff10829ee5829f5df907461ef865.png)
 
 > ServletContext怎么用
 
@@ -723,7 +723,7 @@ String contextPath = servletContext.getContextPath();
 + HttpServletRequest是Tomcat将请求报文转换封装而来的对象,在Tomcat调用service方法时传入
 + HttpServletRequest代表客户端发来的请求,所有请求中的信息都可以通过该对象获得
 
-![1681699577344](JavaWeb_05_第五章_Servlet/1681699577344.png)
+![1681699577344](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_6d1355eb8ad02b286f113b07253db58e.png)
 
 ## 7.2 HttpServletRequest常见API
 
@@ -779,7 +779,7 @@ String contextPath = servletContext.getContextPath();
 + HttpServletResponse是Tomcat预先创建的,在Tomcat调用service方法时传入
 + HttpServletResponse代表对客户端的响应,该对象会被转换成响应的报文发送给客户端,通过该对象我们可以设置响应信息
 
-![1681699577344](JavaWeb_05_第五章_Servlet/1681699577344.png)
+![1681699577344](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_6d1355eb8ad02b286f113b07253db58e.png)
 
 ## 8.2 HttpServletResponse的常见API
 
@@ -852,7 +852,7 @@ String contextPath = servletContext.getContextPath();
 
 > 请求转发运行逻辑图
 
-![1682321228643](JavaWeb_05_第五章_Servlet/1682321228643.png)
+![1682321228643](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_f2633c7d1b5497cf640d5b66658fb84b.png)
 
 > 请求转发特点(背诵)
 
@@ -867,7 +867,7 @@ String contextPath = servletContext.getContextPath();
 
 > 请求转发测试代码
 
-![1682323740343](JavaWeb_05_第五章_Servlet/1682323740343.png)
+![1682323740343](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_43969c9b8a7adb34780458583905f46b.png)
 
 
 
@@ -931,7 +931,7 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 > 响应重定向运行逻辑图
 
-![1682322460011](JavaWeb_05_第五章_Servlet/1682322460011.png)
+![1682322460011](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_fae5b1160a362a538e829abadf0a90f7.png)
 
 > 响应重定向特点(背诵)
 
@@ -946,7 +946,7 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 > 响应重定向测试代码
 
-![1682323740343](JavaWeb_05_第五章_Servlet/1682323740343.png)
+![1682323740343](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_43969c9b8a7adb34780458583905f46b.png)
 
 
 
@@ -1015,7 +1015,7 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 
 
-<img src="JavaWeb_05_第五章_Servlet/1682326867396.png" alt="1682326867396" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_5d529e9314097be6da691863481f6a60.png" alt="1682326867396" style="zoom:80%;" />
 
 + 由上图得知,上述字符集都兼容了ASCII
 + ASCII中有什么? 英文字母和一些通常使用的符号,所以这些东西无论使用什么字符集都不会乱码
@@ -1028,11 +1028,11 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 + 查看当前文件的字符集
 
-<img src="JavaWeb_05_第五章_Servlet/1682325817829.png" alt="1682325817829"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_66928ca8ab02dc3a377cc437c89032c3.png" alt="1682325817829"  />
 
 + 查看项目字符集 配置,将Global Encoding 全局字符集,Project Encoding 项目字符集, Properties Files 属性配置文件字符集设置为UTF-8
 
-<img src="JavaWeb_05_第五章_Servlet/1682326229063.png" alt="1682326229063"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_a166e22ae8ec2d37ff88b7ae35b17122.png" alt="1682326229063"  />
 
 > 当前视图文件的字符集通过<meta charset="UTF-8"> 来告知浏览器通过什么字符集来解析当前文件
 
@@ -1055,23 +1055,23 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 + 修改前
 
-<img src="JavaWeb_05_第五章_Servlet/1681443202115.png" alt="1681443202115"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_251709df2f26c3827486cc501aba6a2b.png" alt="1681443202115"  />
 
 + 修改后
 
-<img src="JavaWeb_05_第五章_Servlet/1681443273573.png" alt="1681443273573"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_5ed6169d29240c11870c57578fbfe4c6.png" alt="1681443273573"  />
 
 + 重启测试
 
-<img src="JavaWeb_05_第五章_Servlet/1681443314432.png" alt="1681443314432"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_fe0d5875d233e4360580311d6b1b0ad2.png" alt="1681443314432"  />
 
-<img src="JavaWeb_05_第五章_Servlet/1682325615922.png" alt="1682325615922"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_94112e288b63fff18a442c5ee07558d9.png" alt="1682325615922"  />
 
 > sout乱码问题,设置JVM加载.class文件时使用UTF-8字符集
 
 + 设置虚拟机加载.class文件的字符集和编译时使用的字符集一致
 
-![1695189588009](JavaWeb_05_第五章_Servlet/1695189588009.png)
+![1695189588009](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_dc67f3ef663394d6d80bf61c9a2f9477.png)
 
 
 
@@ -1090,33 +1090,33 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 + 浏览器解析的文档的<meta charset="GBK" /> 
 
-<img src="JavaWeb_05_第五章_Servlet/1682385870660.png" alt="1682385870660" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_26ef899088d63ae5ae63c167c9801c5d.png" alt="1682385870660" style="zoom: 67%;" />
 
 + GET方式提交时,会对数据进行URL编码处理 ,是将GBK 转码为 "百分号码"
 
-<img src="JavaWeb_05_第五章_Servlet/1682385997927.png" alt="1682385997927" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_95ec2f93fc2f78c4b9ee40fecca8ca54.png" alt="1682385997927" style="zoom: 80%;" />
 
 + tomcat10.1.7 默认使用UTF-8对URI进行解析,造成前后端使用的字符集不一致,出现乱码
 
-<img src="JavaWeb_05_第五章_Servlet/1682386110151.png" alt="1682386110151" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_fef62c0fdca255d14104601f09858a8b.png" alt="1682386110151" style="zoom: 80%;" />
 
 > GET请求方式乱码解决
 
 + 方式1  :设置GET方式提交的编码和Tomcat10.1.7的URI默认解析编码一致即可 (推荐)
 
-<img src="JavaWeb_05_第五章_Servlet/1682386298048.png" alt="1682386298048" style="zoom: 75%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_1e18aee51556c0fecd218be3535d963b.png" alt="1682386298048" style="zoom: 75%;" />
 
 
 
-<img src="JavaWeb_05_第五章_Servlet/1682386374464.png" alt="1682386374464" style="zoom:85%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_cc03295fcfc958fd877b7864b567384f.png" alt="1682386374464" style="zoom:85%;" />
 
 
 
 + 方式2 : 设置Tomcat10.1.7的URI解析字符集和GET请求发送时所使用URL转码时的字符集一致即可,修改conf/server.xml中 Connecter 添加 URIEncoding="GBK"  (不推荐)
 
-![1682386551684](JavaWeb_05_第五章_Servlet/1682386551684.png)
+![1682386551684](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_a0d9fbaa19acc094fb11535850512dd7.png)
 
-<img src="JavaWeb_05_第五章_Servlet/1682386611945.png" alt="1682386611945" style="zoom: 50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_4ff6b8fa9a8a008bc64075afc5b9479a.png" alt="1682386611945" style="zoom: 50%;" />
 
 #### 10.1.3.2 POST方式请求乱码
 
@@ -1131,27 +1131,27 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 + POST请求请求体受到了<meta charset="字符集"/> 的影响
 
-<img src="JavaWeb_05_第五章_Servlet/1682387258428.png" alt="1682387258428" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_510c6dc7dfb6f7da3f2beb049e1082ff.png" alt="1682387258428" style="zoom:67%;" />
 
 + 请求体中,将GBK数据进行 URL编码
 
-<img src="JavaWeb_05_第五章_Servlet/1682387349916.png" alt="1682387349916" style="zoom: 85%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_a43c63560ccf22192b1bb8066627938f.png" alt="1682387349916" style="zoom: 85%;" />
 
 + 后端默认使用UTF-8解析请求体,出现字符集不一致,导致乱码
 
-<img src="JavaWeb_05_第五章_Servlet/1682387412704.png" alt="1682387412704" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_7b3699cedd752606609650743f290edb.png" alt="1682387412704" style="zoom: 67%;" />
 
 > POST请求方式乱码解决
 
 + 方式1 : 请求时,使用UTF-8字符集提交请求体 (推荐)
 
-<img src="JavaWeb_05_第五章_Servlet/1682387836615.png" alt="1682387836615" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_605e6597db56fdd0744ca81899289350.png" alt="1682387836615" style="zoom: 67%;" />
 
-<img src="JavaWeb_05_第五章_Servlet/1682387857587.png" alt="1682387857587" style="zoom:88%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_b3bb3c3eab5eda3d7d57259196432072.png" alt="1682387857587" style="zoom:88%;" />
 
 + 方式2 : 后端在获取参数前,设置解析请求体使用的字符集和请求发送时使用的字符集一致 (不推荐)
 
-<img src="JavaWeb_05_第五章_Servlet/1682388026978.png" alt="1682388026978" style="zoom: 75%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_6620071e123c8a713e33664308f9e2e4.png" alt="1682388026978" style="zoom: 75%;" />
 
 
 
@@ -1170,11 +1170,11 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 
 
-![1682388204239](JavaWeb_05_第五章_Servlet/1682388204239.png)
+![1682388204239](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_ee1931e23521bf158b26b8eb4789386e.png)
 
 + 浏览器接收数据解析乱码
 
-<img src="JavaWeb_05_第五章_Servlet/1682388599014.png" alt="1682388599014" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_4b54f560bea1e11d1938f7cb2bb76906.png" alt="1682388599014" style="zoom:80%;" />
 
 
 
@@ -1185,17 +1185,17 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 + 方式2: 后端通过设置响应体的字符集和浏览器解析响应体的默认字符集一致(不推荐)
 
-<img src="JavaWeb_05_第五章_Servlet/1682389063225.png" alt="1682389063225" style="zoom: 75%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_aeb3383a8b0e739c8dcaf20b47f0a598.png" alt="1682389063225" style="zoom: 75%;" />
 
 
 
 方式3: 通过设置content-type响应头,告诉浏览器以指定的字符集解析响应体(推荐)
 
-<img src="JavaWeb_05_第五章_Servlet/1682389263627.png" alt="1682389263627"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_b3e8745923a8628942186791cf6ddd4f.png" alt="1682389263627"  />
 
 
 
-<img src="JavaWeb_05_第五章_Servlet/1682389317234.png" alt="1682389317234" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_a8e7291b283e92b9821713ac7d5be6fd.png" alt="1682389317234" style="zoom: 67%;" />
 
 
 
@@ -1225,7 +1225,7 @@ http://localhost:8080/web03_war_exploded/servletA?username=atguigu
 
 > 前端项目结构
 
-![1682390999417](JavaWeb_05_第五章_Servlet/1682390999417.png)
+![1682390999417](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_e9a85a0c3f532b4830fc9b5a89cba756.png)
 
 #### 10.2.1.1  相对路径情况分析
 
@@ -1620,13 +1620,13 @@ public class ServletB extends HttpServlet {
 
 非前后端分离的MVC
 
-![1690349913931](JavaWeb_05_第五章_Servlet/1690349913931.png)
+![1690349913931](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_4ab166c74969b38561d4600fd4c3f0ff.png)
 
 
 
 前后端分离的MVC
 
-![1683363039636](JavaWeb_05_第五章_Servlet/1683363039636-1690349401673.png)
+![1683363039636](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_66e5c2bbcc677e7e784a1641c19b3797.png)
 
 # 十二 案例开发-日程管理-第二期
 
@@ -1681,9 +1681,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 + 获得如下表格
 
-![1690362496438](JavaWeb_05_第五章_Servlet/1690362496438.png)
+![1690362496438](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_72482dec16693e93221d816ecdebab82.png)
 
-![1690362518448](JavaWeb_05_第五章_Servlet/1690362518448.png)
+![1690362518448](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_5f240c513bd7c18c5267aef3487c61c7.png)
 
 
 
@@ -1691,15 +1691,15 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### 12.1.2 项目结构
 
-![1690362672386](JavaWeb_05_第五章_Servlet/1690362672386.png)
+![1690362672386](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_3615c5fa43d12c38ec9f9c3a207f9c44.png)
 
-![1690362709902](JavaWeb_05_第五章_Servlet/1690362709902.png)
+![1690362709902](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_a528f5b01719badf1e4cb81c0b03eb2a.png)
 
 
 
 ### 12.1.3 导入依赖
 
-![1690362787035](JavaWeb_05_第五章_Servlet/1690362787035.png)
+![1690362787035](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_e8ec2e29d06600ecdeb17d637ae5c12b.png)
 
 
 
@@ -2163,7 +2163,7 @@ public final class MD5Util {
 
 + 复制资源下的日程管理中的HTML到项目的web目录下即可
 
-![1690363965192](JavaWeb_05_第五章_Servlet/1690363965192.png)
+![1690363965192](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_05_%E7%AC%AC%E4%BA%94%E7%AB%A0_Servlet_Img/img_c84eea92d76c5a28f6a3bf77a72b282e.png)
 
 ## 12.3 业务代码
 

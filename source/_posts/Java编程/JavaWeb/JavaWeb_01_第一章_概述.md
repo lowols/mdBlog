@@ -20,33 +20,33 @@ date: 2024-05-15 17:48:00
 
 + 手机APP
 
-<img src="JavaWeb_01_第一章_概述/1681181342911.png" alt="1681181342911" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_ee3018db36783c9db5cff30c98304622.png" alt="1681181342911" style="zoom: 67%;" />
 
 + 微信小程序
 
-<img src="JavaWeb_01_第一章_概述/1681181399123.png" alt="1681181399123" style="zoom: 50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_0d58de372ec2adbcf99a316a57b62c50.png" alt="1681181399123" style="zoom: 50%;" />
 
 + PC端程序
 
-<img src="JavaWeb_01_第一章_概述/1681181558166.png" alt="1681181558166" style="zoom:33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_59154366d42df4d49f9215769d3d7e71.png" alt="1681181558166" style="zoom:33%;" />
 
-<img src="JavaWeb_01_第一章_概述/1681181668235.png" alt="1681181668235" style="zoom:33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_5979f341236f6e93b4f37bd463dc25c4.png" alt="1681181668235" style="zoom:33%;" />
 
 + PC浏览器
 
-<img src="JavaWeb_01_第一章_概述/1681181764764.png" alt="1681181764764" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_e5a1c052376855f9bf86d2a2ff1bdfb8.png" alt="1681181764764" style="zoom: 33%;" />
 
 + 其他设备
 
-<img src="JavaWeb_01_第一章_概述/1681181829641.png" alt="1681181829641" style="zoom: 50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_46facc9cbabf81b84461f9f31bd953a0.png" alt="1681181829641" style="zoom: 50%;" />
 
 
 
 
 
-<img src="JavaWeb_01_第一章_概述/1681181884366.png" alt="1681181884366" style="zoom: 50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_b69546200e2a671ff95bb6f55d539712.png" alt="1681181884366" style="zoom: 50%;" />
 
-<img src="JavaWeb_01_第一章_概述/1681181975807.png" alt="1681181975807" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_79626b1b12e7323858ebd254e3b36be9.png" alt="1681181975807" style="zoom: 80%;" />
 
 > 服务端:与客户端进行交互，接收客户端的数据、处理具体的业务逻辑、传递给客户端其需要的数据
 
@@ -54,7 +54,7 @@ date: 2024-05-15 17:48:00
 
 **综上所述:** 用我们自己的话来总结的话，服务器其实就是一台(或者一个集群)安装了服务器软件的高性能计算机
 
-<img src="JavaWeb_01_第一章_概述/1681182451912.png" alt="1681182451912" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_0b975ad59e023e437762a2b3cdb953ce.png" alt="1681182451912" style="zoom: 33%;" />
 
 
 
@@ -70,11 +70,11 @@ HTTP xml Tomcat  Servlet   Request   Response  Cookie  Sesssion  Filter Listener
 
 > 图解
 
-![1681177316138](JavaWeb_01_第一章_概述/1681177316138.png)
+![1681177316138](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_0580114b307bba3423ae5bb248f77d94.png)
 
 ## 1.3  JAVAWEB交互模式
 
-<img src="JavaWeb_01_第一章_概述/1681182819066.png" alt="1681182819066" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_d3a47f1f6a2a532e5b52fc1357b0273e.png" alt="1681182819066" style="zoom:50%;" />
 
 > 请求
 
@@ -90,7 +90,7 @@ HTTP xml Tomcat  Servlet   Request   Response  Cookie  Sesssion  Filter Listener
 
 > CS模式  Client-Server模式   客户端-服务端模式, 该模式特点如下
 
-<img src="JavaWeb_01_第一章_概述/1681192888853.png" alt="1681192888853" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_f3090a627512183fc90b63718274f7b9.png" alt="1681192888853" style="zoom:50%;" />
 
 1 程序分两部分,一部分是客户端需要安装的程序,一部分是要部署在服务器上的程序
 
@@ -108,7 +108,7 @@ HTTP xml Tomcat  Servlet   Request   Response  Cookie  Sesssion  Filter Listener
 
 > BS模式 Browser-Server模式
 
-<img src="JavaWeb_01_第一章_概述/1681192907280.png" alt="1681192907280" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_234ce8d489f83d3d0eddce459a1f5f57.png" alt="1681192907280" style="zoom:50%;" />
 
 1 程序就一部分,只要部署在服务器上即可
 
@@ -140,7 +140,7 @@ HTTP xml Tomcat  Servlet   Request   Response  Cookie  Sesssion  Filter Listener
 + 1 开发分离:后端程序员只要按照接口文档去编写后端代码,无需编写或者关系前端代码,前后端程序员压力都降低
 + 2 部署分离:前端使用前端的页面动态技术,通过VUE等框架,工程化项目,前端项目可以部署到独立的服务器上
 
-<img src="JavaWeb_01_第一章_概述/1681193247981.png" alt="1681193247981" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_01_%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%A6%82%E8%BF%B0_Img/img_e7f182412b9f9a4b81764cd6b03f486f.png" alt="1681193247981" style="zoom: 80%;" />
 
 
 

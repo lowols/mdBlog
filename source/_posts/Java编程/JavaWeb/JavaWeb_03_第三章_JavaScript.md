@@ -13,7 +13,7 @@ date: 2024-05-15 17:48:00
 
 ## 1.1 JS起源
 
-<img src="JavaWeb_03_第三章_JavaScript/1681265611540.png" alt="1681265611540" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_3a4b4084f045d6208f303357497bb966.png" alt="1681265611540" style="zoom:80%;" />
 
 > Javascript是一种由Netscape(网景)的LiveScript发展而来的原型化继承的面向对象的动态类型的区分大小写的`客户端脚本语言`，主要目的是为了解决服务器端语言，遗留的速度问题，为客户提供更流畅的浏览效果。当时服务端需要对数据进行验证，由于网络速度相当缓慢,只有28.8kbps，验证步骤浪费的时间太多。于是Netscape的浏览器Navigator加入了Javascript，提供了数据验证的基本功能。ECMA-262 是正式的 JavaScript 标准。这个标准基于 JavaScript (Netscape) 和 JScript (Microsoft)。ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳了它的首个版本。这个标准由 ECMA 组织发展和维护。JavaScript 的正式名称是 "ECMAScript"。JavaScript的组成包含ECMAScript、DOM、BOM。<font color='red'>JS是一种运行于浏览器端上的小脚本语句,可以实现网页如文本内容动,数据动态变化和动画特效等</font>,JS有 如下特点
 
@@ -31,7 +31,7 @@ date: 2024-05-15 17:48:00
 
 ## 1.2 JS 组成部分
 
-![1681266220955](JavaWeb_03_第三章_JavaScript/1681266220955.png)
+![1681266220955](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_5cb2de56ea2f741b6ea900e07ee6f302.png)
 
 > ECMA 及版本变化
 
@@ -69,7 +69,7 @@ date: 2024-05-15 17:48:00
         + navigator对象      window对象的属性之一,代表浏览器软件本身
         + document对象     window对象的属性之一,代表浏览器窗口目前解析的html文档
 
-    <img src="JavaWeb_03_第三章_JavaScript/1681267483366.png" alt="1681267483366" style="zoom:67%;" />
+    <img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_8e688dba7eef39ca3413362133920473.png" alt="1681267483366" style="zoom:67%;" />
 
 > DOM编程
 
@@ -77,17 +77,17 @@ date: 2024-05-15 17:48:00
 + document对象代表整个html文档，可用来访问页面中的所有元素，是最复杂的一个dom对象，可以说是学习好dom编程的关键所在。
 + 根据HTML代码结构特点,document对象本身是一种树形结构的文档对象。
 
-<img src="JavaWeb_03_第三章_JavaScript/1681269953136.png" alt="1681269953136" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_874997ef1e6c277bfd1e45e987f475c7.png" alt="1681269953136" style="zoom:67%;" />
 
 
 
 + 上面的代码生成的树如下
 
-<img src="JavaWeb_03_第三章_JavaScript/1681269970254.png" alt="1681269970254" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_09d31c4373f0acc1f19d95e826187255.png" alt="1681269970254" style="zoom:67%;" />
 
 + DOM编程其实就是用window对象的document属性的相关API完成对页面元素的控制的编程
 
-<img src="JavaWeb_03_第三章_JavaScript/1681270260741.png" alt="1681270260741" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_47ac244a7fd474b65aed387f28e8c91d.png" alt="1681270260741" style="zoom:67%;" />
 
 ## 1.3 JS的引入方式
 
@@ -134,7 +134,7 @@ date: 2024-05-15 17:48:00
 
 + 效果
 
-<img src="JavaWeb_03_第三章_JavaScript/jingxi.gif" alt="jingxi" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_b809020e3fbe15c214a31462f2f61cea.gif" alt="jingxi" style="zoom:67%;" />
 
 
 
@@ -147,7 +147,7 @@ date: 2024-05-15 17:48:00
     + 一个html文档中,可以有多个script标签 
 + 抽取脚本代码到独立的js文件中
 
-<img src="JavaWeb_03_第三章_JavaScript/1681270974917.png" alt="1681270974917" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_769e39926ca8874009e1ed8be0218f39.png" alt="1681270974917" style="zoom:80%;" />
 
 + 在html文件中,通过script标签引入外部脚本文件
 
@@ -297,7 +297,7 @@ if(0){
 
 + 结果
 
-![1681285904625](JavaWeb_03_第三章_JavaScript/1681285904625.png)
+![1681285904625](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_9c61bb7b3a4171e83361e20396359052.png)
 
 > switch结构
 
@@ -336,7 +336,7 @@ switch(month){
 
 + 效果
 
-<img src="JavaWeb_03_第三章_JavaScript/switchex.gif" alt="switchex" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_842ff817df260f46b51a60f7be9c304c.gif" alt="switchex" style="zoom:67%;" />
 
 
 
@@ -364,7 +364,7 @@ while(i <= 9){
 
 + 效果
 
-<img src="JavaWeb_03_第三章_JavaScript/1681287264843.png" alt="1681287264843" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_7cdaa6c3d3f561269c84e3d6d6c5a020.png" alt="1681287264843" style="zoom: 80%;" />
 
 > for循环
 
@@ -384,7 +384,7 @@ for(  var i = 1;i <= 9; i++){
 
 + 效果
 
-<img src="JavaWeb_03_第三章_JavaScript/1681287264843.png" alt="1681287264843" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_7cdaa6c3d3f561269c84e3d6d6c5a020.png" alt="1681287264843" style="zoom:50%;" />
 
 > foreach循环
 
@@ -405,7 +405,7 @@ document.write("</ul>")
 
 + 效果
 
-![1681287540562](JavaWeb_03_第三章_JavaScript/1681287540562.png)
+![1681287540562](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_5671d066f8c3b024168e584d1c90846f.png)
 
 ## 3.3 JS函数声明
 
@@ -444,7 +444,7 @@ console.log(result);
 
 + 调用测试
 
-![1681287984473](JavaWeb_03_第三章_JavaScript/1681287984473.png)
+![1681287984473](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_99b0b65e55820ac67572fa04a40d1d54.png)
 
 
 
@@ -478,7 +478,7 @@ person.eat();
 
 + 效果
 
-![1681288692792](JavaWeb_03_第三章_JavaScript/1681288692792.png)
+![1681288692792](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_428ff462b6cdc2962486b43d05fd6406.png)
 
 
 
@@ -508,7 +508,7 @@ person.eat();
 
 + 效果
 
-![1681288692792](JavaWeb_03_第三章_JavaScript/1681288692792.png)
+![1681288692792](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_428ff462b6cdc2962486b43d05fd6406.png)
 
 ## 4.2 JSON格式
 
@@ -585,7 +585,7 @@ console.log(typeof personStr)
 
 + 前后端传递数据
 
-![1681292306466](JavaWeb_03_第三章_JavaScript/1681292306466.png)
+![1681292306466](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_cd41be5d6a08918bc0a4040850812fd2.png)
 
 
 
@@ -984,7 +984,7 @@ console.log(typeof personStr)
         + localStorage对象          window对象的属性之一,代表浏览器的本地数据持久化存储
         + sessionStorage对象      window对象的属性之一,代表浏览器的本地数据会话级存储
     
-    <img src="JavaWeb_03_第三章_JavaScript/1681267483366.png" alt="1681267483366" style="zoom:67%;" />
+    <img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_8e688dba7eef39ca3413362133920473.png" alt="1681267483366" style="zoom:67%;" />
 
 ##  6.2 window对象的常见属性(了解)
 
@@ -1163,7 +1163,7 @@ console.log(typeof personStr)
 + 通过removeItem可以将这些数据直接删除
 + 在F12开发者工具的应用程序栏,可以查看数据的状态
 
-<img src="JavaWeb_03_第三章_JavaScript/1690348134594.png" alt="1690348134594" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_46d09cf3ec5a50df38fe0cb4c4404cfe.png" alt="1690348134594" style="zoom: 80%;" />
 
 # 七 DOM编程
 
@@ -1174,17 +1174,17 @@ console.log(typeof personStr)
 + document对象代表整个html文档，可用来访问页面中的所有元素，是最复杂的一个dom对象，可以说是学习好dom编程的关键所在。
 + 根据HTML代码结构特点,document对象本身是一种树形结构的文档对象。
 
-<img src="JavaWeb_03_第三章_JavaScript/1681269953136.png" alt="1681269953136" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_874997ef1e6c277bfd1e45e987f475c7.png" alt="1681269953136" style="zoom:67%;" />
 
 
 
 + 上面的代码生成的树如下
 
-<img src="JavaWeb_03_第三章_JavaScript/1681269970254.png" alt="1681269970254"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_09d31c4373f0acc1f19d95e826187255.png" alt="1681269970254"  />
 
 + DOM编程其实就是用window对象的document属性的相关API完成对页面元素的控制的编程
 
-<img src="JavaWeb_03_第三章_JavaScript/1681270260741.png" alt="1681270260741"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_47ac244a7fd474b65aed387f28e8c91d.png" alt="1681270260741"  />
 
 + dom树中节点的类型
     + node  节点,所有结点的父类型
@@ -1841,7 +1841,7 @@ var b = reg.test(targetStr);//true
 
 ## 9.1 登录页及校验
 
-![1690507542637](JavaWeb_03_第三章_JavaScript/1690507542637.png)
+![1690507542637](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_ca3037e215e529336e035d88c1b24506.png)
 
 ``` html
 <!DOCTYPE html>
@@ -1977,7 +1977,7 @@ var b = reg.test(targetStr);//true
 
 ## 9.2 注册页及校验
 
-![1690507600043](JavaWeb_03_第三章_JavaScript/1690507600043.png)
+![1690507600043](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_03_%E7%AC%AC%E4%B8%89%E7%AB%A0_JavaScript_Img/img_5a0722a70fb9dbcc5d7f0fb0bdde39ea.png)
 
 
 

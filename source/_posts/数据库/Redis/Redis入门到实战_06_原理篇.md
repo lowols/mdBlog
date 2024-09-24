@@ -33,13 +33,13 @@ date: 2024-05-29 17:50:00
 Redis构建了一种新的字符串结构，称为简单动态字符串（Simple Dynamic String），简称SDS。
 例如，我们执行命令：
 
-![1653984583289](Redis入门到实战_06_原理篇/1653984583289.png)
+![1653984583289](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984583289.png)
 
 那么Redis将在底层创建两个SDS，其中一个是包含“name”的SDS，另一个是包含“虎哥”的SDS。
 
 Redis是C语言实现的，其中SDS是一个结构体，源码如下：
 
-![1653984624671](Redis入门到实战_06_原理篇/1653984624671.png)
+![1653984624671](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984624671.png)
 
 > uint8_t表示用8个bit位表示数据长度，所以当前数据结构最多存储255个数据
 >
@@ -47,13 +47,13 @@ Redis是C语言实现的，其中SDS是一个结构体，源码如下：
 
 例如，一个包含字符串“name”的sds结构如下：
 
-![1653984648404](Redis入门到实战_06_原理篇/1653984648404.png)
+![1653984648404](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984648404.png)
 
 > 一般，第一次创建一个字符串，初始分配的内存大小和数据本身的大小是一致的。
 
 SDS之所以叫做动态字符串，是因为它具备动态扩容的能力，例如一个内容为“hi”的SDS：
 
-![1653984787383](Redis入门到实战_06_原理篇/1653984787383.png)
+![1653984787383](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984787383.png)
 
 假如我们要给SDS追加一段字符串“,Amy”，这里首先会申请新内存空间：
 
@@ -61,7 +61,7 @@ SDS之所以叫做动态字符串，是因为它具备动态扩容的能力，�
 
 如果新字符串大于1M，则新空间为扩展后字符串长度+1M+1。称为内存预分配。
 
-![1653984822363](Redis入门到实战_06_原理篇/1653984822363.png)
+![1653984822363](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984822363.png)
 
 
 
@@ -107,14 +107,14 @@ typedef struct intset {
 
 为了方便查找，Redis会将intset中所有的整数按**照升序依次保存**在contents数组中，结构如图：
 
-![1653985149557](Redis入门到实战_06_原理篇/1653985149557.png)
+![1653985149557](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985149557.png)
 
 现在，数组中每个数字都在int16_t的范围内，因此采用的编码方式是INTSET_ENC_INT16，每部分占用的字节大小为：
 encoding：4字节
 length：4字节
 contents：2字节 * 3  = 6字节
 
-![image-20240611105401572](Redis入门到实战_06_原理篇/image-20240611105401572.png)
+![image-20240611105401572](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611105401572.png)
 
 > **角标寻址：**编码确定以后，所有元素占用的字节数都是一样的。INTSET_ENC_INT16编码的每个元素占用两个字节。
 >
@@ -126,14 +126,14 @@ contents：2字节 * 3  = 6字节
 
 在这里需要特别注意一点：IntSet中的，encoding的16,32,64位所指的是有符号数的，比如INTSET_ENC_INT16编码模式下所能表示的范围是-32768～32767；50000明显是不在这个范围内的，所以IntSet会自动升级到INTSET_ENC_INT32编码模式。
 
-![image-20240611105714524](Redis入门到实战_06_原理篇/image-20240611105714524.png)
+![image-20240611105714524](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611105714524.png)
 
 以当前案例来说流程如下：
 
 * 升级编码为INTSET_ENC_INT32, 每个整数占4字节，并按照新的编码方式及元素个数扩容数组
 * 倒序依次将数组中的元素拷贝到扩容后的正确位置
 * 将待添加的元素50000放入数组末尾
-* 最后，将inset的encoding属性改为INTSET_ENC_INT32，将length属性改为4![1653985276621](Redis入门到实战_06_原理篇/1653985276621.png)
+* 最后，将inset的encoding属性改为INTSET_ENC_INT32，将length属性改为4![1653985276621](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985276621.png)
 
 > **在这里提个问题：** 在上述步骤2中为什么是倒序拷贝的，顺序不可以吗？
 >
@@ -325,15 +325,15 @@ typedef struct dictEntry {
 
 当我们向Dict添加键值对时，Redis首先根据key计算出hash值（h），然后利用 h & sizemask来计算元素应该存储到数组中的哪个索引位置。我们存储k1=v1，假设k1的哈希值h =1，则1&3 =1，因此k1=v1要存储到数组角标1位置。
 
-![1653985497735](Redis入门到实战_06_原理篇/1653985497735.png)
+![1653985497735](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985497735.png)
 
 Dict由三部分组成，分别是：哈希表（DictHashTable）、哈希节点（DictEntry）、字典（Dict）
 
-![1653985570612](Redis入门到实战_06_原理篇/1653985570612.png)
+![1653985570612](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985570612.png)
 
-![1653985586543](Redis入门到实战_06_原理篇/1653985586543.png)
+![1653985586543](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985586543.png)
 
-![1653985640422](Redis入门到实战_06_原理篇/1653985640422.png)
+![1653985640422](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985640422.png)
 
 **Dict的扩容**
 
@@ -502,19 +502,19 @@ static unsigned long _dictNextPower(unsigned long size)
 
 第一步：检测到需要rehash，将rehashidx置为0
 
-![image-20240611154114514](Redis入门到实战_06_原理篇/image-20240611154114514.png)
+![image-20240611154114514](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611154114514.png)
 
-![image-20240611154358901](Redis入门到实战_06_原理篇/image-20240611154358901.png)
+![image-20240611154358901](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611154358901.png)
 
 第二步，将元素rehash到新的hashTable
 
-![image-20240611154201993](Redis入门到实战_06_原理篇/image-20240611154201993.png)
+![image-20240611154201993](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611154201993.png)
 
 
 
 第四步，将ht[0]指针置为ht[1]，ht[1]指向null，完成rehash，释放原有hashTable的内存。 
 
-![1653985824540](Redis入门到实战_06_原理篇/1653985824540.png)
+![1653985824540](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653985824540.png)
 
 **Dict的渐进式rehash**
 
@@ -554,11 +554,11 @@ Dict的伸缩：
 
 ZipList 是一种特殊的“双端链表” ，由一系列特殊编码的连续内存块组成。可以在任意一端进行压入/弹出操作, 并且该操作的时间复杂度为 O(1)。
 
-![image-20240611161652965](Redis入门到实战_06_原理篇/image-20240611161652965.png)
+![image-20240611161652965](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611161652965.png)
 
 
 
-![1653986020491](Redis入门到实战_06_原理篇/1653986020491.png)
+![1653986020491](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986020491.png)
 
 | **属性** | **类型** | **长度** | **用途**                                                     |
 | -------- | -------- | -------- | ------------------------------------------------------------ |
@@ -572,7 +572,7 @@ ZipList 是一种特殊的“双端链表” ，由一系列特殊编码的连�
 
 ZipList 中的Entry并不像普通链表那样记录前后节点的指针，因为记录两个指针要占用16个字节，浪费内存。而是采用了下面的结构：
 
-![1653986055253](Redis入门到实战_06_原理篇/1653986055253.png)
+![1653986055253](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986055253.png)
 
 * previous_entry_length：前一节点的长度，占1个或5个字节。
   * 如果前一节点的长度小于254字节，则采用1个字节来保存这个长度值
@@ -597,11 +597,11 @@ ZipListEntry中的encoding编码分为字符串和整数两种：
 例如，我们要保存字符串：“ab”和 “bc”
 
 ab：
-![image-20240611171819584](Redis入门到实战_06_原理篇/image-20240611171819584.png)
+![image-20240611171819584](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611171819584.png)
 
 整个ziplist的结构：
 
-![1653986172002](Redis入门到实战_06_原理篇/1653986172002.png)
+![1653986172002](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986172002.png)
 
 > 使用的是小端字节序
 
@@ -620,11 +620,11 @@ ZipListEntry中的encoding编码分为字符串和整数两种：
 
 例如，一个ZipList中包含两个整数值：“2”和“5”
 
-![1653986217182](Redis入门到实战_06_原理篇/1653986217182.png)
+![1653986217182](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986217182.png)
 
 整个ZipList的结构
 
-![1653986282879](Redis入门到实战_06_原理篇/1653986282879.png)
+![1653986282879](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986282879.png)
 
 > 优点：节省内存
 >
@@ -639,11 +639,11 @@ ZipList的每个Entry都包含previous_entry_length来记录上一个节点的�
 如果前一节点的长度大于等于254字节，则采用5个字节来保存这个长度值，第一个字节为0xfe，后四个字节才是真实长度数据
 现在，假设我们有N个连续的、长度为250~253字节之间的entry，因此entry的previous_entry_length属性用1个字节即可表示，如图所示：
 
-![image-20240611175922714](Redis入门到实战_06_原理篇/image-20240611175922714.png)
+![image-20240611175922714](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240611175922714.png)
 
 现在在队头插入一个元素，占用254，会导致原来的首节点的pre_entry_lenlbytes扩容，1字节变5字节。当前节点的容量变化，又会引起下一个节点【用一个字节表示前一个节点大小】扩容...
 
-![1653986328124](Redis入门到实战_06_原理篇/1653986328124.png)
+![1653986328124](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986328124.png)
 
 ZipList这种特殊情况下产生的连续多次空间扩展操作称之为连锁更新（Cascade Update）。新增、删除都可能导致连锁更新的发生。 会引起多次数据迁移，内存申请，效率很低。
 
@@ -676,7 +676,7 @@ ZipList这种特殊情况下产生的连续多次空间扩展操作称之为连�
 
 ​	答：Redis在3.2版本引入了新的数据结构QuickList，它是一个双端链表，只不过链表中的每个节点都是一个ZipList。
 
-![1653986474927](Redis入门到实战_06_原理篇/1653986474927.png)
+![1653986474927](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986474927.png)
 
 为了避免QuickList中的每个ZipList中entry过多，Redis提供了一个配置项：list-max-ziplist-size来限制。
 如果值为正，则代表ZipList的允许的entry个数的最大值
@@ -690,15 +690,15 @@ ZipList这种特殊情况下产生的连续多次空间扩展操作称之为连�
 
 其默认值为 -2：
 
-![1653986642777](Redis入门到实战_06_原理篇/1653986642777.png)
+![1653986642777](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986642777.png)
 
 以下是QuickList的和QuickListNode的结构源码：
 
-![1653986667228](Redis入门到实战_06_原理篇/1653986667228.png)
+![1653986667228](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986667228.png)
 
 我们接下来用一段流程图来描述当前的这个结构
 
-![1653986718554](Redis入门到实战_06_原理篇/1653986718554.png)
+![1653986718554](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986718554.png)
 
 
 
@@ -719,19 +719,19 @@ SkipList（跳表）首先是链表，但与传统链表相比有几点差异：
 元素按照升序排列存储
 节点可能包含多个指针，指针跨度不同。
 
-![1653986771309](Redis入门到实战_06_原理篇/1653986771309.png)
+![1653986771309](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986771309.png)
 
 SkipList（跳表）首先是链表，但与传统链表相比有几点差异：
 元素按照升序排列存储
 节点可能包含多个指针，指针跨度不同。
 
-![1653986813240](Redis入门到实战_06_原理篇/1653986813240.png)
+![1653986813240](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986813240.png)
 
 SkipList（跳表）首先是链表，但与传统链表相比有几点差异：
 元素按照升序排列存储
 节点可能包含多个指针，指针跨度不同。
 
-![1653986877620](Redis入门到实战_06_原理篇/1653986877620.png)
+![1653986877620](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986877620.png)
 
 小总结：
 
@@ -752,7 +752,7 @@ Redis中的任意数据类型的键和值都会被封装为一个RedisObject，�
 string, list, hash、set、sorted set等。我们可以看到，key的类型固定是string，而value可能的类型是多个。
 ⽽从Redis内部实现的⾓度来看，database内的这个映射关系是用⼀个dict来维护的。dict的key固定用⼀种数据结构来表达就够了，这就是动态字符串sds。而value则比较复杂，为了在同⼀个dict内能够存储不同类型的value，这就需要⼀个通⽤的数据结构，这个通用的数据结构就是robj，全名是redisObject。
 
-![1653986956618](Redis入门到实战_06_原理篇/1653986956618.png)
+![1653986956618](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653986956618.png)
 
 Redis的编码方式
 
@@ -797,15 +797,15 @@ String是Redis中最常见的数据存储类型：
 （1）底层实现方式：动态字符串sds 或者 long
 String的内部存储结构⼀般是sds（Simple Dynamic String，可以动态扩展内存），但是如果⼀个String类型的value的值是数字，那么Redis内部会把它转成long类型来存储，从而减少内存的使用。
 
-![1653987103450](Redis入门到实战_06_原理篇/1653987103450.png)
+![1653987103450](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987103450.png)
 
 如果存储的字符串是整数值，并且大小在LONG_MAX范围内，则会采用INT编码：直接将数据保存在RedisObject的ptr指针位置（刚好8字节），不再需要SDS了。
 
-![1653987159575](Redis入门到实战_06_原理篇/1653987159575.png)
+![1653987159575](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987159575.png)
 
-![1653987172764](Redis入门到实战_06_原理篇/1653987172764.png)
+![1653987172764](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987172764.png)
 
-![1653987202522](Redis入门到实战_06_原理篇/1653987202522.png)
+![1653987202522](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987202522.png)
 
 确切地说，String在Redis中是⽤⼀个robj来表示的。
 
@@ -815,13 +815,13 @@ String的内部存储结构⼀般是sds（Simple Dynamic String，可以动态�
 
 验证：
 
-![image-20240529075631261](Redis入门到实战_06_原理篇/image-20240529075631261.png)
+![image-20240529075631261](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240529075631261.png)
 
 ### 1.9 Redis数据结构-List
 
 Redis的List类型可以从首、尾操作列表中的元素：
 
-![1653987240622](Redis入门到实战_06_原理篇/1653987240622.png)
+![1653987240622](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987240622.png)
 
 哪一个数据结构能满足上述特征？
 
@@ -835,7 +835,7 @@ Redis的List结构类似一个双端链表，可以从首、尾操作列表中�
 
 在3.2版本之后，Redis统一采用QuickList来实现List：
 
-![1653987313461](Redis入门到实战_06_原理篇/1653987313461.png)
+![1653987313461](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987313461.png)
 
 
 
@@ -895,7 +895,7 @@ Set是Redis中的单列集合，满足下列特点：
 * 保证元素唯一
 * 求交集、并集、差集
 
-![1653987342550](Redis入门到实战_06_原理篇/1653987342550.png)
+![1653987342550](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987342550.png)
 
 可以看出，Set对查询元素的效率要求非常高，思考一下，什么样的数据结构可以满足？
 HashTable，也就是Redis中的Dict，不过Dict是双列集合（可以存键值对）
@@ -904,15 +904,15 @@ Set是Redis中的集合，不一定确保元素有序，可以满足元素唯一
 为了查询效率和唯一性，set采用HT编码（Dict）。Dict中的key用来存储元素，value统一为null。
 当存储的所有数据都是整数，并且元素数量不超过set-max-intset-entries时，Set会采用IntSet编码，以节省内存
 
-![1653987388177](Redis入门到实战_06_原理篇/1653987388177.png)
+![1653987388177](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987388177.png)
 
 添加元素时，如果发现非数字或者数量超限，会从intset转换为dict
 
-![image-20240529105727416](Redis入门到实战_06_原理篇/image-20240529105727416.png)
+![image-20240529105727416](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240529105727416.png)
 
 结构如下：
 
-​	![1653987454403](Redis入门到实战_06_原理篇/1653987454403.png)
+​	![1653987454403](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653987454403.png)
 
 
 
@@ -924,16 +924,16 @@ ZSet也就是SortedSet，其中每一个元素都需要指定一个score值和me
 * member必须唯一
 * 可以根据member查询分数
 
-![1653992091967](Redis入门到实战_06_原理篇/1653992091967.png)
+![1653992091967](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992091967.png)
 
 因此，zset底层数据结构必须满足键值存储、键必须唯一、可排序这几个需求。之前学习的哪种编码结构可以满足？
 
 * SkipList：可以排序，并且可以同时存储score和ele值（member）
 * HT（Dict）：可以键值存储，并且可以根据key找value
 
-![1653992121692](Redis入门到实战_06_原理篇/1653992121692.png)
+![1653992121692](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992121692.png)
 
-![1653992172526](Redis入门到实战_06_原理篇/1653992172526.png)
+![1653992172526](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992172526.png)
 
 当元素数量不多时，HT和SkipList的优势不明显，而且更耗内存。因此zset还会采用ZipList结构来节省内存，不过需要同时满足两个条件：
 
@@ -942,18 +942,18 @@ ZSet也就是SortedSet，其中每一个元素都需要指定一个score值和me
 
 首次添加元素，根据value的元素数量，按上述规则创建合适的对象
 
-![image-20240812202718834](Redis入门到实战_06_原理篇/image-20240812202718834.png)
+![image-20240812202718834](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240812202718834.png)
 
 后续添加元素，按规则检查是否需要转换对象
 
-![image-20240812205727515](Redis入门到实战_06_原理篇/image-20240812205727515.png)
+![image-20240812205727515](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240812205727515.png)
 
 ziplist本身没有排序功能，而且没有键值对的概念，因此需要有zset通过编码实现：
 
 * ZipList是连续内存，因此score和element是紧挨在一起的两个entry， element在前，score在后
 * score越小越接近队首，score越大越接近队尾，按照score值升序排列
 
-![1653992299740](Redis入门到实战_06_原理篇/1653992299740.png)
+![1653992299740](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992299740.png)
 
 
 
@@ -988,11 +988,11 @@ Redis的hash之所以这样设计，是因为当ziplist变得很⼤的时候，�
 
 hash结构如下：
 
-![1653992339937](Redis入门到实战_06_原理篇/1653992339937.png)
+![1653992339937](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992339937.png)
 
 zset集合如下：
 
-![1653992360355](Redis入门到实战_06_原理篇/1653992360355.png)
+![1653992360355](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992360355.png)
 
 因此，Hash底层采用的编码与Zset也基本一致，只需要把排序有关的SkipList去掉即可：
 
@@ -1003,7 +1003,7 @@ Hash结构默认采用ZipList编码，用以节省内存。 ZipList中相邻的�
 * ZipList中的元素数量超过了hash-max-ziplist-entries（默认512）
 * ZipList中的任意entry大小超过了hash-max-ziplist-value（默认64字节）
 
-![1653992413406](Redis入门到实战_06_原理篇/1653992413406.png)
+![1653992413406](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653992413406.png)
 
 hash数据结构添加元素代码：
 
@@ -1118,7 +1118,7 @@ int hashTypeSet(robj *o, sds field, sds value, int flags) {
 
 可以修改触发ziplist转换Dict的元素数量和元素大小配置，一般不需配置，配置太大影响性能，因为ziplist是连续内存，分配的开销比较大。
 
-![image-20240529155551589](Redis入门到实战_06_原理篇/image-20240529155551589.png)
+![image-20240529155551589](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240529155551589.png)
 
 ## 2、原理篇-Redis网络模型
 
@@ -1128,15 +1128,15 @@ int hashTypeSet(robj *o, sds field, sds value, int flags) {
 
 ubuntu和Centos 都是Linux的发行版，发行版可以看成对linux包了一层壳，任何Linux发行版，其系统内核都是Linux。我们的应用都需要通过Linux内核与硬件交互
 
-![1653844970346](Redis入门到实战_06_原理篇/1653844970346.png)
+![1653844970346](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653844970346.png)
 
 用户的应用，比如redis，mysql等其实是没有办法去执行访问我们操作系统的硬件的，所以我们可以通过发行版的这个壳子去访问内核，再通过内核去访问计算机硬件
 
-![1653845147190](Redis入门到实战_06_原理篇/1653845147190.png)
+![1653845147190](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653845147190.png)
 
 计算机硬件包括，如cpu，内存，网卡等等，内核（通过寻址空间）可以操作硬件，但是内核需要不同设备的驱动，有了这些驱动之后，内核就可以去对计算机硬件去进行 内存管理，文件系统的管理，进程的管理等等
 
-![1653896065386](Redis入门到实战_06_原理篇/1653896065386.png)
+![1653896065386](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653896065386.png)
 
 
 
@@ -1150,7 +1150,7 @@ ubuntu和Centos 都是Linux的发行版，发行版可以看成对linux包了一
 
 什么是寻址空间呢？我们的应用程序也好，还是内核空间也好，都是没有办法直接去物理内存的，而是通过分配一些虚拟内存映射到物理内存中，我们的内核和应用程序去访问虚拟内存的时候，就需要一个虚拟地址，这个地址是一个无符号的整数，大小取决于地址总线和寄存器的带宽。比如一个32位的操作系统，他的带宽就是32，他的虚拟地址就是2的32次方，也就是说他寻址的范围就是0~2的32次方， 这片寻址空间对应的就是2的32个字节，就是4GB，这个4GB，会有3个GB分给用户空间，会有1GB给内核系统
 
-![1653896377259](Redis入门到实战_06_原理篇/1653896377259.png)
+![1653896377259](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653896377259.png)
 
 在linux中，他们权限分成两个等级，0和3
 
@@ -1176,7 +1176,7 @@ Linux系统为了提高IO效率，会在用户空间和内核空间都加入缓�
 
 整体而言，速度慢，就是这个原因，为了加速，
 
-![1653896687354](Redis入门到实战_06_原理篇/1653896687354.png)
+![1653896687354](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653896687354.png)
 
 ### 2.2.网络模型-阻塞IO
 
@@ -1190,7 +1190,7 @@ Linux系统为了提高IO效率，会在用户空间和内核空间都加入缓�
 
 应用程序想要去读取数据，他是无法直接去读取磁盘数据的，他需要先到内核里边去等待内核操作硬件拿到数据，这个过程就是1，是需要等待的，等到内核从磁盘上把数据加载出来之后，再把这个数据写给用户的缓存区，这个过程是2，如果是阻塞IO，那么整个过程中，用户从发起读请求开始，一直到读取到数据，用户进程都是一个阻塞状态。
 
-![1653897115346](Redis入门到实战_06_原理篇/1653897115346.png)
+![1653897115346](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653897115346.png)
 
 具体流程如下图：
 
@@ -1217,7 +1217,7 @@ Linux系统为了提高IO效率，会在用户空间和内核空间都加入缓�
 
 
 
-![1653897270074](Redis入门到实战_06_原理篇/1653897270074.png)
+![1653897270074](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653897270074.png)
 
 特点：
 
@@ -1251,7 +1251,7 @@ Linux系统为了提高IO效率，会在用户空间和内核空间都加入缓�
 
 
 
-![1653897490116](Redis入门到实战_06_原理篇/1653897490116.png)
+![1653897490116](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653897490116.png)
 
 直接使用非阻塞IO并不能带来明显的性能提升，但是下面的IO多路复用借助非阻塞IO却能提高IO性能。
 
@@ -1317,7 +1317,7 @@ Linux系统为了提高IO效率，会在用户空间和内核空间都加入缓�
 
 
 
-![1653898691736](Redis入门到实战_06_原理篇/1653898691736.png)
+![1653898691736](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653898691736.png)
 
 
 
@@ -1341,7 +1341,7 @@ select是Linux最早是由的I/O多路复用技术：
 
 比如要监听的数据，是1,2,5三个数据，此时会执行select函数，然后将整个fd集合发给内核态，内核态会去遍历用户态传递过来的数据，如果发现这里边都数据都没有就绪，就休眠，直到有数据准备好时，就会被唤醒，唤醒之后，再次遍历一遍，看看谁准备好了，然后再将处理掉没有准备好的数据，最后再将这个FD集合写回到用户态中去，此时用户态就知道了，奥，有人准备好了，但是对于用户态而言，并不知道谁处理好了，所以用户态也需要去进行遍历，然后找到对应准备好数据的节点，再去发起读请求，我们会发现，这种模式下他虽然比阻塞IO和非阻塞IO好，但是依然有些麻烦的事情， 比如说频繁的传递fd集合，频繁的去遍历FD等问题
 
-![1653900022580](Redis入门到实战_06_原理篇/1653900022580.png)
+![1653900022580](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653900022580.png)
 
 select模式存在的问题：
 
@@ -1368,7 +1368,7 @@ IO流程：
 * select模式中的fd_set大小固定为1024，而pollfd在内核中采用链表，理论上无上限
 * 监听FD越多，每次遍历消耗时间也越久，性能反而会下降
 
-![1653900721427](Redis入门到实战_06_原理篇/1653900721427.png)
+![1653900721427](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653900721427.png)
 
 ### 2.7 网络模型-IO多路复用模型-epoll函数
 
@@ -1417,7 +1417,7 @@ int epoll_wait(
 
 就去等待，在用户态创建一个空的events数组，当就绪之后，我们的回调函数会把数据添加到list_head中去，当调用这个函数的时候，会去检查list_head，当然这个过程需要参考配置的等待时间，可以等一定时间，也可以一直等， 如果在此过程中，检查到了list_head中有数据会将数据添加到链表中，此时将数据放入到events数组中，并且返回对应的操作的数量，用户态的此时收到响应后，从events中拿到对应准备好的数据的节点，再去调用方法去拿数据。
 
-![image-20240529220804985](Redis入门到实战_06_原理篇/image-20240529220804985-1716991690293-1.png)
+![image-20240529220804985](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240529220804985-1716991690293-1.png)
 
 小总结：
 
@@ -1465,7 +1465,7 @@ lET：仅通知一次，效率高。可以基于非阻塞IO循环读取解决数
 
 select和poll仅支持LT模式，epoll可以自由选择LT和ET两种模式
 
-![image-20240529222948553](Redis入门到实战_06_原理篇/image-20240529222948553.png)
+![image-20240529222948553](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/image-20240529222948553.png)
 
 ### 2.9 网络模型-基于epoll的服务器端流程
 
@@ -1482,7 +1482,7 @@ select和poll仅支持LT模式，epoll可以自由选择LT和ET两种模式
      - 如果是其他fd事件，则处理客户端socket的请求，并写出响应
      - 发生错误，写出响应
 
-![1653902845082](Redis入门到实战_06_原理篇/1653902845082.png)
+![1653902845082](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653902845082.png)
 
 > 一个Web服务器的工作流程大致如此，Redis也可以看作一个Web服务器，处理流程大同小异
 
@@ -1504,7 +1504,7 @@ select和poll仅支持LT模式，epoll可以自由选择LT和ET两种模式
 * 内核将数据拷贝到用户空间
 * 用户进程处理数据
 
-![1653911776583](Redis入门到实战_06_原理篇/1653911776583.png)
+![1653911776583](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653911776583.png)
 
 信号驱动和非阻塞IO主流程很像。主要区别是，信号驱动不需要用户程序轮询检查数据就绪状态，开发应用难度更低。但在高并发情况下也存在一些问题：
 
@@ -1518,7 +1518,7 @@ select和poll仅支持LT模式，epoll可以自由选择LT和ET两种模式
 
 他会由内核将所有数据处理完成后，由内核将数据写入到用户态中，然后才算完成，所以性能极高，不会有任何阻塞，全部都由内核完成，可以看到，异步IO模型中，用户进程在两个阶段都是非阻塞状态。
 
-![1653911877542](Redis入门到实战_06_原理篇/1653911877542.png)
+![1653911877542](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653911877542.png)
 
 特点
 
@@ -1538,7 +1538,7 @@ IO操作是同步还是异步，关键看数据在内核空间与用户空间的
 
 只有异步IO实现了真正的异步处理，其他IO模型都是同步IO。
 
-![1653912219712](Redis入门到实战_06_原理篇/1653912219712.png)
+![1653912219712](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653912219712.png)
 
 > 小贴士
 >
@@ -1568,7 +1568,7 @@ IO操作是同步还是异步，关键看数据在内核空间与用户空间的
 
 ### 3.2 、Redis的单线程模型-Redis单线程和多线程网络模型变更
 
-![1653982278727](Redis入门到实战_06_原理篇/1653982278727.png)
+![1653982278727](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653982278727.png)
 
 当我们的客户端想要去连接我们服务器，会去先到IO多路复用模型去进行排队，会有一个连接应答处理器，他会去接受读请求，然后又把读请求注册到具体模型中去，此时这些建立起来的连接，如果是客户端请求处理器去进行执行命令时，他会去把数据读取出来，然后把数据放入到client中， clinet去解析当前的命令转化为redis认识的命令，接下来就开始处理这些命令，从redis中的command中找到这些命令，然后就真正的去操作对应的数据了，当数据操作完成后，会去找到命令回复处理器，再由他将数据写出。
 
@@ -1610,7 +1610,7 @@ Redis 6.0版本中，从RESP2升级到了RESP3协议，增加了更多数据类�
 
 数组：首字节是 ‘*’，后面跟上数组元素个数，再跟上元素，元素数据类型不限:
 
-![1653982993020](Redis入门到实战_06_原理篇/1653982993020.png)
+![1653982993020](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653982993020.png)
 
 ### 3.1、Redis通信协议-基于Socket自定义Redis的客户端
 
@@ -1732,7 +1732,7 @@ public class Main {
 Redis之所以性能强，最主要的原因就是基于内存存储。然而单节点的Redis其内存大小不宜过大，会影响持久化或主从同步性能。
 我们可以通过修改配置文件来设置Redis的最大内存：
 
-![1653983341150](Redis入门到实战_06_原理篇/1653983341150.png)
+![1653983341150](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983341150.png)
 
 当内存使用达到上限时，就无法存储更多数据了。为了解决这个问题，Redis提供了一些策略实现内存回收：
 
@@ -1740,17 +1740,17 @@ Redis之所以性能强，最主要的原因就是基于内存存储。然而单
 
 在学习Redis缓存的时候我们说过，可以通过expire命令给Redis的key设置TTL（存活时间）：
 
-![1653983366243](Redis入门到实战_06_原理篇/1653983366243.png)
+![1653983366243](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983366243.png)
 
 可以发现，当key的TTL到期以后，再次访问name返回的是nil，说明这个key已经不存在了，对应的内存也得到释放。从而起到内存回收的目的。
 
 Redis本身是一个典型的key-value内存存储数据库，因此所有的key、value都保存在之前学习过的Dict结构中。不过在其database结构体中，有两个Dict：一个用来记录key-value；另一个用来记录key-TTL。
 
-![1653983423128](Redis入门到实战_06_原理篇/1653983423128.png)
+![1653983423128](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983423128.png)
 
 
 
-![1653983606531](Redis入门到实战_06_原理篇/1653983606531.png)
+![1653983606531](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983606531.png)
 
 这里有两个问题需要我们思考：
 Redis是如何知道一个key是否过期呢？
@@ -1763,7 +1763,7 @@ Redis是如何知道一个key是否过期呢？
 
 惰性删除：顾明思议并不是在TTL到期后就立刻删除，而是在访问一个key的时候，检查该key的存活时间，如果已经过期才执行删除。
 
-![1653983652865](Redis入门到实战_06_原理篇/1653983652865.png)
+![1653983652865](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983652865.png)
 
 **周期删除**
 
@@ -1808,7 +1808,7 @@ FAST模式执行频率不固定，但两次间隔不低于2ms，每次耗时不�
 
 内存淘汰：就是当Redis内存使用达到设置的上限时，主动挑选部分key删除以释放更多内存的流程。Redis会在处理客户端命令的方法processCommand()中尝试做内存淘汰：
 
-![1653983978671](Redis入门到实战_06_原理篇/1653983978671.png)
+![1653983978671](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653983978671.png)
 
  淘汰策略
 
@@ -1828,7 +1828,7 @@ Redis支持8种不同策略来选择要删除的key：
 
 Redis的数据都会被封装为RedisObject结构：
 
-![1653984029506](Redis入门到实战_06_原理篇/1653984029506.png)
+![1653984029506](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984029506.png)
 
 LFU的访问次数之所以叫做逻辑访问次数，是因为并不是每次key被访问都计数，而是通过运算：
 
@@ -1839,7 +1839,7 @@ LFU的访问次数之所以叫做逻辑访问次数，是因为并不是每次ke
 
 最后用一副图来描述当前的这个流程吧
 
-![1653984085095](Redis入门到实战_06_原理篇/1653984085095.png)
+![1653984085095](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Redis入门到实战_06_原理篇_Img/1653984085095.png)
 
 ## 4、结束语
 

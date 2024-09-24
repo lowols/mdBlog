@@ -47,7 +47,7 @@ SSM整合是把咱们所学习的SpringMVC+Spring+Mybatis整合在一起来完�
 
 三层架构
 
-![1630427303762](SrpingMVC学习-上-入门与RESTful/1630427303762.png)
+![1630427303762](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630427303762.png)
 
 * 浏览器发送一个请求给后端服务器，后端服务器现在是使用Servlet来接收请求和数据
 
@@ -65,7 +65,7 @@ SSM整合是把咱们所学习的SpringMVC+Spring+Mybatis整合在一起来完�
 
 随着互联网的发展，上面的模式因为是**静态资源和动态数据统一在后台处理返回**，服务器压力大，性能慢慢的跟不上需求，所以**前后端分离**慢慢的走到了前台，是现在比较流行的一种处理方式。
 
-![1630427769938](SrpingMVC学习-上-入门与RESTful/1630427769938.png)
+![1630427769938](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630427769938.png)
 
 
 
@@ -125,13 +125,13 @@ SpringMVC的制作过程和上述流程几乎是一致的，具体的实现流�
 
 打开IDEA,创建一个新的web项目
 
-![1630428920116](SrpingMVC学习-上-入门与RESTful/1630428920116.png)
+![1630428920116](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630428920116.png)
 
 #### 步骤2:补全目录结构
 
 因为使用骨架创建的项目结构不完整，需要手动补全
 
-![1630429288339](SrpingMVC学习-上-入门与RESTful/1630429288339.png)
+![1630429288339](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630429288339.png)
 
 #### 步骤3:导入jar包
 
@@ -238,17 +238,17 @@ public class ServletContainersInitConfig extends AbstractDispatcherServletInitia
 
 #### 步骤7:配置Tomcat环境
 
-![1630430302683](SrpingMVC学习-上-入门与RESTful/1630430302683.png)
+![1630430302683](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630430302683.png)
 
 #### 步骤8:启动运行项目
 
-![1630430345246](SrpingMVC学习-上-入门与RESTful/1630430345246.png)
+![1630430345246](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630430345246.png)
 
 #### 步骤9:浏览器访问
 
 浏览器输入`http://localhost/save`进行访问，会报如下错误:
 
-#### ![1630430401561](SrpingMVC学习-上-入门与RESTful/1630430401561.png)
+#### ![1630430401561](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630430401561.png)
 
 页面报错的原因是后台没有指定返回的页面，目前只需要关注控制台看`user save ...`有没有被执行即可。
 
@@ -271,7 +271,7 @@ public class UserController {
 
 再次重启tomcat服务器，然后重新通过浏览器测试访问,会发现还是会报错，这次的错是404
 
-![1630430658028](SrpingMVC学习-上-入门与RESTful/1630430658028.png)
+![1630430658028](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630430658028.png)
 
 出错的原因是，如果方法直接返回字符串，springmvc会把字符串当成页面的名称在项目中进行查找返回，因为不存在对应返回值名称的页面，所以会报404错误，找不到资源。
 
@@ -295,7 +295,7 @@ public class UserController {
 
 再次重启tomcat服务器，然后重新通过浏览器测试访问，就能看到返回的结果数据
 
-![1630430835628](SrpingMVC学习-上-入门与RESTful/1630430835628.png)
+![1630430835628](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630430835628.png)
 
 至此SpringMVC的入门案例就已经完成。
 
@@ -352,7 +352,7 @@ public class UserController {
 
 
 
-![1630432494752](SrpingMVC学习-上-入门与RESTful/1630432494752.png)
+![1630432494752](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630432494752.png)
 
 #### 2.4.1 启动服务器初始化过程
 
@@ -426,14 +426,14 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
    - 加载SpringMvcConfig配置类
 
-   ![1630433335744](SrpingMVC学习-上-入门与RESTful/1630433335744.png)
+   ![1630433335744](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630433335744.png)
 
    - 执行@ComponentScan加载对应的bean
 
    * 扫描指定包及其子包下所有类上的注解，如Controller类上的@Controller注解
    * 加载UserController，每个@RequestMapping的名称对应一个具体的方法
 
-   ![1630433398932](SrpingMVC学习-上-入门与RESTful/1630433398932.png)
+   ![1630433398932](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630433398932.png)
 
    * 此时就建立了 `/save` 和 save方法的对应关系
 
@@ -447,7 +447,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 1. 创建前端控制器【一个Servlet】，并绑定上一步中的组件容器
 
 2. 获取子类扩展方法中我们设置的映射路径，应用到前端控制器
-   父类调用子类的getServletMappings方法![1630433510528](SrpingMVC学习-上-入门与RESTful/1630433510528.png)
+   父类调用子类的getServletMappings方法![1630433510528](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630433510528.png)
 
    `/`代表所拦截请求的路径规则，只有被拦截后才能交给SpringMVC来处理请求
 
@@ -492,7 +492,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 我们先来看下目前我们的项目目录结构:
 
-![1630459727575](SrpingMVC学习-上-入门与RESTful/1630459727575.png)
+![1630459727575](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630459727575.png)
 
 * config目录存入的是配置类,写过的配置类有:
 
@@ -516,11 +516,11 @@ controller、service和dao这些类都需要被容器管理成bean对象，那�
 
 在SpringMVC的配置类`SpringMvcConfig`中使用注解`@ComponentScan`，我们只需要将其扫描范围设置到controller即可，如
 
-![1630460319004](SrpingMVC学习-上-入门与RESTful/1630460319004.png)
+![1630460319004](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630460319004.png)
 
 在Spring的配置类`SpringConfig`中使用注解`@ComponentScan`,当时扫描的范围中其实是已经包含了controller,如:
 
-![1630460408159](SrpingMVC学习-上-入门与RESTful/1630460408159.png)
+![1630460408159](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630460408159.png)
 
 从包结构来看的话，Spring已经多把SpringMVC的controller类也给扫描到，所以针对这个问题该如何解决，就是咱们接下来要学习的内容。
 
@@ -684,7 +684,7 @@ controller、service和dao这些类都需要被容器管理成bean对象，那�
 
 最终创建好的项目结构如下:
 
-![1630461261820](SrpingMVC学习-上-入门与RESTful/1630461261820.png)
+![1630461261820](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630461261820.png)
 
 #### 2.5.5 设置bean加载控制
 
@@ -742,7 +742,7 @@ public class App{
 
 如果被排除了，该方法执行就会报bean未被定义的错误
 
-![1630462200947](SrpingMVC学习-上-入门与RESTful/1630462200947.png)
+![1630462200947](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630462200947.png)
 
 ==注意:测试的时候，需要把SpringMvcConfig配置类上的@ComponentScan注解注释掉，否则不会报错==
 
@@ -812,7 +812,7 @@ public class ServletContainersInitConfig extends AbstractAnnotationConfigDispatc
 
 如果要求发送的是post请求，我们就得准备页面在页面上准备form表单，测试起来比较麻烦。所以我们就需要借助一些第三方工具，如PostMan.
 
-* PostMan是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。![1630463382386](SrpingMVC学习-上-入门与RESTful/1630463382386.png)
+* PostMan是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。![1630463382386](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630463382386.png)
 * 作用：常用于进行接口测试
 
 * 特征
@@ -827,25 +827,25 @@ public class ServletContainersInitConfig extends AbstractAnnotationConfigDispatc
 
 安装完成后，如果需要注册，可以按照提示进行注册，如果底部有跳过测试的链接也可以点击跳过注册
 
-![1630463816424](SrpingMVC学习-上-入门与RESTful/1630463816424.png)
+![1630463816424](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630463816424.png)
 
 看到如下界面，就说明已经安装成功。
 
-![1630463887711](SrpingMVC学习-上-入门与RESTful/1630463887711.png)
+![1630463887711](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630463887711.png)
 
 ### 3.3 PostMan使用
 
 #### 3.3.1 创建WorkSpace工作空间
 
-![](SrpingMVC学习-上-入门与RESTful/image-20210805150044862.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/image-20210805150044862.png)
 
 #### 3.3.2 发送请求
 
-![1630464489898](SrpingMVC学习-上-入门与RESTful/1630464489898.png)
+![1630464489898](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630464489898.png)
 
 #### 3.3.3 保存当前请求
 
-![1630464783034](SrpingMVC学习-上-入门与RESTful/1630464783034.png)
+![1630464783034](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630464783034.png)
 
 **注意:**第一次请求需要创建一个新的目录，后面就不需要创建新目录，直接保存到已经创建好的目录即可。
 
@@ -967,11 +967,11 @@ public class ServletContainersInitConfig extends AbstractAnnotationConfigDispatc
 
 最终创建好的项目结构如下:
 
-![1630466431549](SrpingMVC学习-上-入门与RESTful/1630466431549.png)
+![1630466431549](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630466431549.png)
 
 把环境准备好后，启动Tomcat服务器，后台会报错:
 
-![1630466555934](SrpingMVC学习-上-入门与RESTful/1630466555934.png)
+![1630466555934](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630466555934.png)
 
 从错误信息可以看出:
 
@@ -1188,7 +1188,7 @@ public class BookController {
 
 最终创建好的项目结构如下:
 
-![1630467830654](SrpingMVC学习-上-入门与RESTful/1630467830654.png)
+![1630467830654](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630467830654.png)
 
 #### 4.2.2 参数传递
 
@@ -1200,7 +1200,7 @@ public class BookController {
 http://localhost/commonParam?name=itcast
 ```
 
-![1630467921300](SrpingMVC学习-上-入门与RESTful/1630467921300.png)
+![1630467921300](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630467921300.png)
 
 接收参数：
 
@@ -1225,7 +1225,7 @@ public class UserController {
 http://localhost/commonParam?name=itcast&age=15
 ```
 
-![1630468045733](SrpingMVC学习-上-入门与RESTful/1630468045733.png)
+![1630468045733](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630468045733.png)
 
 接收参数：
 
@@ -1251,7 +1251,7 @@ public class UserController {
 
 控制台:
 
-![1630480536510](SrpingMVC学习-上-入门与RESTful/1630480536510.png)
+![1630480536510](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630480536510.png)
 
 出现乱码的原因相信大家都清楚，Tomcat8.5以后的版本已经处理了中文乱码的问题，但是IDEA中的Tomcat插件目前只到Tomcat7，所以需要修改pom.xml来解决GET请求中文乱码问题
 
@@ -1276,7 +1276,7 @@ public class UserController {
 
 发送请求与参数:
 
-![1630480812809](SrpingMVC学习-上-入门与RESTful/1630480812809.png)接收参数：
+![1630480812809](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630480812809.png)接收参数：
 
 和GET一致，不用做任何修改
 
@@ -1298,13 +1298,13 @@ public class UserController {
 
 发送请求与参数:
 
-![1630480964421](SrpingMVC学习-上-入门与RESTful/1630480964421.png)
+![1630480964421](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630480964421.png)
 
 接收参数:
 
 控制台打印，会发现有中文乱码问题。
 
-![1630481008109](SrpingMVC学习-上-入门与RESTful/1630481008109.png)
+![1630481008109](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630481008109.png)
 
 解决方案:配置过滤器
 
@@ -1350,7 +1350,7 @@ CharacterEncodingFilter是在spring-web包中，所以用之前需要导入对�
 
 * 普通参数:url地址传参，地址参数名与形参变量名相同，定义形参即可接收参数。
 
-![1630481585729](SrpingMVC学习-上-入门与RESTful/1630481585729.png)
+![1630481585729](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630481585729.png)
 
 如果形参与地址参数名不一致该如何解决?
 
@@ -1374,7 +1374,7 @@ public String commonParamDifferentName(String userName , int age){
 
 因为前端给的是`name`,后台接收使用的是`userName`,两个名称对不上，导致接收数据失败:
 
-![1630481772035](SrpingMVC学习-上-入门与RESTful/1630481772035.png)
+![1630481772035](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630481772035.png)
 
 解决方案:使用@RequestParam注解
 
@@ -1408,7 +1408,7 @@ public class User {
 
 发送请求和参数:
 
-![1630482186745](SrpingMVC学习-上-入门与RESTful/1630482186745.png)
+![1630482186745](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630482186745.png)
 
 后台接收参数:
 
@@ -1449,7 +1449,7 @@ public class User {
 
 发送请求和参数:
 
-![1630482363291](SrpingMVC学习-上-入门与RESTful/1630482363291.png)
+![1630482363291](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630482363291.png)
 
 后台接收参数:
 
@@ -1475,7 +1475,7 @@ public String pojoParam(User user){
 
 发送请求和参数:
 
-![1630482999626](SrpingMVC学习-上-入门与RESTful/1630482999626.png)
+![1630482999626](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630482999626.png)
 
 后台接收参数:
 
@@ -1495,7 +1495,7 @@ public String pojoParam(User user){
 
 发送请求和参数:
 
-![1630484283773](SrpingMVC学习-上-入门与RESTful/1630484283773.png)
+![1630484283773](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630484283773.png)
 
 后台接收参数:
 
@@ -1511,7 +1511,7 @@ public String listParam(List<String> likes){
 
 运行会报错，
 
-![1630484339065](SrpingMVC学习-上-入门与RESTful/1630484339065.png)
+![1630484339065](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630484339065.png)
 
 错误的原因是:SpringMVC将List看做是一个POJO对象来处理，将其创建一个对象并准备把前端的数据封装到对象中，但是List是一个接口无法创建对象，所以报错。
 
@@ -1567,7 +1567,7 @@ SpringMVC默认使用的是jackson来处理json的转换，所以需要在pom.xm
 
 ###### 步骤2:PostMan发送JSON数据
 
-![1630485135061](SrpingMVC学习-上-入门与RESTful/1630485135061.png)
+![1630485135061](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630485135061.png)
 
 ###### 步骤3:开启SpringMVC注解支持
 
@@ -1596,7 +1596,7 @@ public String listParamForJson(@RequestBody List<String> likes){
 
 ###### 步骤5:启动运行程序
 
-![1630492624684](SrpingMVC学习-上-入门与RESTful/1630492624684.png)
+![1630492624684](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630492624684.png)
 
 JSON普通数组的数据就已经传递完成，下面针对JSON对象数据和JSON对象数组的数据该如何传递呢?
 
@@ -1613,7 +1613,7 @@ JSON普通数组的数据就已经传递完成，下面针对JSON对象数据和
 }
 ```
 
-![1630493105450](SrpingMVC学习-上-入门与RESTful/1630493105450.png)
+![1630493105450](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630493105450.png)
 
 后端接收数据：
 
@@ -1628,7 +1628,7 @@ public String pojoParamForJson(@RequestBody User user){
 
 启动程序访问测试
 
-![1630493233550](SrpingMVC学习-上-入门与RESTful/1630493233550.png)
+![1630493233550](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630493233550.png)
 
 **说明:**
 
@@ -1649,7 +1649,7 @@ address为null的原因是前端没有传递数据给后端。
 
 再次发送请求，就能看到address中的数据
 
-![1630493450694](SrpingMVC学习-上-入门与RESTful/1630493450694.png)
+![1630493450694](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630493450694.png)
 
 #### JSON对象数组
 
@@ -1664,7 +1664,7 @@ address为null的原因是前端没有传递数据给后端。
 ]
 ```
 
- ![1630493501205](SrpingMVC学习-上-入门与RESTful/1630493501205.png)
+ ![1630493501205](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630493501205.png)
 
 后端接收数据:
 
@@ -1679,7 +1679,7 @@ public String listPojoParamForJson(@RequestBody List<User> list){
 
 启动程序访问测试
 
-![1630493561137](SrpingMVC学习-上-入门与RESTful/1630493561137.png)
+![1630493561137](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630493561137.png)
 
 **小结**
 
@@ -1755,11 +1755,11 @@ public String dataParam(Date date)
 
 `http://localhost/dataParam?date=2088/08/08`
 
-![1630494320917](SrpingMVC学习-上-入门与RESTful/1630494320917.png)
+![1630494320917](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630494320917.png)
 
 #### 步骤4:查看控制台
 
-![1630494443738](SrpingMVC学习-上-入门与RESTful/1630494443738.png)
+![1630494443738](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630494443738.png)
 
 通过打印，我们发现SpringMVC可以接收日期数据类型，并将其打印在控制台。
 
@@ -1782,7 +1782,7 @@ public String dataParam(Date date,Date date1)
 
 `http://localhost/dataParam?date=2088/08/08&date1=2088-08-08`
 
-![1630494565970](SrpingMVC学习-上-入门与RESTful/1630494565970.png)
+![1630494565970](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630494565970.png)
 
 发送请求和数据后，页面会报400，控制台会报出一个错误
 
@@ -1805,7 +1805,7 @@ public String dataParam(Date date,
 
 重新启动服务器，重新发送请求测试，SpringMVC就可以正确的进行日期转换了
 
-![1630495221038](SrpingMVC学习-上-入门与RESTful/1630495221038.png)
+![1630495221038](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630495221038.png)
 
 #### 步骤6:携带时间的日期
 
@@ -1830,11 +1830,11 @@ public String dataParam(Date date,
 
 `http://localhost/dataParam?date=2088/08/08&date1=2088-08-08&date2=2088/08/08 8:08:08`
 
-![1630495347289](SrpingMVC学习-上-入门与RESTful/1630495347289.png)
+![1630495347289](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630495347289.png)
 
 重新启动服务器，重新发送请求测试，SpringMVC就可以将日期时间的数据进行转换
 
-![1630495507353](SrpingMVC学习-上-入门与RESTful/1630495507353.png)
+![1630495507353](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630495507353.png)
 
 
 
@@ -1885,7 +1885,7 @@ public interface Converter<S, T> {
 
 Converter接口的实现类
 
-![1630496385398](SrpingMVC学习-上-入门与RESTful/1630496385398.png)
+![1630496385398](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630496385398.png)
 
 框架中有提供很多对应Converter接口的实现类，用来实现不同数据类型之间的转换,如:
 
@@ -2035,7 +2035,7 @@ SpringMVC接收到请求和数据后，进行一些了的处理，当然这个�
 
 最终创建好的项目结构如下:
 
-![1630497314131](SrpingMVC学习-上-入门与RESTful/1630497314131.png)
+![1630497314131](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630497314131.png)
 
 #### 4.6.2 响应页面[了解]
 
@@ -2063,7 +2063,7 @@ public class UserController {
 
 `http://localhost/toJumpPage`
 
-![1630497496785](SrpingMVC学习-上-入门与RESTful/1630497496785.png)
+![1630497496785](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630497496785.png)
 
 #### 4.6.3 返回文本数据[了解]
 
@@ -2088,7 +2088,7 @@ public class UserController {
 
 此处不涉及到页面跳转，因为我们现在发送的是GET请求，可以使用浏览器也可以使用PostMan进行测试，输入地址`http://localhost/toText`访问
 
-![1630497741388](SrpingMVC学习-上-入门与RESTful/1630497741388.png)
+![1630497741388](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630497741388.png)
 
 #### 4.6.4 响应JSON数据
 
@@ -2115,7 +2115,7 @@ public class UserController {
 
 重新启动服务器，访问`http://localhost/toJsonPOJO`
 
-![1630497954896](SrpingMVC学习-上-入门与RESTful/1630497954896.png)
+![1630497954896](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630497954896.png)
 
 ##### 响应POJO集合对象
 
@@ -2148,7 +2148,7 @@ public class UserController {
 
 重新启动服务器，访问`http://localhost/toJsonList`
 
-![1630498084047](SrpingMVC学习-上-入门与RESTful/1630498084047.png)
+![1630498084047](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630498084047.png)
 
 #### 知识点1：@ResponseBody
 
@@ -2427,7 +2427,7 @@ public class UserController {
 
 最终创建好的项目结构如下:
 
-![1630503741455](SrpingMVC学习-上-入门与RESTful/1630503741455.png)
+![1630503741455](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630503741455.png)
 
 #### 5.2.2 思路分析
 
@@ -2468,7 +2468,7 @@ public class UserController {
 
   * 如果发送的不是POST请求，比如发送GET请求，则会报错
 
-    ![1630505392070](SrpingMVC学习-上-入门与RESTful/1630505392070.png)
+    ![1630505392070](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630505392070.png)
 
 ##### 删除
 
@@ -2516,7 +2516,7 @@ public class UserController {
 
 (1)如果方法形参的名称和路径`{}`中的值不一致，该怎么办?
 
-![1630506231379](SrpingMVC学习-上-入门与RESTful/1630506231379.png)
+![1630506231379](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630506231379.png)
 
 (2)如果有多个参数需要传递该如何编写?
 
@@ -2558,7 +2558,7 @@ public class UserController {
 
 - 访问并携带参数:
 
-  ![1630506507096](SrpingMVC学习-上-入门与RESTful/1630506507096.png)
+  ![1630506507096](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630506507096.png)
 
 ##### 根据ID查询
 
@@ -2639,7 +2639,7 @@ public String delete(==@PathVariable== Integer ==id==){
 
 做完了RESTful的开发，你会发现==好麻烦==，麻烦在哪?
 
-![1630507339724](SrpingMVC学习-上-入门与RESTful/1630507339724.png)
+![1630507339724](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630507339724.png)
 
 问题1：每个方法的@RequestMapping注解中都定义了访问路径/books，重复性太高。
 
@@ -2736,11 +2736,11 @@ public class BookController {
 
 需求一:图片列表查询，从后台返回数据，将数据展示在页面上
 
-![1630508310063](SrpingMVC学习-上-入门与RESTful/1630508310063.png)
+![1630508310063](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630508310063.png)
 
 需求二:新增图片，将新增图书的数据传递到后台，并在控制台打印
 
-![1630508367105](SrpingMVC学习-上-入门与RESTful/1630508367105.png)
+![1630508367105](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630508367105.png)
 
 **说明:**此次案例的重点是在SpringMVC中如何使用RESTful实现前后台交互，所以本案例并没有和数据库进行交互，所有数据使用`假`数据来完成开发。
 
@@ -2875,7 +2875,7 @@ public class BookController {
 
 最终创建好的项目结构如下:
 
-![1630508864017](SrpingMVC学习-上-入门与RESTful/1630508864017.png)
+![1630508864017](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630508864017.png)
 
 #### 5.4.2 后台接口开发
 
@@ -2933,11 +2933,11 @@ public class BookController {
 }
 ```
 
-![1630509266954](SrpingMVC学习-上-入门与RESTful/1630509266954.png)
+![1630509266954](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630509266954.png)
 
 测试查询
 
-![](SrpingMVC学习-上-入门与RESTful/image-20210805140307371.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/image-20210805140307371.png)
 
 #### 5.4.3 页面访问处理
 
@@ -2945,23 +2945,23 @@ public class BookController {
 
 将`资料\功能页面`下的所有内容拷贝到项目的`webapp`目录下
 
-![1630510166433](SrpingMVC学习-上-入门与RESTful/1630510166433.png)
+![1630510166433](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630510166433.png)
 
 ##### 步骤2:访问pages目录下的books.html
 
 打开浏览器输入`http://localhost/pages/books.html`
 
-![1630510225182](SrpingMVC学习-上-入门与RESTful/1630510225182.png)
+![1630510225182](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630510225182.png)
 
 (1)出现错误的原因?
 
-![1630510264650](SrpingMVC学习-上-入门与RESTful/1630510264650.png)
+![1630510264650](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630510264650.png)
 
 SpringMVC拦截了静态资源，根据/pages/books.html去controller找对应的方法，找不到所以会报404的错误。
 
 (2)SpringMVC为什么会拦截静态资源呢?
 
-![1630510397429](SrpingMVC学习-上-入门与RESTful/1630510397429.png)
+![1630510397429](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SrpingMVC学习-上-入门与RESTful_Img/1630510397429.png)
 
 (3)解决方案?
 

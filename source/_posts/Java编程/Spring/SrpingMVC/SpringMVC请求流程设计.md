@@ -1,6 +1,13 @@
+---
+title: SpringMVC请求流程设计
+tags:
+  - JavaWeb
+categories:
+  - Java
+date: 2024-05-15 17:48:00
+---
 
-
-# Spring基础 - SpringMVC请求流程和案例 | Java 全栈知识体系
+# Spring基础 - SpringMVC请求流程和案例 
 
 # [#](#spring%E5%9F%BA%E7%A1%80-springmvc%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A1%88%E4%BE%8B) Spring基础 - SpringMVC请求流程和案例
 
@@ -11,8 +18,6 @@
 > 前文我们介绍了Spring框架和Spring框架中最为重要的两个技术点（IOC和AOP），同时我们也通过几个Demo应用了Core Container中包
 
 那么问题是，我们如何在Core Container的基础上更好的构建上层的应用呢？比如web 应用。
-
-![](SpringMVC请求流程设计/1723125738-c8b78f7356629df4bc2af47e537df186.png)
 
 针对上层的Web应用，SpringMVC诞生了，它也是Spring技术栈中最为重要的一个框架。
 
@@ -30,7 +35,7 @@
 
 用一种把**用户交互逻辑【Controller】、业务数据处理逻辑【Model】、界面显示【View】**分离的方法，根据职责解耦。将业务数据处理逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。
 
-![](SpringMVC请求流程设计/1723125738-08d1106a7dc878b9956f6ca994c45154.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-08d1106a7dc878b9956f6ca994c45154.png)
 
 *   **Model**（模型）是应用程序中用于处理应用程序数据逻辑的部分。通常模型对象负责在数据库中存取数据。Service层、DAO层都可以看作Model的组成部分。
 *   **View**（视图）是应用程序中处理数据显示的部分。通常视图是依据模型数据创建的。
@@ -76,7 +81,7 @@ Spring Web MVC 是一种基于Java 的实现了Web MVC 设计模式的请求驱�
 
 > 首先让我们整体看一下Spring Web MVC 处理请求的流程：
 
-![](SpringMVC请求流程设计/1723125738-91907ed8ef56da64b7bc0ce99073a0e1.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-91907ed8ef56da64b7bc0ce99073a0e1.png)
 
 **核心架构的具体流程步骤**如下：
 
@@ -96,25 +101,25 @@ Spring Web MVC 是一种基于Java 的实现了Web MVC 设计模式的请求驱�
 
 进入Servlet前可以有preFilter, Servlet处理之后还可有postFilter
 
-![](SpringMVC请求流程设计/1723125738-74c793c33383c0a31e7e6c0dc7caba1b.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-74c793c33383c0a31e7e6c0dc7caba1b.png)
 
 2.  **LocaleResolver**
 
 在视图解析/渲染时，还需要考虑国际化(Local)，显然这里需要有LocaleResolver.
 
-![](SpringMVC请求流程设计/1723125738-575f898a8b784fef95b98d5b5c76d4a6.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-575f898a8b784fef95b98d5b5c76d4a6.png)
 
 3.  **ThemeResolver**
 
 如何控制视图样式呢？SpringMVC中还设计了ThemeSource接口和ThemeResolver，包含一些静态资源的集合(样式及图片等），用来控制应用的视觉风格。
 
-![](SpringMVC请求流程设计/1723125738-3777b04e27ac07ca7100a842aca8ff0a.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-3777b04e27ac07ca7100a842aca8ff0a.png)
 
 4.  **对于文件的上传请求**？
 
 对于常规请求上述流程是合理的，但是如果是文件的上传请求，那么就不太一样了；所以这里便出现了MultipartResolver。
 
-![](SpringMVC请求流程设计/1723125738-42ce331a2d8d6bbbb3eb4aae20dc12e9.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-42ce331a2d8d6bbbb3eb4aae20dc12e9.png)
 
 ## [#](#spring-mvc%E6%A1%88%E4%BE%8B) Spring MVC案例
 
@@ -122,7 +127,7 @@ Spring Web MVC 是一种基于Java 的实现了Web MVC 设计模式的请求驱�
 
 本例子中主要文件和结构如下：
 
-![](SpringMVC请求流程设计/1723125738-f2f8bf829a328343d4510ca006662fba.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-f2f8bf829a328343d4510ca006662fba.png)
 
 ### [#](#maven%E5%8C%85%E5%BC%95%E5%85%A5) Maven包引入
 
@@ -479,7 +484,7 @@ web.xml中我们配置初始化参数contextConfigLocation，路径是classpath:
 
 > 我们通过IDEA的tomcat插件来进行测试
 
-下载Tomcat：[tomcat地址在新窗口打开](https://downloads.apache.org/tomcat/)
+下载Tomcat：[tomcat地址在新窗口打开](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/https://downloads.apache.org/tomcat_Img/)
 
 下载后给tomcat/bin执行文件赋权
 
@@ -507,27 +512,27 @@ pdai@MacBook-Pro bin %
 
 配置Run Congfiuration
 
-![](SpringMVC请求流程设计/1723125738-b841c83be4671839241bf10ccf144ffd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-b841c83be4671839241bf10ccf144ffd.png)
 
 添加Tomcat Server - Local
 
-![](SpringMVC请求流程设计/1723125738-3e80e623ba76ce6dd74cd3b12e4cd4cc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-3e80e623ba76ce6dd74cd3b12e4cd4cc.png)
 
 将我们下载的Tomcat和Tomcat Server - Local关联
 
-![](SpringMVC请求流程设计/1723125738-07b962a61596710a96bbfc16294cec21.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-07b962a61596710a96bbfc16294cec21.png)
 
 在Deploy中添加我们的项目
 
-![](SpringMVC请求流程设计/1723125738-c58da10c77504239ef18ab46d9e71e64.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-c58da10c77504239ef18ab46d9e71e64.png)
 
 运行和管理Tomcat Sever（注意context路径）
 
-![](SpringMVC请求流程设计/1723125738-9a1e4d3cd836a3f8972f78eeebd7f3d4.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-9a1e4d3cd836a3f8972f78eeebd7f3d4.png)
 
 运行后访问我们的web程序页面（注意context路径）
 
-![](SpringMVC请求流程设计/1723125738-0c68cde34b6e9626314e402ff24a19c0.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723125738-0c68cde34b6e9626314e402ff24a19c0.png)
 
 PS：是不是so easy~ 
 
@@ -551,7 +556,7 @@ https://github.com/realpdai/tech-pdai-spring-demos
 
 DispatcherServlet和任何Servlet一样，需要通过使用Java配置或在web.xml中根据Servlet规范声明和映射。相应的，DispatcherServlet使用Spring配置来发现请求映射、视图解析、异常处理等所需的委托组件。
 
-> 那DispatcherServlet和ApplicationContext有和关系呢？如下内容可以参考[官网-SpringMVC文档在新窗口打开](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-servlet)
+> 那DispatcherServlet和ApplicationContext有和关系呢？如下内容可以参考[官网-SpringMVC文档在新窗口打开](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/https://docs.spring.io/spring-framework/docs/current/reference/html_Img/web.html#mvc-servlet)
 
 DispatcherServlet 需要一个 WebApplicationContext（普通ApplicationContext的扩展） 来管理配置自己的组件。WebApplicationContext 可以链接到ServletContext和它自己所关联的Servlet。因为绑定到了ServletContext，这样应用程序就可以在需要的时候使用 RequestContextUtils 的静态方法访问 WebApplicationContext。
 
@@ -561,7 +566,7 @@ Root WebApplicationContext 通常包含需要共享给多个 Servlet 实例的�
 
 （PS：官网上的这张图可以可以帮助你构建DispatcherServlet和ApplicationContext在设计上的认知，这一点对于理解DispatcherServlet的设计和初始化过程非常重要）
 
-![](SpringMVC请求流程设计/1723260289-9708aa67f67bc662706974ba0f755453-1723260470321-1.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260289-9708aa67f67bc662706974ba0f755453-1723260470321-1.png)
 
 ## [#](#dispatcherservlet%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84) DispatcherServlet是如何初始化的？
 
@@ -569,11 +574,11 @@ Root WebApplicationContext 通常包含需要共享给多个 Servlet 实例的�
 
 首先我们看DispatcherServlet的类结构关系，在这个类依赖结构中找到init的方法
 
-![](SpringMVC请求流程设计/1723260289-2b8657b9df0f1bfc9c7a8ce60aae4e8a-1723260470322-3.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260289-2b8657b9df0f1bfc9c7a8ce60aae4e8a-1723260470322-3.png)
 
-很容易找到init()的方法位于HttpServletBean中，然后跑[Spring基础 - SpringMVC请求流程和案例](https://pdai.tech/md/spring/spring-x-framework-springmvc.html)中的代码，在init方法中打断点。
+很容易找到init()的方法位于HttpServletBean中，然后跑[Spring基础 - SpringMVC请求流程和案例](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/https://pdai.tech/md/spring_Img/spring-x-framework-springmvc.html)中的代码，在init方法中打断点。
 
-![](SpringMVC请求流程设计/1723260289-5469bc677d465a56b6f0cc03ee1b43ae-1723260470322-4.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260289-5469bc677d465a56b6f0cc03ee1b43ae-1723260470322-4.png)
 
 ### [#](#init) init
 
@@ -618,7 +623,7 @@ public final void init() throws ServletException {
 
 读取配置可以从下图看出，正是初始化了我们web.xml中配置
 
-![](SpringMVC请求流程设计/1723260289-adf1d1788cf1c508c5cfc9a316446527-1723260470322-2.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260289-adf1d1788cf1c508c5cfc9a316446527-1723260470322-2.png)
 
 再看下initServletBean()方法，位于FrameworkServlet类中
 
@@ -863,7 +868,7 @@ protected void initStrategies(ApplicationContext context) {
 
 我们主要看initHandlerXXX相关的方法，它们之间的关系可以看SpringMVC的请求流程：
 
-![](SpringMVC请求流程设计/1723260289-fd30d949e6256f58ce993f779a367d60-1723260470322-5.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260289-fd30d949e6256f58ce993f779a367d60-1723260470322-5.png)
 
 1.  HandlerMapping是映射处理器
 2.  HandlerAdpter是**处理适配器**，它用来找到你的Controller中的处理方法
@@ -895,7 +900,7 @@ initHandlerMapping方法如下，无非就是获取按照优先级排序后的Ha
 
 首先让我们整体看一下Spring Web MVC 处理请求的流程：
 
-![](SpringMVC请求流程设计/1723260571-91907ed8ef56da64b7bc0ce99073a0e1-1723260685376-15.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260571-91907ed8ef56da64b7bc0ce99073a0e1-1723260685376-15.png)
 
 **核心架构的具体流程步骤**如下：
 
@@ -1190,7 +1195,7 @@ protected ModelAndView handleInternal(HttpServletRequest request,
 }
 ```
 
-![](SpringMVC请求流程设计/1723260571-03937bc982bf1cafd8146971cfe9504a-1723260685375-13.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260571-03937bc982bf1cafd8146971cfe9504a-1723260685375-13.png)
 
 然后执行invokeHandlerMethod这个方法，用来对RequestMapping（usercontroller中的list方法）进行处理
 
@@ -1264,15 +1269,15 @@ protected ModelAndView invokeHandlerMethod(HttpServletRequest request,
 
 invokeAndHandle交给UserController中具体执行list方法执行
 
-![](SpringMVC请求流程设计/1723260571-eb4a2308ef1c53b0abf6f65b259272eb-1723260685376-14.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260571-eb4a2308ef1c53b0abf6f65b259272eb-1723260685376-14.png)
 
 后续invoke执行的方法，直接看整个请求流程的调用链即可
 
-![](SpringMVC请求流程设计/1723260571-08912a5451d3b40be248d82d303c0efb-1723260685376-17.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260571-08912a5451d3b40be248d82d303c0efb-1723260685376-17.png)
 
 执行后获得视图和Model
 
-![](SpringMVC请求流程设计/1723260571-f343e34248bb185597397f951e0ed1f6-1723260685376-16.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/SpringMVC请求流程设计_Img/1723260571-f343e34248bb185597397f951e0ed1f6-1723260685376-16.png)
 
 ### [#](#%E8%A7%86%E5%9B%BE%E6%B8%B2%E6%9F%93) 视图渲染
 

@@ -56,7 +56,7 @@ GET /items/_search
 
 执行结果如下：
 
-![](微服务常用组件ES-下/IFNub8Zn6oNqb2xciZScRkk4nsd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/IFNub8Zn6oNqb2xciZScRkk4nsd.png)
 
 你会发现虽然是 match_all，但是响应结果中并不会包含索引库中的所有文档，而是仅有 10 条。这是因为处于安全考虑，elasticsearch 设置了默认的查询页数。
 
@@ -66,7 +66,7 @@ GET /items/_search
 
 如图：
 
-![](微服务常用组件ES-下/DgiabobteoKwNIxLChHcZyvdnQb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/DgiabobteoKwNIxLChHcZyvdnQb.png)
 
 这里列举一些常见的，例如：
 
@@ -104,7 +104,7 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/Dp30bjD77oO5U5xCjowcsLaqnse.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Dp30bjD77oO5U5xCjowcsLaqnse.png)
 
 与 `match` 类似的还有 `multi_match`，区别在于可以同时对多个字段搜索，而且多个字段都要满足，语法示例：
 
@@ -122,7 +122,7 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/Dt2dbDLaDoK3HZxyLdGc8OGUnZe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Dt2dbDLaDoK3HZxyLdGc8OGUnZe.png)
 
 #### 1.2.2.精确查询
 
@@ -155,11 +155,11 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/WUUibThF1oiPkkxRQ8lcfHjEnbg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/WUUibThF1oiPkkxRQ8lcfHjEnbg.png)
 
 当你输入的搜索条件不是词条，而是短语时，由于不做分词，你反而搜索不到：
 
-![](微服务常用组件ES-下/BlQTbUnvGoBRU1xVFSXcyEManCh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/BlQTbUnvGoBRU1xVFSXcyEManCh.png)
 
 再来看下 `range` 查询，语法如下：
 
@@ -186,7 +186,7 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/RQeTbGbTvoIsrAxhj5ccTSG5nye.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/RQeTbGbTvoIsrAxhj5ccTSG5nye.png)
 
 ### 1.3.复合查询
 
@@ -208,17 +208,17 @@ GET /{索引库名}/_search
 
 例如，我们搜索 "手机"，结果如下：
 
-![](微服务常用组件ES-下/OmBkbJlkzotHRXxEWINcrDJqnhe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/OmBkbJlkzotHRXxEWINcrDJqnhe.png)
 
 从 elasticsearch5.1 开始，采用的相关性打分算法是 BM25 算法，公式如下：
 
-![](微服务常用组件ES-下/GxE2b7cgvoMmk5xnbyScVB2NnDf.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/GxE2b7cgvoMmk5xnbyScVB2NnDf.png)
 
 基于这套公式，就可以判断出某个文档与用户搜索的关键字之间的关联度，还是比较准确的。但是，在实际业务需求中，常常会有竞价排名的功能。不是相关度越高排名越靠前，而是掏的钱多的排名靠前。
 
 例如在百度中搜索 Java 培训，排名靠前的就是广告推广：
 
-![](微服务常用组件ES-下/BlC2bhAZZoLR9jxBToKc9uP7nqh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/BlC2bhAZZoLR9jxBToKc9uP7nqh.png)
 
 要想认为控制相关性算分，就需要利用 elasticsearch 中的 function score 查询了。
 
@@ -321,7 +321,7 @@ GET /items/_search
 
 例如黑马商城的搜索页面：
 
-![](微服务常用组件ES-下/HctPb4AUWofhUzx4P4McavP0nAc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/HctPb4AUWofhUzx4P4McavP0nAc.png)
 
 其中输入框的搜索条件肯定要参与相关性算分，可以采用 match。但是价格范围过滤、品牌过滤、分类过滤等尽量采用 filter，不要参与相关性算分。
 
@@ -448,7 +448,7 @@ GET /items/_search
 
 如图：
 
-![](微服务常用组件ES-下/VtAcboF7XorwxQxQGcecUKannZb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/VtAcboF7XorwxQxQGcecUKannZb.png)
 
 试想一下，假如我们现在要查询的是第 999 页数据呢，是不是要找第 9990~10000 的数据，那岂不是需要把每个分片中的前 10000 名数据都查询出来，汇总在一起，在内存中排序？如果查询的分页深度更深呢，需要一次检索的数据岂不是更多？
 
@@ -471,7 +471,7 @@ GET /items/_search
 
 我们在百度，京东搜索时，关键字会变成红色，比较醒目，这叫高亮显示：
 
-![](微服务常用组件ES-下/ZIBlbmXcXo3NDmxF8NdctC1Xnac.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/ZIBlbmXcXo3NDmxF8NdctC1Xnac.png)
 
 观察页面源码，你会发现两件事情：
 
@@ -515,7 +515,7 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/LOWmbxxZ5ojScsxEFTSctz4pnDd.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/LOWmbxxZ5ojScsxEFTSctz4pnDd.png)
 
 ### 1.7.总结
 
@@ -528,7 +528,7 @@ GET /{索引库名}/_search
 
 示例：
 
-![](微服务常用组件ES-下/VJEobeRpBozcyGx1UqFcFhwrngl.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/VJEobeRpBozcyGx1UqFcFhwrngl.png)
 
 ## 2.RestClient 查询
 
@@ -549,7 +549,7 @@ GET /{索引库名}/_search
 
 首先以 `match_all` 查询为例，其 DSL 和 JavaAPI 的对比如图：
 
-![](微服务常用组件ES-下/R4Gsbi2mko4PHixgIgucki3Vn6R.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/R4Gsbi2mko4PHixgIgucki3Vn6R.png)
 
 代码解读：
 
@@ -561,11 +561,11 @@ GET /{索引库名}/_search
 
 这里关键的 API 有两个，一个是 `request.source()`，它构建的就是 DSL 中的完整 JSON 参数。其中包含了 `query`、`sort`、`from`、`size`、`highlight` 等所有功能：
 
-![](微服务常用组件ES-下/FVtobCskqobCdgxKtkYcpYDnnQg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/FVtobCskqobCdgxKtkYcpYDnnQg.png)
 
 另一个是 `QueryBuilders`，其中包含了我们学习过的各种**叶子查询**、**复合查询**等：
 
-![](微服务常用组件ES-下/VzBwbA6PToT0NvxUDGLcunqun3g.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/VzBwbA6PToT0NvxUDGLcunqun3g.png)
 
 #### 2.1.2.解析响应结果
 
@@ -599,7 +599,7 @@ GET /{索引库名}/_search
 
 因此，我们解析 `SearchResponse` 的代码就是在解析这个 JSON 结果，对比如下：
 
-![](微服务常用组件ES-下/XoNXbPdAAo04rEx0DnmcQxM2nse.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/XoNXbPdAAo04rEx0DnmcQxM2nse.png)
 
 **代码解读**：
 
@@ -734,7 +734,7 @@ void testTerm() throws IOException {
 
 复合查询也是由 `QueryBuilders` 来构建，我们以 `bool` 查询为例，DSL 和 JavaAPI 的对比如图：
 
-![](微服务常用组件ES-下/O5HxbOcZpowtCyxrFyQcl520nne.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/O5HxbOcZpowtCyxrFyQcl520nne.png)
 
 完整代码如下：
 
@@ -764,7 +764,7 @@ void testBool() throws IOException {
 
 之前说过，`requeset.source()` 就是整个请求 JSON 参数，所以排序、分页都是基于这个来设置，其 DSL 和 JavaAPI 的对比如下：
 
-![](微服务常用组件ES-下/Ix3EbJ8x8oiZC1xa6xwcMoZIn4d.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Ix3EbJ8x8oiZC1xa6xwcMoZIn4d.png)
 
 完整示例代码：
 
@@ -798,7 +798,7 @@ void testPageAndSort() throws IOException {
 
 首先来看高亮条件构造，其 DSL 和 JavaAPI 的对比如图：
 
-![](微服务常用组件ES-下/FE45bv7PUoUEKxxh0JXcMlawnDg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/FE45bv7PUoUEKxxh0JXcMlawnDg.png)
 
 示例代码如下：
 
@@ -826,7 +826,7 @@ void testHighlight() throws IOException {
 
 再来看结果解析，文档解析的部分不变，主要是高亮内容需要单独解析出来，其 DSL 和 JavaAPI 的对比如图：
 
-![](微服务常用组件ES-下/PG6PbI9KpoWaYDxm1Yfcba1nnLc.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/PG6PbI9KpoWaYDxm1Yfcba1nnLc.png)
 
 代码解读：
 
@@ -932,13 +932,13 @@ GET /items/_search
 
 来看下查询的结果：
 
-![](微服务常用组件ES-下/QlUSbzBdEogKarxFuYSc1uqvnhb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/QlUSbzBdEogKarxFuYSc1uqvnhb.png)
 
 #### 3.1.2.带条件聚合
 
 默认情况下，Bucket 聚合是对索引库的所有文档做聚合，例如我们统计商品中所有的品牌，结果如下：
 
-![](微服务常用组件ES-下/AsFtbYzHPozBAnx1UjLcmCAun1f.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/AsFtbYzHPozBAnx1UjLcmCAun1f.png)
 
 可以看到统计出的品牌非常多。
 
@@ -1088,11 +1088,11 @@ GET /items/_search
 
 结果如下：
 
-![](微服务常用组件ES-下/Cm0qb1YisoM8cMxlPAKcUKiYnje.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Cm0qb1YisoM8cMxlPAKcUKiYnje.png)
 
 另外，我们还可以让聚合按照每个品牌的价格平均值排序：
 
-![](微服务常用组件ES-下/PL9gbErQ1o4naaxL02Kc4gD6nvh.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/PL9gbErQ1o4naaxL02Kc4gD6nvh.png)
 
 #### 3.1.4.总结
 
@@ -1118,11 +1118,11 @@ aggs 代表聚合，与 query 同级，此时 query 的作用是？
 
 不过聚合条件的要利用 `AggregationBuilders` 这个工具类来构造。DSL 与 JavaAPI 的语法对比如下：
 
-![](微服务常用组件ES-下/ZwsYbcoLMo9KF0xE8P0cAGBDnJb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/ZwsYbcoLMo9KF0xE8P0cAGBDnJb.png)
 
 聚合结果与搜索文档同一级别，因此需要单独获取和解析。具体解析语法如下：
 
-![](微服务常用组件ES-下/QNZ1bhwwNo0rG9xYzqQcf86VnCg.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/QNZ1bhwwNo0rG9xYzqQcf86VnCg.png)
 
 完整代码如下：
 
@@ -1171,7 +1171,7 @@ Elasticsearch 的基本语法我们已经学完，足以应对大多数搜索业
 
 在黑马商城的搜索页面，输入关键字，点击搜索时，会发现前端会发起查询商品的请求：
 
-![](微服务常用组件ES-下/Vv2ObuV8eoU7tax2s1BcZREynPe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Vv2ObuV8eoU7tax2s1BcZREynPe.png)
 
 请求的接口信息如下：
 
@@ -1191,13 +1191,13 @@ Elasticsearch 的基本语法我们已经学完，足以应对大多数搜索业
 
 请求参数可以参考原本 `item-service` 中 `com.hmall.item.controller.SearchController` 类中的基于数据库查询的接口：
 
-![](微服务常用组件ES-下/WM7qbTDgroGmLJxjP5kc5qKpnC2.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/WM7qbTDgroGmLJxjP5kc5qKpnC2.png)
 
 ### 4.2.过滤条件聚合
 
 搜索页面的过滤项目前是写死的：
 
-![](微服务常用组件ES-下/AFLQb6JXToDmggxYtimcrfxsnac.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/AFLQb6JXToDmggxYtimcrfxsnac.png)
 
 但是大家思考一下，随着搜索条件的变化，过滤条件展示的过滤项是不是应该跟着变化。
 
@@ -1209,11 +1209,11 @@ Elasticsearch 的基本语法我们已经学完，足以应对大多数搜索业
 
 事实上，搜索时，前端已经发出了请求，尝试搜索栏中除价格以外的过滤项：
 
-![](微服务常用组件ES-下/G0FHbAsK1omuI6x2U0icj4TQnSe.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/G0FHbAsK1omuI6x2U0icj4TQnSe.png)
 
 由于采用的是 POST 请求，所以参数在请求体中：
 
-![](微服务常用组件ES-下/Wqg1bYlvUogOOwx9l0tce8I8nbb.png)
+![](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/微服务常用组件ES-下_Img/Wqg1bYlvUogOOwx9l0tce8I8nbb.png)
 
 接口信息如下：
 

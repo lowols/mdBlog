@@ -95,7 +95,7 @@ Spring在框架整合这块已经做到了极致，它可以整合市面上几�
 
   * Spring有若干个项目，可以根据需要自行选择，把这些个项目组合起来，起了一个名称叫**全家桶**，如下图所示
 
-    ![image-20210729171850181](Spring框架_01_之IOC与DI/image-20210729171850181.png)
+    ![image-20210729171850181](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729171850181.png)
 
     **说明:**
 
@@ -103,7 +103,7 @@ Spring在框架整合这块已经做到了极致，它可以整合市面上几�
 
     这些技术并不是所有的都需要学习，额外需要重点关注`Spring Framework`、`SpringBoot`和`SpringCloud`:
 
-    ![1629714811435](Spring框架_01_之IOC与DI/1629714811435.png)
+    ![1629714811435](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629714811435.png)
 
     * Spring Framework:Spring框架，是Spring中最早最核心的技术，也是所有其他技术的基础。
     * SpringBoot:Spring是来简化开发，而SpringBoot是在Spring的基础上，能更快速的整合第三方框架。
@@ -116,7 +116,7 @@ Spring在框架整合这块已经做到了极致，它可以整合市面上几�
 
  接下来我们介绍下Spring Framework这个技术是如何来的呢?
 
-![image-20210729171926576](Spring框架_01_之IOC与DI/image-20210729171926576.png)
+![image-20210729171926576](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729171926576.png)
 
 Spring发展史
 
@@ -147,11 +147,11 @@ Spring发展史
 
 * Spring Framework的发展也经历了很多版本的变更，每个版本都有相应的调整
 
-  ![image-20210729172153796](Spring框架_01_之IOC与DI/image-20210729172153796.png)
+  ![image-20210729172153796](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729172153796.png)
 
 * Spring Framework的5版本目前没有最新的架构图，而最新的是4版本，所以接下来主要研究的是4的架构图
 
-  ![1629720945720](Spring框架_01_之IOC与DI/1629720945720.png)
+  ![1629720945720](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629720945720.png)
 
   (1)核心层
 
@@ -192,7 +192,7 @@ Spring发展史
 
 要想解答这个问题，就需要先分析下目前咱们代码在编写过程中遇到的问题:
 
-![1629723232339](Spring框架_01_之IOC与DI/1629723232339.png)
+![1629723232339](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629723232339.png)
 
 (1)业务层需要调用数据层的方法，就需要在业务层new数据层的对象
 
@@ -202,7 +202,7 @@ Spring发展史
 
 针对这个问题，该如何解决呢?
 
-![1629724206002](Spring框架_01_之IOC与DI/1629724206002.png)
+![1629724206002](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629724206002.png)
 
 我们就想，如果能把框中的内容给去掉，不就可以降低依赖了么，但是又会引入新的问题，去掉以后程序能运行么?
 
@@ -242,7 +242,7 @@ IOC与工厂模式的设计思想很像。在代码中new对象会导致类之�
 
 像这种在容器中绑定bean中的依赖关系就要用到DI:
 
-![1629735078619](Spring框架_01_之IOC与DI/1629735078619.png)
+![1629735078619](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629735078619.png)
 
 介绍完Spring的IOC和DI的概念后，我们会发现这两个概念的最终目标就是:**充分解耦**，具体实现靠:
 
@@ -298,7 +298,7 @@ IOC与工厂模式的设计思想很像。在代码中new对象会导致类之�
 
 ##### 步骤1:创建Maven项目
 
-![1629734010072](Spring框架_01_之IOC与DI/1629734010072.png)
+![1629734010072](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629734010072.png)
 
 ##### 步骤2:添加Spring的依赖jar包
 
@@ -349,7 +349,7 @@ public class BookServiceImpl implements BookService {
 
 resources下添加spring配置文件applicationContext.xml，并完成bean的配置
 
-![1629734336440](Spring框架_01_之IOC与DI/1629734336440.png)
+![1629734336440](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629734336440.png)
 
 ##### 步骤5:在配置文件中完成bean的配置
 
@@ -403,7 +403,7 @@ public class App {
 
 测试结果为：
 
-![image-20210729184337603](Spring框架_01_之IOC与DI/image-20210729184337603.png)
+![image-20210729184337603](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729184337603.png)
 
 Spring的IOC入门案例已经完成，但是在`BookServiceImpl`的类中依然存在`BookDaoImpl`对象的new操作，它们之间的耦合度还是比较高，这块该如何解决，就需要用到下面的`DI:依赖注入`。
 
@@ -510,13 +510,13 @@ public class BookServiceImpl implements BookService {
 * name="bookDao"中`bookDao`的作用是让Spring的IOC容器在获取到名称后，将首字母大写，前面加set找对应的`setBookDao()`方法进行对象注入
 * ref="bookDao"中`bookDao`的作用是让Spring能在IOC容器中找到id为`bookDao`的Bean对象给`bookService`进行注入
 * 综上所述，对应关系如下:
-  ![image-20240919161739287](Spring框架_01_之IOC与DI/image-20240919161739287.png)
+  ![image-20240919161739287](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20240919161739287.png)
 
 ##### 步骤4:运行程序
 
 运行，测试结果为：
 
-![image-20210729184337603](Spring框架_01_之IOC与DI/image-20210729184337603.png)
+![image-20210729184337603](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729184337603.png)
 
 ## 4，IOC相关内容
 
@@ -536,7 +536,7 @@ public class BookServiceImpl implements BookService {
 
 其中，bean标签的功能、使用方式以及id和class属性的作用，我们通过一张图来描述下
 
-![image-20210729183500978](Spring框架_01_之IOC与DI/image-20210729183500978.png)
+![image-20210729183500978](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729183500978.png)
 
 这其中需要大家重点掌握的是:bean标签的id和class属性的使用。
 
@@ -546,7 +546,7 @@ public class BookServiceImpl implements BookService {
 
 首先来看下别名的配置说明:
 
-![image-20210729183558051](Spring框架_01_之IOC与DI/image-20210729183558051.png)
+![image-20210729183558051](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729183558051.png)
 
 ##### 步骤1：配置别名
 
@@ -587,21 +587,21 @@ public class AppForName {
 
 测试结果为：
 
-![image-20210729184337603](Spring框架_01_之IOC与DI/image-20210729184337603.png)
+![image-20210729184337603](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729184337603.png)
 
 注意事项:
 
 * bean依赖注入的ref属性指定bean，必须在容器中存在
 
-  ![1629771744003](Spring框架_01_之IOC与DI/1629771744003.png)
+  ![1629771744003](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629771744003.png)
 
 * 如果不存在,则会报错，如下:
 
-  ![1629771880920](Spring框架_01_之IOC与DI/1629771880920.png)
+  ![1629771880920](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629771880920.png)
 
   这个错误大家需要特别关注下:
 
-  ![1629771972886](Spring框架_01_之IOC与DI/1629771972886.png)
+  ![1629771972886](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629771972886.png)
 
   获取bean无论是通过id还是name获取，如果无法获取到，将抛出异常NoSuchBeanDefinitionException
 
@@ -613,7 +613,7 @@ public class AppForName {
 
 我们先来看下`bean作用范围的配置属性`:
 
-![image-20210729183628138](Spring框架_01_之IOC与DI/image-20210729183628138.png)
+![image-20210729183628138](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729183628138.png)
 
 ##### 4.1.3.1 验证IOC容器中对象是否为单例
 
@@ -641,7 +641,7 @@ public class AppForName {
 
 * 打印，观察控制台的打印结果
 
-  ![1629772538893](Spring框架_01_之IOC与DI/1629772538893.png)
+  ![1629772538893](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629772538893.png)
 
 * 结论:默认情况下，Spring创建的bean对象都是单例的
 
@@ -665,7 +665,7 @@ public class AppForName {
 
   运行AppForScope，打印看结果
 
-  ![1629772538893](Spring框架_01_之IOC与DI/1629772538893.png)
+  ![1629772538893](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629772538893.png)
 
 * 将scope设置为`prototype`
 
@@ -675,7 +675,7 @@ public class AppForName {
 
   运行AppForScope，打印看结果
 
-  ![1629772928714](Spring框架_01_之IOC与DI/1629772928714.png)
+  ![1629772928714](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629772928714.png)
 
 * 结论，使用bean的`scope`属性可以控制bean的创建是否为单例：
 
@@ -704,7 +704,7 @@ public class AppForName {
 
 关于bean的基础配置中，需要大家掌握以下属性:
 
-![1631529887695](Spring框架_01_之IOC与DI/1631529887695.png)
+![1631529887695](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1631529887695.png)
 
 ### 4.2 bean实例化
 
@@ -731,7 +731,7 @@ bean本质上就是对象，对象在new的时候会使用构造方法完成，�
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629775585694](Spring框架_01_之IOC与DI/1629775585694.png)
+![1629775585694](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629775585694.png)
 
 #### 4.2.2 构造方法实例化
 
@@ -800,7 +800,7 @@ public class BookDaoImpl implements BookDao {
 
 运行程序，如果控制台有打印构造函数中的输出，说明Spring容器在创建对象的时候也走的是构造函数
 
-![1629775972507](Spring框架_01_之IOC与DI/1629775972507.png)
+![1629775972507](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629775972507.png)
 
 ##### 步骤5:将构造函数改成private测试
 
@@ -818,7 +818,7 @@ public class BookDaoImpl implements BookDao {
 
 运行程序，能执行成功,说明内部走的依然是构造函数,能访问到类中的私有构造方法,显而易见Spring底层用的是暴力反射
 
-![1629775972507](Spring框架_01_之IOC与DI/1629775972507.png)
+![1629775972507](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629775972507.png)
 
 ##### 步骤6:构造函数中添加一个参数测试
 
@@ -838,7 +838,7 @@ public class BookDaoImpl implements BookDao {
 
 程序会报错，说明Spring底层使用的是类的无参构造方法。
 
-![1629776331499](Spring框架_01_之IOC与DI/1629776331499.png)
+![1629776331499](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629776331499.png)
 
 #### 4.2.3 分析Spring的错误信息
 
@@ -913,7 +913,7 @@ public class AppForInstanceOrder {
 
 (4)运行后，可以查看到结果
 
-![1629786862329](Spring框架_01_之IOC与DI/1629786862329.png)
+![1629786862329](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629786862329.png)
 
 如果代码中对象是通过上面的这种方式来创建的，如何将其交给Spring来管理呢?
 
@@ -933,7 +933,7 @@ factory-mehod:具体工厂类中创建对象的方法名
 
 对应关系如下图:
 
-![image-20210729195248948](Spring框架_01_之IOC与DI/image-20210729195248948.png)
+![image-20210729195248948](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729195248948.png)
 
 (2)在AppForInstanceOrder运行类，使用从IOC容器中获取bean的方法进行运行测试
 
@@ -952,7 +952,7 @@ public class AppForInstanceOrder {
 
 (3)运行后，可以查看到结果
 
-![1629786862329](Spring框架_01_之IOC与DI/1629786862329.png)
+![1629786862329](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629786862329.png)
 
 看到这，可能有人会问了，你这种方式在工厂类中不也是直接new对象的，和我自己直接new没什么太大的区别，而且静态工厂的方式反而更复杂，这种方式的意义是什么?
 
@@ -971,7 +971,7 @@ public class OrderDaoFactory {
 
 之前new对象的方式就无法添加其他的业务内容，重新运行，查看结果:
 
-![1629788036885](Spring框架_01_之IOC与DI/1629788036885.png)
+![1629788036885](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629788036885.png)
 
 静态工厂实例化，这种方式一般是用来兼容早期的一些老系统，所以了解为主。
 
@@ -1021,7 +1021,7 @@ public class AppForInstanceUser {
 
 (4)运行后，可以查看到结果
 
-![1629788769436](Spring框架_01_之IOC与DI/1629788769436.png)
+![1629788769436](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629788769436.png)
 
 对于上面这种实例工厂的方式如何交给Spring管理呢?
 
@@ -1046,7 +1046,7 @@ public class AppForInstanceUser {
 
   * factory-method:工厂对象中的具体创建对象的方法名,对应关系如下:
 
-    ![image-20210729200203249](Spring框架_01_之IOC与DI/image-20210729200203249.png)
+    ![image-20210729200203249](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/image-20210729200203249.png)
 
 factory-mehod:具体工厂类中创建对象的方法名
 
@@ -1065,7 +1065,7 @@ public class AppForInstanceUser {
 
 (3)运行后，可以查看到结果
 
-![1629788769436](Spring框架_01_之IOC与DI/1629788769436.png)
+![1629788769436](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629788769436.png)
 
 实例工厂实例化的方式就已经介绍完了，配置的过程还是比较复杂，所以Spring为了简化这种配置方式就提供了一种叫`FactoryBean`的方式来简化开发。
 
@@ -1096,7 +1096,7 @@ public class UserDaoFactoryBean implements FactoryBean<UserDao> {
 
 (3)AppForInstanceUser运行类不用做任何修改，直接运行
 
-![1629788769436](Spring框架_01_之IOC与DI/1629788769436.png)
+![1629788769436](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629788769436.png)
 
 **这种方式在Spring去整合其他框架的时候会被用到，所以这种方式需要大家理解掌握。**
 
@@ -1135,7 +1135,7 @@ public class AppForInstanceUser {
 
 打印结果，如下:
 
-![1629790070607](Spring框架_01_之IOC与DI/1629790070607.png)
+![1629790070607](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629790070607.png)
 
 通过验证，会发现默认是单例，那如果想改成单例具体如何实现?
 
@@ -1161,7 +1161,7 @@ public class UserDaoFactoryBean implements FactoryBean<UserDao> {
 
 重新运行AppForInstanceUser，查看结果
 
-![1629790197860](Spring框架_01_之IOC与DI/1629790197860.png)
+![1629790197860](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629790197860.png)
 
 从结果中可以看出现在已经是非单例了，但是一般情况下我们都会采用单例，也就是采用默认即可。所以isSingleton()方法一般不需要进行重写。
 
@@ -1209,7 +1209,7 @@ public class UserDaoFactoryBean implements FactoryBean<UserDao> {
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629791473409](Spring框架_01_之IOC与DI/1629791473409.png)
+![1629791473409](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629791473409.png)
 
 (1)项目中添加BookDao、BookDaoImpl、BookService和BookServiceImpl类
 
@@ -1306,7 +1306,7 @@ public class BookDaoImpl implements BookDao {
 
 运行AppForLifeCycle打印结果为:
 
-![1629792339889](Spring框架_01_之IOC与DI/1629792339889.png)
+![1629792339889](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629792339889.png)
 
 从结果中可以看出，init方法执行了，但是destroy方法却未执行，这是为什么呢?
 
@@ -1336,7 +1336,7 @@ public class BookDaoImpl implements BookDao {
 
 * 运行程序，就能执行destroy方法的内容
 
-  ![1629792857608](Spring框架_01_之IOC与DI/1629792857608.png)
+  ![1629792857608](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629792857608.png)
 
 #### 4.3.4 注册钩子关闭容器
 
@@ -1352,7 +1352,7 @@ public class BookDaoImpl implements BookDao {
 
 * 运行后，查询打印结果
 
-  ![1629792857608](Spring框架_01_之IOC与DI/1629792857608.png)
+  ![1629792857608](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629792857608.png)
 
 两种方式介绍完后，close和registerShutdownHook选哪个?
 
@@ -1389,7 +1389,7 @@ public class BookServiceImpl implements BookService, InitializingBean, Disposabl
 
 重新运行AppForLifeCycle类，
 
-![1629794527419](Spring框架_01_之IOC与DI/1629794527419.png)
+![1629794527419](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629794527419.png)
 
 那第二种方式的实现，我们也介绍完了。
 
@@ -1417,7 +1417,7 @@ public class BookServiceImpl implements BookService, InitializingBean, Disposabl
 
   * 重新运行AppForLifeCycle，打印结果如下:
 
-    ![1629794928636](Spring框架_01_之IOC与DI/1629794928636.png)
+    ![1629794928636](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629794928636.png)
 
     验证的结果和我们猜想的结果是一致的，所以初始化方法会在类中属性设置之后执行。
 
@@ -1511,7 +1511,7 @@ public class BookServiceImpl implements BookService {
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629799214191](Spring框架_01_之IOC与DI/1629799214191.png)
+![1629799214191](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629799214191.png)
 
 (1)项目中添加BookDao、BookDaoImpl、UserDao、UserDaoImpl、BookService和BookServiceImpl类
 
@@ -1638,7 +1638,7 @@ public class BookServiceImpl implements BookService{
 
 运行AppForDISet类，查看结果，说明userDao已经成功注入。
 
-![1629799873386](Spring框架_01_之IOC与DI/1629799873386.png)
+![1629799873386](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629799873386.png)
 
 #### 5.1.3 注入简单数据类型
 
@@ -1718,7 +1718,7 @@ value:后面跟的是简单数据类型，对于参数类型，Spring在注入�
 
 运行AppForDISet类，查看结果，说明userDao已经成功注入。
 
-![1629800324721](Spring框架_01_之IOC与DI/1629800324721.png)
+![1629800324721](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629800324721.png)
 
 **注意:**两个property注入标签的顺序可以任意。
 
@@ -1739,7 +1739,7 @@ value:后面跟的是简单数据类型，对于参数类型，Spring在注入�
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629800748639](Spring框架_01_之IOC与DI/1629800748639.png)
+![1629800748639](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629800748639.png)
 
 (1)项目中添加BookDao、BookDaoImpl、UserDao、UserDaoImpl、BookService和BookServiceImpl类
 
@@ -1871,7 +1871,7 @@ public class BookServiceImpl implements BookService{
 
 运行AppForDIConstructor类，查看结果，说明bookDao已经成功注入。
 
-![1629802656916](Spring框架_01_之IOC与DI/1629802656916.png)
+![1629802656916](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629802656916.png)
 
 #### 5.2.3 构造器注入多个引用数据类型
 
@@ -1930,7 +1930,7 @@ public class BookServiceImpl implements BookService{
 
 运行AppForDIConstructor类，查看结果，说明userDao已经成功注入。
 
-![1629802697318](Spring框架_01_之IOC与DI/1629802697318.png)
+![1629802697318](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629802697318.png)
 
 #### 5.2.4 构造器注入多个简单数据类型
 
@@ -1990,11 +1990,11 @@ public class BookDaoImpl implements BookDao {
 
 运行AppForDIConstructor类，查看结果
 
-![1629803111769](Spring框架_01_之IOC与DI/1629803111769.png)
+![1629803111769](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629803111769.png)
 
 上面已经完成了构造函数注入的基本使用，但是会存在一些问题:
 
-![1629803529598](Spring框架_01_之IOC与DI/1629803529598.png)
+![1629803529598](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629803529598.png)
 
 * 当构造函数中方法的参数名发生变化后，配置文件中的name属性也需要跟着变
 * 这两块存在紧耦合，具体该如何解决?
@@ -2112,7 +2112,7 @@ public class BookDaoImpl implements BookDao {
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629805387647](Spring框架_01_之IOC与DI/1629805387647.png)
+![1629805387647](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629805387647.png)
 
 (1)项目中添加BookDao、BookDaoImpl、BookService和BookServiceImpl类
 
@@ -2225,7 +2225,7 @@ public class AppForAutoware {
 
 * 按照名称注入中的名称指的是什么?
 
-  ![1629806856156](Spring框架_01_之IOC与DI/1629806856156.png)
+  ![1629806856156](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629806856156.png)
 
   * bookDao是private修饰的，外部类无法直接方法
   * 外部类只能通过属性的set方法进行访问
@@ -2269,7 +2269,7 @@ public class AppForAutoware {
 
 这些步骤和前面的都一致，大家可以快速的拷贝即可，最终项目的结构如下:
 
-![1629807579330](Spring框架_01_之IOC与DI/1629807579330.png)
+![1629807579330](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629807579330.png)
 
 (1)项目中添加添加BookDao、BookDaoImpl类
 
@@ -2413,7 +2413,7 @@ public class AppForDICollection {
 
 配置完成后，运行下看结果:
 
-![1629808046783](Spring框架_01_之IOC与DI/1629808046783.png)
+![1629808046783](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/Spring框架_01_之IOC与DI_Img/1629808046783.png)
 
 **说明：**
 

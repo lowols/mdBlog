@@ -14,7 +14,7 @@ date: 2024-05-15 17:50:07
 
 > HTML 主要用于网页主体结构的搭建
 
-![1681115424967](JavaWeb_02_第二章_HTML与CSS/1681115424967.png)
+![1681115424967](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_ea20195f7e36eef67fea1119eaecb929.png)
 
 
 
@@ -22,11 +22,11 @@ date: 2024-05-15 17:50:07
 
 > CSS 主要用于页面元素美化
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681115460825.png" alt="1681115460825" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_940668f0498fc45a4aaa9058c3c4553c.png" alt="1681115460825" style="zoom: 67%;" />
 
 > JavaScript 主要用于页面元素的动态处理
 
-<img src="JavaWeb_02_第二章_HTML与CSS/js.gif" alt="js" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_7c136266ee41e13fdf43c61e8da45769.gif" alt="js" style="zoom:67%;" />
 
 ##  1.2 什么是HTML
 
@@ -104,13 +104,13 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 <!-- 注释内容 -->
 ```
 
-![1681180699132](JavaWeb_02_第二章_HTML与CSS/1681180699132.png)
+![1681180699132](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_d4c67ed15fda78b6e8b7ce2112e498b2.png)
 
 ## 1.6 HTML的入门程序
 
 > 第一步 准备一个纯文本文件,拓展名为html
 
-<img src="JavaWeb_02_第二章_HTML与CSS/new.gif" alt="new" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_b4c9c69db9c977b3909f3928e059fc53.gif" alt="new" style="zoom:50%;" />
 
 > 第二步  使用记事本打开网页,在网页内开发代码
 
@@ -129,7 +129,7 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 
 > 第三步 使用浏览器打开文件,查看显示的内容
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681178113257.png" alt="1681178113257" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0feef42788d27688f500955f07d84965.png" alt="1681178113257" style="zoom: 67%;" />
 
 ## 1.7 HTML概念词汇解释
 
@@ -182,7 +182,7 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 
 
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681175338788.png" alt="1681175338788" style="zoom: 33%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_860ee90af7b7f34e0e2c108242b16c96.png" alt="1681175338788" style="zoom: 33%;" />
 
 > 1 安装过程
 
@@ -190,7 +190,7 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 
 > 2 安装插件
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1684302778377.png" alt="1684302778377" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_18bcec9d9c5aaec3c18101b3fb15aaae.png" alt="1684302778377" style="zoom:80%;" />
 
 
 
@@ -210,31 +210,31 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 
 + `直接用vscode打开某个目录即可`直接将某个目录作为项目代码存放的根目录
 
-![1684897738491](JavaWeb_02_第二章_HTML与CSS/1684897738491.png)
+![1684897738491](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_4f088f0815565c597d0a7571900f0d37.png)
 
-![1687330010547](JavaWeb_02_第二章_HTML与CSS/1687330010547.png)
+![1687330010547](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_311fbe8049b1bf03794d7c08b59e4f10.png)
 
 > 4 在工作空间下创建目录和文件
 
 + 点击带有"+"号的按钮即可创建文件或者目录
 
-![1687330312538](JavaWeb_02_第二章_HTML与CSS/1687330312538.png)
+![1687330312538](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_af62d155ed98c610e5c6d605af152c88.png)
 
 + 在html中,输入"  !  " 并回车即可快速出现html的基本结构
 
-![newhtml](JavaWeb_02_第二章_HTML与CSS/newhtml.gif)
+![newhtml](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_79a141daf200ba5a5738ff7286e67b4c.gif)
 
 > 5 通过live Server 小型服务器运行项目
 
 + 点击右下角Go Live , 或者在html编辑视图上右击 open with live Server  ,会自动启动小型服务器,并自动打开浏览器访问当前资源
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681176763818.png" alt="1681176763818" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_d7e3b7d5aab4916d7bc67639d4cb97af.png" alt="1681176763818" style="zoom: 67%;" />
 
 
 
 
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681176815540.png" alt="1681176815540" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_546700336e3cacfbe61ac1e5f41ebc76.png" alt="1681176815540" style="zoom:67%;" />
 
 + Live Server 实时加载功能
 
@@ -242,9 +242,9 @@ href="网址" 就是属性，href是属性名，"网址"是属性值
 
 + Live Server使用完毕后,要记得关闭
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681177160318.png" alt="1681177160318" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_99c4d016798b374de8bb718539967383.png" alt="1681177160318" style="zoom: 67%;" />
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681177186528.png" alt="1681177186528" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_f29b99849dcbe83f46a2458da6ce5a86.png" alt="1681177186528" style="zoom:67%;" />
 
 > 6 其他常见设置
 
@@ -279,7 +279,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-![1681179289089](JavaWeb_02_第二章_HTML与CSS/1681179289089.png)
+![1681179289089](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_1290ec0f3ce5f1b59b33587886a4a8b9.png)
 
 ## 2.2 段落标签
 
@@ -306,7 +306,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681180017304.png" alt="1681180017304" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_e05bd4a7a1f907bcb882301537b68e93.png" alt="1681180017304" style="zoom: 67%;" />
 
 ## 2.3 换行标签
 
@@ -326,7 +326,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-![1681180239241](JavaWeb_02_第二章_HTML与CSS/1681180239241.png)
+![1681180239241](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_3ad50ef8a37010730271a1e8a0d63073.png)
 
 ## 2.4 列表标签
 
@@ -348,7 +348,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-![1681194349015](JavaWeb_02_第二章_HTML与CSS/1681194349015.png)
+![1681194349015](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_70c98560eec7a9045cd7ad6884aa6a2c.png)
 
 > 无序列表 分条列项展示数据的标签, 其每一项前面的符号不带有顺序特征
 
@@ -366,7 +366,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-![1681194434091](JavaWeb_02_第二章_HTML与CSS/1681194434091.png)
+![1681194434091](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0c61deaddd084af4648a86ce333453d5.png)
 
 > 嵌套列表 列表和列表之前可以签到,实现某一项内容详细展示
 
@@ -391,7 +391,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-![1681194504371](JavaWeb_02_第二章_HTML与CSS/1681194504371.png)
+![1681194504371](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_dd41c7198bcae90c674f606763fefd93.png)
 
 ## 2.5 超链接标签
 
@@ -428,7 +428,7 @@ http://www.w3school.com.cn
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/chaolianjiex.gif" alt="chaolianjiex" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_5efa8a5dbc53be19fde1fd27f199f4f4.gif" alt="chaolianjiex" style="zoom:67%;" />
 
 
 
@@ -452,7 +452,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681196307844.png" alt="1681196307844" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_ac45a89a4b6ba5936522936dfaa8946a.png" alt="1681196307844" style="zoom:67%;" />
 
 
 
@@ -482,7 +482,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681196276582.png" alt="1681196276582" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0835ff636b97eae6ec15ca3444d411ce.png" alt="1681196276582" style="zoom: 67%;" />
 
 > video 用于在页面上引入一段视频
 
@@ -506,7 +506,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681196233304.png" alt="1681196233304" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_6bcd6a2d37b38571ee831cab23931506.png" alt="1681196233304" style="zoom: 67%;" />
 
 
 
@@ -558,7 +558,7 @@ alt
 
 + 展示效果
 
-![1681196961386](JavaWeb_02_第二章_HTML与CSS/1681196961386.png)
+![1681196961386](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_b2cab0af164d06867287d5f0febc664d.png)
 
 > 单元格跨行
 
@@ -598,7 +598,7 @@ alt
 
 + 效果
 
-![1681197062594](JavaWeb_02_第二章_HTML与CSS/1681197062594.png)
+![1681197062594](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_1207266df2988916996322511263b228.png)
 
 > 单元格跨行
 
@@ -650,7 +650,7 @@ alt
 
 + 效果
 
-![1681197299564](JavaWeb_02_第二章_HTML与CSS/1681197299564.png)
+![1681197299564](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_5e643379e887d00cb3a775bf58544399.png)
 
 ## 2.8 表单标签(重点)
 
@@ -683,7 +683,7 @@ alt
 
 + 效果
 
-![1681198068548](JavaWeb_02_第二章_HTML与CSS/1681198068548.png)
+![1681198068548](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_4a77604bb7181b366b0711a6fbd9a35e.png)
 
 ## 2.9 常见表单项标签(重点)
 
@@ -697,7 +697,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681198354039.png" alt="1681198354039" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_acebb1d769dc016932cc44770443a094.png" alt="1681198354039" style="zoom:50%;" />
 
 
 
@@ -711,7 +711,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681198393831.png" alt="1681198393831" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_6d0f57068850201571f1b66df81abe90.png" alt="1681198393831" style="zoom:50%;" />
 
 
 
@@ -727,7 +727,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681198448345.png" alt="1681198448345" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_eac9e2651ef25b60a9d072c3b9875be8.png" alt="1681198448345" style="zoom:50%;" />
 
 + 说明
     + name属性相同的radio为一组，组内互斥
@@ -750,7 +750,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681198540737.png" alt="1681198540737" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_00bc7cb90969e981cc8793f817ac86ca.png" alt="1681198540737" style="zoom:50%;" />
 
 + 说明
     + 设置checked="checked"属性设置默认被选中的checkbox
@@ -771,7 +771,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681199376475.png" alt="1681199376475" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_9ee01987060b9e293d4ef099f99be065.png" alt="1681199376475" style="zoom:50%;" />
 
 + 说明
     + 下拉列表用到了两种标签，其中select标签用来定义下拉列表，而option标签设置列表项。
@@ -791,7 +791,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681199471712.png" alt="1681199471712" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_e28cf6dfae298e31df4b65b801b424b1.png" alt="1681199471712" style="zoom:50%;" />
 
 
 
@@ -821,7 +821,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681199589613.png" alt="1681199589613" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_559e822718c1975b0b6fc19eca024e08.png" alt="1681199589613" style="zoom:50%;" />
 
 
 
@@ -838,7 +838,7 @@ alt
 
 + 效果
 
-![1681199672580](JavaWeb_02_第二章_HTML与CSS/1681199672580.png)
+![1681199672580](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_969f22d475994bbe8f68dd3cc1f747fa.png)
 
 + 说明
     + 不同浏览器显示的样式有微小差异
@@ -867,23 +867,23 @@ alt
 
 + 展示效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681200198741.png" alt="1681200198741" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_37df6b16beddf86b43780c1a1e958802.png" alt="1681200198741" style="zoom:67%;" />
 
 ## 2.11 特殊字符
 
 > 对于有特殊含义的字符,需要通过转移字符来表示
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681200435834.png" alt="1681200435834"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_ed222f91d2ed9f605762ce5de9c84706.png" alt="1681200435834"  />
 
 
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681200467767.png" alt="1681200467767"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_21c48962b2723a3f9e91b0a8ad4763d8.png" alt="1681200467767"  />
 
 
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681200487125.png" alt="1681200487125"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0ed47ca142ffdd72888e19c68d4b1458.png" alt="1681200487125"  />
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681200503798.png" alt="1681200503798"  />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_64c4a1d95b9d43174d553d5942d4373f.png" alt="1681200503798"  />
 
 
 
@@ -897,7 +897,7 @@ alt
 
 + 效果
 
-![1681200662087](JavaWeb_02_第二章_HTML与CSS/1681200662087.png)
+![1681200662087](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_1105049e52a0b11818981a40c242b9e5.png)
 
 # 三 CSS的使用
 
@@ -929,7 +929,7 @@ alt
 
 + 效果
 
-![1681201322584](JavaWeb_02_第二章_HTML与CSS/1681201322584.png)
+![1681201322584](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_7148622ce566ca5bee6cc9e8c6eaf022.png)
 
 + 缺点
     + html代码和css样式代码交织在一起,增加阅读难度和维护成本
@@ -970,7 +970,7 @@ alt
 
 + 效果
 
-![1681201553427](JavaWeb_02_第二章_HTML与CSS/1681201553427.png)
+![1681201553427](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_33435533b4ca55a2ae399d4e42646492.png)
 
 
 
@@ -985,7 +985,7 @@ alt
 
 + 可以在项目单独创建css样式文件,专门用于存放CSS样式代码
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681202361429.png" alt="1681202361429" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_82a1f12a8764f67c6aca758b3be9c465.png" alt="1681202361429" style="zoom: 67%;" />
 
 
 
@@ -1043,7 +1043,7 @@ alt
 
 + 效果
 
-![1681203591080](JavaWeb_02_第二章_HTML与CSS/1681203591080.png)
+![1681203591080](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_578d99d4a903ceaad05feea302e4ee55.png)
 
 + 说明
     + 根据标签名确定样式的作用范围
@@ -1084,7 +1084,7 @@ alt
 
 + 效果
 
-![1681203748017](JavaWeb_02_第二章_HTML与CSS/1681203748017.png)
+![1681203748017](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_b349dfd7481cf43945405193f71418dd.png)
 
 + 说明
     + 根据元素id属性的值确定样式的作用范围
@@ -1132,7 +1132,7 @@ alt
 
 + 效果
 
-![1681204269702](JavaWeb_02_第二章_HTML与CSS/1681204269702.png)
+![1681204269702](http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_ab9c47a679a8d4b13b7641dc71a3f975.png)
 
 + 说明
     + 根据元素class属性的值确定样式的作用范围
@@ -1154,21 +1154,21 @@ alt
 
 +  当把框 1 向右浮动时，它脱离文档流并且向右移动，直到它的右边缘碰到包含框的右边缘
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681260732580.png" alt="1681260732580" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0326534fc0baa36cc60b3df8eedcee0a.png" alt="1681260732580" style="zoom: 80%;" />
 
 + 当框 1 向左浮动时，它脱离文档流并且向左移动，直到它的左边缘碰到包含框的左边缘。因为它不再处于文档流中，所以它不占据空间，实际上覆盖住了框 2，使框 2 从视图中消失。如果把所有三个框都向左移动，那么框 1 向左浮动直到碰到包含框，另外两个框向左浮动直到碰到前一个浮动框。
 
 
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681260842005.png" alt="1681260842005" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0bc92b4423c6033ede734580b8f7ace8.png" alt="1681260842005" style="zoom: 80%;" />
 
 +  如果包含框太窄，无法容纳水平排列的三个浮动元素，那么其它浮动块向下移动，直到有足够的空间。如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681260887708.png" alt="1681260887708" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_032845bd242bf4cf60db2feacc246d3f.png" alt="1681260887708" style="zoom: 80%;" />
 
 > 浮动的样式名:float
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681260937920.png" alt="1681260937920" style="zoom:80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_1c00f0eae805944d7f26c23f9c641def.png" alt="1681260937920" style="zoom:80%;" />
 
 > 通过代码感受浮动的效果
 
@@ -1213,7 +1213,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681261311289.png" alt="1681261311289" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_f2719ceba67026299f10414acf50e4b5.png" alt="1681261311289" style="zoom: 67%;" />
 
 
 
@@ -1225,7 +1225,7 @@ alt
 
 + 元素可以使用的顶部，底部，左侧和右侧属性定位。然而，这些属性无法工作，除非是先设定position属性。他们也有不同的工作方式，这取决于定位方法。
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681261377875.png" alt="1681261377875" style="zoom: 80%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0053c56bc135cf2880c1a65a2375e99c.png" alt="1681261377875" style="zoom: 80%;" />
 
 > 静态定位
 
@@ -1264,7 +1264,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681261602297.png" alt="1681261602297" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_4ce412f0d2a04ede2eb06fe0b3244b8c.png" alt="1681261602297" style="zoom:50%;" />
 
 
 
@@ -1309,7 +1309,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681261830830.png" alt="1681261830830" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_f47accba944eb0348ccda38605e00618.png" alt="1681261830830" style="zoom:50%;" />
 
 > 相对定位
 
@@ -1352,7 +1352,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681261993904.png" alt="1681261993904" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_2e117dbdb6705ec55534e5c4ff760484.png" alt="1681261993904" style="zoom:50%;" />
 
 
 
@@ -1395,7 +1395,7 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/fixeddingwei.gif" alt="fixeddingwei" style="zoom:50%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_d5ba289004ea5c61a2ac3eff669d5deb.gif" alt="fixeddingwei" style="zoom:50%;" />
 
 ## 3.6 CSS盒子模型
 
@@ -1403,7 +1403,7 @@ alt
 
 + CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距（margin），边框（border），填充（padding），和实际内容（content）
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681262535006.png" alt="1681262535006" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_0dc7bf3b8bee64a30faa0f662c9f2e15.png" alt="1681262535006" style="zoom:67%;" />
 
 + 说明：
     + Margin(外边距) - 清除边框外的区域，外边距是透明的。
@@ -1411,7 +1411,7 @@ alt
     + Padding(内边距) - 清除内容周围的区域，内边距是透明的。
     + Content(内容) - 盒子的内容，显示文本和图像。
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681262585852.png" alt="1681262585852" style="zoom:67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_a84936c91d0f49b53ede3bfd04be2a92.png" alt="1681262585852" style="zoom:67%;" />
 
 + 代码
 
@@ -1465,11 +1465,11 @@ alt
 
 + 效果
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681263227281.png" alt="1681263227281" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_6b8ce639ddcbc272afb6193b5b979229.png" alt="1681263227281" style="zoom: 67%;" />
 
 
 
 + 在浏览器上,通过F12工具查看盒子模型状态
 
-<img src="JavaWeb_02_第二章_HTML与CSS/1681263265604.png" alt="1681263265604" style="zoom: 67%;" />
+<img src="http://cdn.jsdelivr.net/gh/lowols/Pictures@main/JavaWeb_02_%E7%AC%AC%E4%BA%8C%E7%AB%A0_HTML%E4%B8%8ECSS_Img/img_5586f982830f7accc3dc402170c3a090.png" alt="1681263265604" style="zoom: 67%;" />
 
